@@ -3,7 +3,7 @@ class FileHandler
 {
     public function get_template_content()
     {
-        $template_path = 'template/index.php';
+        $template_path = '../template/template.php';
 
         $file_contents = fopen($template_path, "r");
 
