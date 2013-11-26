@@ -1,31 +1,51 @@
-<?php ob_start();?>
-<html>
+<?php
+ob_start();
+require_once('../config.php');
+$config = new Config();
+?>
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+
     <title><?php echo $page_name ?></title>
 
-    <link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 
-    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" href="<?php echo main_css?>normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="<?php echo main_css?>grid.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="<?php echo main_css?>style.css" type='text/css' media="screen">
+
+    <!-- JQuery 2.0.3-->
+    <script type="text/javascript" src="<?php echo main_jquery?>"></script>
 
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
 <div id="topper">
 
     <div id="title">
-        <a href="index.php"><h2>Templata</h2></a>
+        <h1><a href="<?php echo navi_home ?>"><?php echo $config->site_name; ?></a></h1>
     </div>
 
-    <div id="links">
-        <a href="index.php">Home</a>&nbsp;
-        <a href="#">Link 1</a>&nbsp;
-        <a href="#">Link 2</a>&nbsp;
+    <div id="switch"></div>
+
+    <div id="navigation">
+        <ul>
+            <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
+            <li class="solutions"><a href="#">Link 1</a></li>
+            <li class="contact"><a href="#">Link 2</a></li>
+        </ul>
     </div>
 
 </div>
 
-<div class="container_12 clearfix">
+<div id="panel">
+    <ul>
+        <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
+    </ul>
+</div>
 
+<div class="container_12 clearfix">
