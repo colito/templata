@@ -6,15 +6,15 @@ html, body {
     height: 100%;
 }
 a	{
-	color: #000;
+    color: #000;
     text-decoration: none;
 }
 a :hover	{
     text-decoration: underline;
 }
 i	{
-	color: royalblue;
-	font-size: 10pt;
+    color: royalblue;
+    font-size: 10pt;
 }
 
 h1
@@ -62,13 +62,13 @@ textarea {
     width: 100%;
 }
 input, textarea	{
-	border: solid thin lightslategrey;
+    border: solid thin lightslategrey;
     border-radius: 3px;
     padding: 2px;
 }
 
 .container_12	{
-	padding-top: 40px;
+    padding-top: 5.8%;
 }
 
 
