@@ -1,5 +1,5 @@
 <?php
-$page_name = 'Page Name';
+$page_name = 'Home';
 require_once('../includes/header.php');
 ?>
 
