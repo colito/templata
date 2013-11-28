@@ -10,8 +10,11 @@ Class Config
     }
 }
 
+define('main_admin', '../admin_dunamis');
+
 # navigation links
 define('navi_home', '../home/');
+define('navi_admin', main_admin);
 
 # included file paths
 define('main_include', '../includes/');
