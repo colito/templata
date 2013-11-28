@@ -14,12 +14,15 @@ $fp = fopen('data.txt', 'w');
 $string = 'This is my test string';
 $result = $file_handler->fwrite_stream($fp, $string);
 
-?>
+//$x = $file_handler->create_new_page('test/one/two/hello.php');
+//var_dump($x);
 
+?>
+<!--
 <div id="content">
     <h2>Create Page</h2>
     <br>
     <p>Page name: <input type="text" name="new_page"></p>
 </div>
-
+-->
 <?php require_once('../includes/footer.php') ?>
