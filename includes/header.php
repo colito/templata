@@ -36,7 +36,8 @@ $config = new Config();
         <ul>
             <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
             <li class="solutions"><a href="#">Link 1</a></li>
-            <li class="contact"><a href="#">Link 2</a></li>
+            <li class="contact"><a href="../create_page">create</a></li>
+            <li class="admin"><a href="<?php echo navi_admin ?>">admin</a></li>
         </ul>
     </div>
 
