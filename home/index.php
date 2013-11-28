@@ -6,6 +6,9 @@ require_once('../fns/page_handler.php');
 # Takes page name as parameter
 $page_handler->set_page_header('Home');
 
+
+//echo basename('etc/one/page.php');
+//echo dirname('etc/one/page.php');
 ?>
 
 <!-- Content within div container class goes in here -->
