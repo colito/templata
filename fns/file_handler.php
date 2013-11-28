@@ -31,9 +31,12 @@ class FileHandler
         return $data;
     }
 
-    public function create_new_page()
+    public function create_new_page($new_file)
     {
-
+        $new_file_name = basename($new_file);
+        $dir = dirname($new_file);
+        shell_exec('mkdir -p ../'.$dir);
+        shell_exec('touch ../'.$dir.'/'.$new_file_name);
     }
 
     public function fwrite_stream($fp, $string) {
