@@ -17,7 +17,10 @@ $page_handler->set_page_header('Home');
     if(!empty($_GET['content']))
     {
         $file_name = $_GET['content'];
+        //$x = $file_handler->get_content($file_name);
         echo $file_handler->get_content($file_name);
+
+        //var_dump($x);
     }
 
 ?>
