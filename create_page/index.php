@@ -10,12 +10,12 @@ $new_file_content = str_replace('{content}', 'Hello World', $new_file_content);
 
 //var_dump($new_file_content);
 
-$fp = fopen('data.txt', 'w');
-$string = 'This is my test string';
-$result = $file_handler->fwrite_stream($fp, $string);
+//$fp = fopen('data.txt', 'w');
+//$string = 'This is my test string';
+//$result = $file_handler->fwrite_stream($fp, $string);
 
-//$x = $file_handler->create_new_page('test/one/two/hello.php');
-//var_dump($x);
+//$x = $file_handler->create_new_page('check/one/two/hello2.php');
+//var_dump($basePath = dirname(__FILE__));
 
 ?>
 <!--
