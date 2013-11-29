@@ -14,8 +14,10 @@ $new_file_content = str_replace('{content}', 'Hello World', $new_file_content);
 //$string = 'This is my test string';
 //$result = $file_handler->fwrite_stream($fp, $string);
 
-//$x = $file_handler->create_new_page('check/one/two/hello2.php');
-//var_dump($basePath = dirname(__FILE__));
+$file_handler->create_new_page('ex/one/two/hello2.php');
+
+//$basePath = dirname(__FILE__);
+//var_dump($basePath);
 
 ?>
 <!--
