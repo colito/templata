@@ -1,5 +1,6 @@
 <?php
 require_once('../fns/page_handler.php');
+require_once('../fns/file_handler.php');
 
 # Sets the header of the page.
 # Class has already been instantiated in ../fns/page_handler.php as $page_handler
@@ -12,6 +13,14 @@ $page_handler->set_page_header('Home');
 ?>
 
 <!-- Content within div container class goes in here -->
+<?php
+    if(!empty($_GET['content']))
+    {
+        $file_name = $_GET['content'];
+        echo $file_handler->get_content($file_name);
+    }
+
+?>
 
 <?php
 # sets the footer of the page
