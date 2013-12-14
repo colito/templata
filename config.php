@@ -25,7 +25,8 @@ define('main_fns', '../fns/');
 
 define('main_images', '../images/');
 define('main_css', '../css/');
-define('main_css_reset', '../css/normalize.css');
+define('main_css_reset', '../css/reset.css');
+define('main_css_normalize', '../css/normalize.css');
 define('main_css_grid', '../css/grid.css');
 define('main_css_style', '../css/style.css');
 define('main_js', '../js/');
