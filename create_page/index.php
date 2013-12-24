@@ -1,7 +1,8 @@
 <?php
-$page_name = 'Create new page';
-require_once('../includes/header.php');
-require_once('../fns/file_handler.php');
+require_once('../fns/page_handler.php');
+$page_handler->set_page_header('Create new page');
+
+require_once(APP_ROOT_DIR.'/fns/file_handler.php');
 $file_handler = new FileHandler();
 
 $new_file_content = $file_handler->get_template_content();
@@ -27,4 +28,4 @@ $file_handler->create_new_page('ex/one/two/hello2.php');
     <p>Page name: <input type="text" name="new_page"></p>
 </div>
 -->
-<?php require_once('../includes/footer.php') ?>
+<?php $page_handler->set_footer(); ?>
