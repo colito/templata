@@ -2,21 +2,23 @@
 Class Config
 {
     public $site_name = "Templata";
-
-    public function file_root()
-    {
-        $root = $_SERVER['DOCUMENT_ROOT'];
-        return $root;
-    }
 }
+
+# Definitions ***********************************************************************/
+
+define('APP_ROOT_DIR', dirname(__FILE__));
 
 define('main_admin', '../admin_dunamis');
 
-# navigation links
-define('navi_home', '../home/');
-define('navi_admin', 'main_admin');
 
-# included file paths
+# navigation links *******************************************/
+
+define('navi_home', '../home/');
+define('navi_admin', main_admin);
+
+
+# included file paths ***************************************/
+
 define('main_include', '../includes/');
 define('main_header', '../includes/header.php');
 define('main_footer', '../includes/footer.php');
