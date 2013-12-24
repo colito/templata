@@ -5,10 +5,9 @@ $config = new Config();
 
 $nav_menu = '
         <ul>
-            <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
+            <li id="<?php echo $home_active_page ?>" class="home"><a href="'.navi_home.'">Home</a></li>
             <li class="solutions"><a href="#">Link 1</a></li>
             <li class="contact"><a href="../create_page">create</a></li>
-            <!-- <li class="admin"><a href="<?php echo navi_admin ?>">admin</a></li>-->
         </ul>
         ';
 ?>
@@ -49,9 +48,7 @@ $nav_menu = '
 </div>
 
 <div id="panel">
-    <ul>
-        <?php echo $nav_menu; ?>
-    </ul>
+    <?php echo $nav_menu; ?>
 </div>
 
 <div class="container_12 clearfix">
