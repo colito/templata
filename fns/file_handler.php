@@ -1,6 +1,24 @@
 <?php
 class FileHandler
 {
+    public function relative_root($file_root_path)
+    {
+        $app_root = APP_ROOT_DIR;
+        $relative_path = str_replace($app_root.'/', '', $file_root_path);
+        $path_array = explode('/', $relative_path);
+        //$depth = count($path_array);
+
+        $depth = '';
+
+        foreach($path_array as $level)
+        {
+            $level = '../';
+            $depth .= $level;
+        }
+
+        return $depth;
+    }
+
     public function get_template_content()
     {
         $template_path = '../template/template.php';
