@@ -2,6 +2,15 @@
 ob_start();
 require_once('../config.php');
 $config = new Config();
+
+$nav_menu = '
+        <ul>
+            <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
+            <li class="solutions"><a href="#">Link 1</a></li>
+            <li class="contact"><a href="../create_page">create</a></li>
+            <!-- <li class="admin"><a href="<?php echo navi_admin ?>">admin</a></li>-->
+        </ul>
+        ';
 ?>
 
 <!DOCTYPE HTML>
@@ -34,19 +43,14 @@ $config = new Config();
     <div id="switch"></div>
 
     <div id="navigation">
-        <ul>
-            <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
-            <li class="solutions"><a href="#">Link 1</a></li>
-            <li class="contact"><a href="../create_page">create</a></li>
-            <!-- <li class="admin"><a href="<?php echo navi_admin ?>">admin</a></li>-->
-        </ul>
+        <?php echo $nav_menu; ?>
     </div>
 
 </div>
 
 <div id="panel">
     <ul>
-        <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
+        <?php echo $nav_menu; ?>
     </ul>
 </div>
 
