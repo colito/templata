@@ -4,7 +4,7 @@ Class Config
     public $site_name = "Templata";
 }
 
-# Definitions ***********************************************************************/
+# DEFINITIONS ***********************************************************************/
 
 define('APP_ROOT_DIR', dirname(__FILE__));
 
@@ -18,6 +18,8 @@ define('navi_admin', main_admin);
 
 
 # included file paths ***************************************/
+
+define('main_content', '../content');
 
 define('main_include', '../includes/');
 define('main_header', '../includes/header.php');
