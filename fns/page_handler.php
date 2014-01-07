@@ -4,7 +4,7 @@ class PageHandler
 {
     public function link_handler()
     {
-        $links_file = APP_ROOT_DIR.'/includes/nav_links.txt';
+        $links_file = APP_ROOT_DIR.'/config.php';
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
         # array clean-up

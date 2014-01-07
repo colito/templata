@@ -3,7 +3,21 @@ Class Config
 {
     public $site_name = "Templata";
 }
+?>
 
+<!--
+            NAVIGATION LINKS
+
+# All user links should be defined as follows:
+# *Link Name:actual_link.file_extention
+
+*Home:home
+*Link 1:#
+*Create:create_page
+
+-->
+
+<?php
 # DEFINITIONS ***********************************************************************/
 
 define('APP_ROOT_DIR', dirname(__FILE__));
@@ -37,3 +51,4 @@ define('main_js', '../js/');
 define('main_jquery', '../js/jquery-2.0.3.min.js');
 
 ?>
+
