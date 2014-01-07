@@ -1,6 +1,7 @@
 <?php
 class FileHandler
 {
+    # this function has now been replaced with APP_ROOT_DIR in the config.
     public function relative_root($file_root_path)
     {
         $app_root = APP_ROOT_DIR;
@@ -19,6 +20,7 @@ class FileHandler
         return $depth;
     }
 
+    # takes a snapshot of /template/template.php and creates a new file from it.
     public function get_template_content()
     {
         $template_path = '../template/template.php';
@@ -34,6 +36,8 @@ class FileHandler
         return $data;
     }
 
+    # takes a hold of the contents within the contend directory.
+    # better to use require_once() instead.
     public function get_content($file_name)
     {
         $content_path = '../content/'.$file_name;
@@ -49,6 +53,8 @@ class FileHandler
         return $data;
     }
 
+    # creates a new file as specified by the user and places it within the content directory
+    # only works on linux
     public function create_new_page($new_file)
     {
         # file path and file name
