@@ -12,9 +12,6 @@ $page_handler->set_page_header('Home');
 <!-- Content goes here. Body and container have already been included, continue from there. -->
 <?php
 
-    $x = $page_handler->link_handler();
-    var_dump($x);
-
 ?>
 
 <?php
