@@ -28,4 +28,4 @@ $file_handler->create_new_page('ex/one/two/hello2.php');
     <p>Page name: <input type="text" name="new_page"></p>
 </div>
 -->
-<?php $page_handler->set_footer(); ?>
+<?php $page_handler->set_page_footer(); ?>
