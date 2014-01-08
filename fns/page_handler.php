@@ -2,6 +2,17 @@
 require_once('../config.php');
 class PageHandler
 {
+    public function set_page_header($page_name)
+    {
+        # $page_name is already in '../includes/header.php'
+        return require_once(main_header);
+    }
+
+    public function set_page_footer()
+    {
+        return require_once(main_footer);
+    }
+
     public function link_handler()
     {
         $links_file = APP_ROOT_DIR.'/config.php';
@@ -51,15 +62,16 @@ class PageHandler
         return $nav_links;
     }
 
-    public function set_page_header($page_name)
+    public function navigation_menu()
     {
-        # $page_name is already in '../includes/header.php'
-        return require_once(main_header);
-    }
+        $x = $this->link_handler();
 
-    public function set_page_footer()
-    {
-        return require_once(main_footer);
+        echo '<ul>';
+        foreach($x['nav_links'] as $y)
+        {
+            echo '<li><a href=" '.$y['link'].' ">'.$y['link_name'].'</a></li>';
+        }
+        echo '</ul>';
     }
 }
 
