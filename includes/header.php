@@ -3,6 +3,7 @@ ob_start();
 require_once('../fns/page_handler.php');
 $config = new Config();
 
+
 $nav_menu = '
         <ul>
             <li id="<?php echo $home_active_page ?>" class="home"><a href="'.navi_home.'">Home</a></li>
@@ -10,6 +11,21 @@ $nav_menu = '
             <li class="contact"><a href="../create_page">create</a></li>
         </ul>
         ';
+
+
+function navigation_menu()
+{
+    $page_handler = new PageHandler();
+    $x = $page_handler->link_handler();
+
+    echo '<ul>';
+    foreach($x['nav_links'] as $y)
+    {
+        echo '<li><a href=" '.$y['link'].' ">'.$y['link_name'].'</a></li>';
+    }
+    echo '</ul>';
+}
+
 
 //$nav_men = $page_handler->link_handler();
 //var_dump($nav_men);
@@ -39,13 +55,13 @@ $nav_menu = '
 <div id="topper">
 
     <div id="title">
-        <h1><a href="<?php echo navi_home ?>"><?php echo $config->site_name; ?></a></h1>
+         <h1><a href="<?php echo navi_home ?>"><?php echo $config->site_name; ?></a></h1>
     </div>
 
     <div id="switch"></div>
 
     <div id="navigation">
-        <?php echo $nav_menu; ?>
+        <?php navigation_menu() ?>
     </div>
 
 </div>
