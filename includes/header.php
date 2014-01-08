@@ -1,6 +1,6 @@
 <?php
 ob_start();
-require_once('../config.php');
+require_once('../fns/page_handler.php');
 $config = new Config();
 
 $nav_menu = '
@@ -10,6 +10,9 @@ $nav_menu = '
             <li class="contact"><a href="../create_page">create</a></li>
         </ul>
         ';
+
+//$nav_men = $page_handler->link_handler();
+//var_dump($nav_men);
 ?>
 
 <!DOCTYPE HTML>
