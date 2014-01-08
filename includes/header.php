@@ -25,6 +25,7 @@ $page_handler = new PageHandler();
 
 </head>
 
+<!-- oncontextmenu when this returns false right-click is disabled -->
 <body oncontextmenu="return false">
 
 <div id="topper">
