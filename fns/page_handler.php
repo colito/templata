@@ -44,7 +44,8 @@ class PageHandler
         $nav_links = array();
         for($i=0; $i<count($link_names); $i++)
         {
-            $nav_links[$link_names[$i]] = $actual_links[$i];
+            $nav_links['nav_links'][$i]['link_name'] = $link_names[$i] ;
+            $nav_links['nav_links'][$i]['link'] = $actual_links[$i];
         }
 
         return $nav_links;
