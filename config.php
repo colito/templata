@@ -9,7 +9,7 @@ Class Config
             NAVIGATION LINKS
 
 # All user links should be defined as follows:
-# *Link Name:actual_link.file_extention
+# *Link Name:actual_link.file_extension
 
 *Home:../home
 *Create:../create_page
