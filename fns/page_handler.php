@@ -26,16 +26,18 @@ class PageHandler
         $link_names = array();
         foreach($clean_lines as $link_name)
         {
-            $colon_position = strpos($link_name, ':');
-            $link_names[] = substr($link_name, 1, $colon_position - 1);
+            # fishes out the colon position to determine the reading endpoint.
+            $colon_position = strpos($link_name, ':') - 1;
+            $link_names[] = substr($link_name, 1, $colon_position);
         }
 
         # getting the actual links
         $actual_links = array();
         foreach($clean_lines as $actual_link)
         {
-            $colon_position = strpos($actual_link, ':');
-            $actual_links[] = substr($actual_link, $colon_position + 1);
+            # reads the entire line after the colon
+            $colon_position = strpos($actual_link, ':') + 1;
+            $actual_links[] = substr($actual_link, $colon_position);
         }
 
         # putting everything together in one array
