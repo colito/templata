@@ -12,7 +12,7 @@ Class Config
 # *Link Name:actual_link.file_extension
 
 *Home:../home
-*Create:../create_page
+*Create:..admin/create_page
 *Content:../content
 
 -->
