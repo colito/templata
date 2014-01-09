@@ -12,7 +12,7 @@ Class Config
 # *Link Name:actual_link.file_extension
 
 *Home:../home
-*Create:..admin/create_page
+*Create:../admin/create_page
 *Content:../content
 
 -->
@@ -35,20 +35,20 @@ define('navi_admin', main_admin);
 
 define('main_content', '../content');
 
-define('main_include', '../includes/');
-define('main_header', '../includes/header.php');
-define('main_footer', '../includes/footer.php');
+define('main_include', '../soul/includes/');
+define('main_header', '../soul/includes/header.php');
+define('main_footer', '../soul/includes/footer.php');
 
-define('main_fns', '../fns/');
+define('main_fns', '../soul/fns/');
 
-define('main_images', '../images/');
-define('main_css', '../css/');
-define('main_css_reset', '../css/reset.css');
-define('main_css_normalize', '../css/normalize.css');
-define('main_css_grid', '../css/grid.css');
-define('main_css_style', '../css/style.css');
-define('main_js', '../js/');
-define('main_jquery', '../js/jquery-2.0.3.min.js');
+define('main_images', '../img/');
+define('main_css', '../soul/css/');
+define('main_css_reset', '../soul/css/reset.css');
+define('main_css_normalize', '../soul/css/normalize.css');
+define('main_css_grid', '../soul/css/grid.css');
+define('main_css_style', '../soul/css/style.css');
+define('main_js', '../soul/js/');
+define('main_jquery', '../soul/js/jquery-2.0.3.min.js');
 
 ?>
 

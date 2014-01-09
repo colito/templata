@@ -2,7 +2,7 @@
 require_once('../fns/page_handler.php');
 $page_handler->set_page_header('Create new page');
 
-require_once(APP_ROOT_DIR.'/fns/file_handler.php');
+require_once(APP_ROOT_DIR . '/fns/file_handler.php');
 $file_handler = new FileHandler();
 
 $new_file_content = $file_handler->get_template_content();
