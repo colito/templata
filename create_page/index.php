@@ -1,9 +1,10 @@
 <?php
 require_once('../fns/page_handler.php');
-$page_handler->set_page_header('Create new page');
-
 require_once(APP_ROOT_DIR.'/fns/file_handler.php');
 $file_handler = new FileHandler();
+
+$depth = $file_handler->relative_root(dirname(__FILE__));
+$page_handler->set_page_header('Create new page', $depth);
 
 $new_file_content = $file_handler->get_template_content();
 $new_file_content = str_replace('{page_name}', 'Page Name', $new_file_content);
