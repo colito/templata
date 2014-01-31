@@ -37,13 +37,13 @@ $page_handler = new PageHandler();
     <div id="switch"></div>
 
     <div id="navigation">
-        <?php $page_handler->navigation_menu() ?>
+        <?php $page_handler->navigation_menu($depth) ?>
     </div>
 
 </div>
 
 <div id="panel">
-    <?php $page_handler->navigation_menu() ?>
+    <?php $page_handler->navigation_menu($depth) ?>
 </div>
 
 <div class="container_12 clearfix">
