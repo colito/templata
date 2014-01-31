@@ -1,11 +1,13 @@
 <?php
-require_once('../config.php');
+//require_once('../config.php');
 class PageHandler
 {
     public function set_page_header($page_name, $depth)
     {
         # $page_name is already in '../includes/header.php'
+        //return require_once('../includes/header.php');
         return require_once(main_header);
+        //return 'Another hello!';
     }
 
     public function set_page_footer()
@@ -75,5 +77,4 @@ class PageHandler
     }
 }
 
-$page_handler = new PageHandler();
 ?>

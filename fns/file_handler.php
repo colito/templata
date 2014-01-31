@@ -1,7 +1,6 @@
 <?php
 class FileHandler
 {
-    # this function has now been replaced with APP_ROOT_DIR in the config.
     # needs to determine depth levels from number of directories not number of overall files
     public function relative_root($file_root_path)
     {
