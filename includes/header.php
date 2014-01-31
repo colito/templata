@@ -1,6 +1,6 @@
 <?php
 ob_start();
-require_once('../fns/page_handler.php');
+require_once(APP_ROOT_DIR.'/fns/page_handler.php');
 $config = new Config();
 $page_handler = new PageHandler();
 
@@ -15,13 +15,13 @@ $page_handler = new PageHandler();
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 
-    <link rel="stylesheet" href="<?php echo main_css_reset?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo main_css_normalize?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo main_css_grid?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo main_css_style?>" type='text/css' media="screen">
+    <link rel="stylesheet" href="<?php echo $depth.main_css_reset?>" type="text/css" media="screen">
+    <link rel="stylesheet" href="<?php echo $depth.main_css_normalize?>" type="text/css" media="screen">
+    <link rel="stylesheet" href="<?php echo $depth.main_css_grid?>" type="text/css" media="screen">
+    <link rel="stylesheet" href="<?php echo $depth.main_css_style?>" type='text/css' media="screen">
 
     <!-- JQuery 2.0.3-->
-    <script type="text/javascript" src="<?php echo main_jquery?>"></script>
+    <script type="text/javascript" src="<?php echo $depth.main_jquery?>"></script>
 
 </head>
 
