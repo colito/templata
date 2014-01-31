@@ -12,7 +12,7 @@ $page_handler->set_page_header('Home', $depth);
 
 <!-- Content goes here. Body and container have already been included, continue from there. -->
 <?php
-   
+
 ?>
 
 <?php
