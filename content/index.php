@@ -5,7 +5,8 @@ require_once(APP_ROOT_DIR.'/fns/file_handler.php');
 # Sets the header of the page.
 # Class has already been instantiated in ../fns/page_handler.php as $page_handler
 # Takes page name as parameter
-$page_handler->set_page_header('Content');
+$depth = $file_handler->relative_root(dirname(__FILE__));
+$page_handler->set_page_header('Content', $depth);
 
 ?>
 
