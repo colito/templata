@@ -2,7 +2,7 @@
 require_once('../config.php');
 class PageHandler
 {
-    public function set_page_header($page_name)
+    public function set_page_header($page_name, $depth)
     {
         # $page_name is already in '../includes/header.php'
         return require_once(main_header);
@@ -62,14 +62,14 @@ class PageHandler
         return $nav_links;
     }
 
-    public function navigation_menu()
+    public function navigation_menu($depth = null)
     {
         $x = $this->link_handler();
 
         echo '<ul>';
         foreach($x['nav_links'] as $y)
         {
-            echo '<li><a href=" '.$y['link'].' ">'.$y['link_name'].'</a></li>';
+            echo '<li><a href=" '.$depth.$y['link'].' ">'.$y['link_name'].'</a></li>';
         }
         echo '</ul>';
     }
