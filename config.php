@@ -11,9 +11,9 @@ Class Config
 # All user links should be defined as follows:
 # *Link Name:actual_link.file_extension
 
-*Home:../home
-*Create:..admin/create_page
-*Content:../content
+*Home:home
+*Create:create_page
+*Content:content
 
 -->
 
