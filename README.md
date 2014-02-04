@@ -11,3 +11,9 @@ Developer Notes
 17:05 :
 * Implemented restructuring and thus far seems to have been a success.
 * Still under careful observation.
+
+
+2014-02-04:
+
+10:35
+* Fixed link to home page when clicking on the site name
