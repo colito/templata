@@ -28,7 +28,7 @@ define('main_admin', '../admin_dunamis');
 
 # navigation links *******************************************/
 # now replaced by navigation links above
-define('navi_home', '../home/');
+define('navi_home', 'home');
 define('navi_admin', main_admin);
 
 

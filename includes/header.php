@@ -31,7 +31,7 @@ $page_handler = new PageHandler();
 <div id="topper">
 
     <div id="title">
-         <h1><a href="<?php echo navi_home ?>"><?php echo $config->site_name; ?></a></h1>
+         <h1><a href="<?php echo $depth.navi_home ?>"><?php echo $config->site_name; ?></a></h1>
     </div>
 
     <div id="switch"></div>
