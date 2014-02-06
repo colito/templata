@@ -15,6 +15,31 @@ class PageHandler
         return require_once(main_footer);
     }
 
+    # needs to determine depth levels from number of directories not number of overall files
+    public function relative_link_path($file_root_path)
+    {
+        $app_root = APP_ROOT_DIR;
+        $relative_path = str_replace($app_root.'/', '', $file_root_path);
+        $path_array = explode('/', $relative_path);
+        //$depth = count($path_array);
+
+        $depth = '';
+
+        foreach($path_array as $level)
+        {
+            $level = '../';
+            $depth .= $level;
+        }
+
+        return $depth;
+    }
+
+    # ref: http://css-tricks.com/snippets/php/create-url-slug-from-post-title/
+    public function create_slug($string){
+        $slug=preg_replace('/[^A-Za-z0-9-]+/', '-', strtolower($string));
+        return $slug;
+    }
+
     public function link_handler()
     {
         $links_file = APP_ROOT_DIR.'/config.php';
