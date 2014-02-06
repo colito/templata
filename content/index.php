@@ -15,6 +15,27 @@ $page_handler->set_page_header('Content', $depth);
 <!-- Content goes here. Body and container have already been included, continue from there. -->
 <?php
 
+$article_id = $_GET['article'];
+
+if($article_id == 1)
+{
+    echo 'Here I am';
+    require_once('construction/index.html');
+}
+elseif($article_id == 2)
+{
+    require_once('sample/index.php');
+}
+else{
+    echo '<p>';
+    echo 'Select an article';
+    echo '<br>';
+    echo '<a href="'.$depth.'article/1">Construction</a>';
+    echo '<br>';
+    echo '<a href="'.$depth.'article/2">Sample</a>';
+    echo '</p>';
+}
+
 ?>
 
 <?php
