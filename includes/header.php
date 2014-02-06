@@ -15,6 +15,8 @@ $page_handler = new PageHandler();
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 
+    <link rel="icon" type="image/png" href="<?php echo $depth.'/img/favicon.ico'?>">
+
     <link rel="stylesheet" href="<?php echo $depth.main_css_reset?>" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php echo $depth.main_css_normalize?>" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php echo $depth.main_css_grid?>" type="text/css" media="screen">
