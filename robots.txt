@@ -1,0 +1,19 @@
+# For more information about the robots.txt standard, see:
+# http://www.robotstxt.org/orig.html
+#
+# For syntax checking, see:
+# http://www.sxw.org.uk/computing/robots/check.html
+
+User-agent: *
+Disallow: /content/
+Disallow: /create_page/
+Disallow: /css/
+Disallow: /img/
+Disallow: /includes/
+Disallow: /js/
+Disallow: /template/
+Disallow: /tools/
+
+Disallow: /config.php
+Disallow: /README.md
+Disallow: /server_details.php
