@@ -4,6 +4,7 @@ Class Config
     public $site_name = "Templata";
     public $user_name = '';
     public $password = '';
+    public $right_click = 1; # disables right-click event on the site if set to 0
 }
 ?>
 
@@ -16,7 +17,7 @@ Class Config
 
 *Home:home
 *Create:create_page
-*Content:content
+*Content:article/
 *Test:home/test
 
 -->

@@ -28,7 +28,7 @@ $page_handler = new PageHandler();
 </head>
 
 <!-- oncontextmenu when this returns false right-click is disabled -->
-<body oncontextmenu="return false">
+<body <?php $page_handler->right_click_status($config->right_click)?>>
 
 <div id="topper">
 

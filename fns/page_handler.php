@@ -100,6 +100,18 @@ class PageHandler
         }
         echo '</ul>';
     }
+
+    public function right_click_status($status)
+    {
+        if($status == 0)
+        {
+            echo 'oncontextmenu="return false"';
+        }
+        elseif($status == 1)
+        {
+            echo '';
+        }
+    }
 }
 
 ?>
