@@ -27,3 +27,9 @@ Developer Notes
 * Moved function for ataining a relative link path from the file handler class to the page handler class
 * Page handler class now contains a function to create slugs
 * Added a favicon for the site
+
+17:07
+* Attempted to dynamisize url re-writing (still needs a lot of work)
+
+2014-02-07
+
