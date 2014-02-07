@@ -1,7 +1,6 @@
 RewriteEngine On    # Turn on the rewriting engine
-RewriteRule    ^article/?$    content/index.php   [NC,L] # Handle requests
-RewriteRule    ^article/?$    content/   [NC,L] # Handle requests
-RewriteRule    ^article/([0-9]+)/?$    content/index.php?article=$1  [NC,L]
-# Return 403 Forbidden header and show the content of the root homepage
-#RewriteRule .* index.php [F]
-
+RewriteCond   %{REQUEST_URI} ^/index.php
+RewriteRule   .* index.php [L]
+RewriteRule   ^article/?$    content/index.php   [NC,L] # Handle requests
+RewriteRule   ^article/([A-Za-z0-9-]+)/?$    content/index.php?article=$1  [NC,L]
+#RewriteRule   ^(.*)/img/(.*)$ $1/img/$2 [L,R=301]
