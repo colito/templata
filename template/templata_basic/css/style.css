@@ -1,0 +1,453 @@
+/******************************** global **************************************/
+body
+{
+    background-color: #f5f5f5;
+}
+html, body
+{
+    height: 100%;
+}
+a
+{
+    color: #000;
+    text-decoration: none;
+}
+a :hover	{
+    text-decoration: underline;
+}
+i	{
+    color: royalblue;
+    font-size: 10pt;
+}
+
+h1
+{
+    font-size: 1.47em; /*1.750em;*/
+    color: darkgrey; /*#BED3DF;*/
+    font-weight: bold;
+    letter-spacing: 0.01em;
+    /*text-shadow: text-shadow: -1px -1px 1px #000;*/
+    /*text-shadow:0 1px 0 #FFFFFF;*/
+    text-shadow: 0px -1px 0px rgba(0,0,0,.6); /* 50% black coming from the top */
+    font-weight: bold;
+}
+h2
+{
+    font-weight: 100;
+    font-size: 1.340em;
+    color: #000;
+}
+h3
+{
+    font-weight: 100;
+    font-size: 1.025em;
+    color: steelblue;
+}
+p a
+{
+    color: steelblue;
+}
+p a :hover
+{
+    text-decoration: underline;
+}
+.success
+{
+    color: limegreen;
+}
+.error
+{
+    color: firebrick;
+}
+.upper
+{
+    color: steelblue;
+}
+.lower
+{
+    color: slategray;
+}
+textarea
+{
+    width: 100%;
+}
+input, textarea
+{
+    border: solid thin lightslategrey;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+.container_12, .container_16, .container_24
+{
+    padding-top: 5.9%;
+}
+
+
+/******************************************* background tile header ***************************************/
+/*header
+---------------------------------------------*/
+#header
+{
+    margin-top: 5%;
+    margin-left: 0%;
+}
+#topper
+{
+    position: fixed;
+    -moz-position: fixed;
+    width: 100%;
+    top: 0px;
+    height: 47px;
+    background-color: steelblue;
+    z-index: 100;
+    /*border-bottom: solid 12px lightsteelblue;*/
+}
+#topper #title h1
+{
+    margin-top: 0.65%;
+}
+#topper #title h1 a
+{
+    text-decoration: none;
+    color: #ffffff;
+    margin: 0% 0 0 2%;  /*top right bottom left*/
+}
+
+#switch, #panel
+{
+    display: none;
+}
+
+
+/*navigation
+-----------------------------------------------*/
+
+#navigation
+{
+    position: absolute;
+    top: 2%;
+    margin: 0% 0 0% 30%;
+}
+
+#navigation ul
+{
+    /*margin: 0% 0 0 0;*/
+    list-style: none;
+    float: left;
+    /*padding:1px;*/
+}
+
+#navigation ul li
+{
+    float:left;
+    /*margin-left:0.5%;*/
+    padding-left: 12px;
+}
+
+#navigation ul #active_page a
+{
+    color: #87CEFA;
+}
+
+#navigation ul li a
+{
+    color: lightsteelblue;
+    display: block;
+    text-decoration: none;
+    font-size: 0.87em;
+}
+
+#navigation ul li a:hover
+{
+    color: lightblue;
+}
+
+#navigation ul li .home
+{
+    nav-index: 1;
+}
+
+/******************************* forms and content ****************************/
+
+#content img {
+    margin: 20% 0 0 0;
+}
+
+#form dl input[type="text"], #form dl input[type="password"] {
+    padding: 1px;
+    width: 80%;
+}
+
+#auth-form {
+    background-color: #c8def4;
+    padding: 3%;
+    margin: 1%;
+    text-align: center;
+    border-radius: 6px;
+    color: slategrey;
+}
+
+#auth-form .form-btn {
+    color: white;
+    width: 100px;
+    border-radius: 3px;
+}
+
+
+/******************************* buttons **************************************/
+
+.form-btn, .form-btn-right {
+    color: white;
+    background-color: steelblue;
+    border: solid #c8def4;
+    border-radius: 3;
+}
+
+.form-btn {
+    border: 30px;
+}
+
+.form-btn-right {
+    border: 1px;
+    float: right;
+    margin-right: 0;
+    margin-left: 0.5%;
+    padding: 3px;
+}
+
+dd  {
+    padding: 4px;
+    font-size: 0.9em;
+    /*color: #696969;*/
+    letter-spacing: 0px;
+    word-spacing: 3px;
+}
+
+
+
+
+/***************************************** footer *********************************************/
+
+/*#footer  {
+    background: slategray;
+    color: #fff;
+    height: 30px;
+    width: 99.7%;
+    padding: 2px;
+    font-size: 8pt;
+    text-align: center;
+}*/
+
+#footer i{
+    color: #ffffff;
+}
+
+
+
+
+/*MEDIA QUERIES
+------------------------------------------------*/
+
+/* medium --------------------------*/
+@media screen and (max-width : 1024px)	{
+
+    h1
+    {
+        font-size: 1.5em;
+    }
+    h2
+    {
+        font-size: 1.2em;
+        font-weight: 100;
+    }
+    h3
+    {
+        font-size: 0.9em;
+    }
+    p
+    {
+        font-size: 0.750em;
+    }
+
+    #picshow
+    {
+        /*margin: 1% 4% 8% 14%;*/
+    }
+
+    #content
+    {
+        margin-top: 2%;
+    }
+
+}
+
+
+/* small ---------------------------*/
+@media screen and (max-width : 480px)	{
+
+    h1
+    {
+        font-size: 1.23em;
+        text-align: center;
+    }
+    h2
+    {
+        font-size: 1.2em;
+        font-weight: 100;
+    }
+    p
+    {
+        font-size: 0.750em;
+    }
+
+    .grid_1,
+    .grid_2,
+    .grid_3,
+    .grid_4,
+    .grid_5,
+    .grid_6,
+    .grid_7,
+    .grid_8,
+    .grid_9,
+    .grid_10,
+    .grid_11,
+    .grid_12
+    {
+        width:100%;
+    }
+
+    .container_12, .container_16, .container_24
+    {
+        margin-top: 10%;
+    }
+
+    #topper
+    {
+        height: 40px;
+    }
+    #topper #title h1
+    {
+        text-align: center;
+        margin: 1.7% 0 0 0;
+    }
+
+    #switch,#panel
+    {
+        display: block;
+        position: fixed;
+        width: 100%;
+        font-size: 0.750em;
+        z-index: 101;
+    }
+
+    #switch
+    {
+        top: 0px;
+        height: 40px;
+        right: 0px;
+        opacity: 0.9;
+        text-align:center;
+        background-color: skyblue;
+        cursor: pointer;
+        width: 22px;
+    }
+
+    #panel
+    {
+        top: 40px;
+        height: 32%;
+        width: 50%;
+        right: 0px;
+        display:none;
+        opacity: 0.9;
+        background-color:skyblue;
+        border:solid 1px lightslategrey;
+        border-top: none;
+        border-right: none;
+    }
+
+    #panel ul
+    {
+        /*float: right;*/
+        /*width: 70%;*/
+    }
+
+    #panel ul li
+    {
+        text-align: left;
+        /*float: none;*/
+        list-style: none;
+        display: block;
+        /*margin-left: 0;*/
+        font-size: 1em;
+        padding: 10px;
+        /*padding-left: 0px;*/order-width: 3px;
+        border-bottom: solid thin lightslategrey;
+    }
+
+    #panel ul li a
+    {
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+        -webkit-user-select: none;
+    }
+
+    #panel ul #active_page a
+    {
+        color: royalblue;
+    }
+
+    #panel ul li a:hover
+    {
+        background: #87CEFA;
+        color: royalblue;
+        /*border-radius: 25px;*/
+        /*border: solid thin #FFF;*/
+        /*text-align: center;*/
+        transition: background 01s;
+        -moz-transition: background 01s;
+        -webkit-transition: background 01s;
+    }
+
+    #navigation ul
+    {
+        display: none;
+    }
+
+    #picshow
+    {
+        margin: 2% 1% 15% 3.5%;
+        width: 90%;
+        height: 100%;
+    }
+    #content
+    {
+        margin-top: 5%;
+    }
+    dt	{
+        padding: 0px;
+    }
+    label
+    {
+        /*float: center;*/
+    }
+    #form
+    {
+        margin-left: 0;
+    }
+    #form dl
+    {
+        margin-left: 0%;
+    }
+    #form dl input
+    {
+        width: 82%;
+    }
+    #form dl textarea
+    {
+        width: 82%;
+    }
+
+}
