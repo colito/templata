@@ -1,7 +1,7 @@
 <?php
 Class Config
 {
-    public $site_name = "Templata";
+    public $app_name = "Templata";
     public $user_name = '';
     public $password = '';
     public $right_click = 1; # disables right-click event on the site if set to 0. default = 1

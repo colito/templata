@@ -17,10 +17,10 @@ $page_handler = new PageHandler();
 
     <link rel="icon" type="image/png" href="<?php echo $depth.'/img/favicon.ico'?>">
 
-    <link rel="stylesheet" href="<?php echo $depth.main_css_reset?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo $depth.main_css_normalize?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo $depth.main_css_grid?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo $depth.main_css_style?>" type='text/css' media="screen">
+    <link rel="stylesheet" href="css/main_css_reset" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/main_css_normalize>" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/main_css_grid" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/main_css_style>" type='text/css' media="screen">
 
     <!-- JQuery 2.0.3-->
     <script type="text/javascript" src="<?php echo $depth.main_jquery?>"></script>
@@ -33,7 +33,7 @@ $page_handler = new PageHandler();
 <div id="topper">
 
     <div id="title">
-        <h1><a href="<?php echo $depth.navi_home ?>"><?php echo $config->site_name; ?></a></h1>
+        <h1><a href="<?php echo $depth.navi_home ?>"><?php echo $config->app_name; ?></a></h1>
     </div>
 
     <div id="switch"></div>
