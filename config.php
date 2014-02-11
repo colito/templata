@@ -4,23 +4,11 @@ Class Config
     public $site_name = "Templata";
     public $user_name = '';
     public $password = '';
-    public $right_click = 1; # disables right-click event on the site if set to 0
+    public $right_click = 1; # disables right-click event on the site if set to 0. default = 1
+    public $navigation_links = '/includes/nav_links.php';
 }
 ?>
 
-<!--
-            NAVIGATION LINKS
-
-# All user links should be defined as follows:
-# *Link Name:actual_link.file_extension
-# This might be moved to a more appropriate location
-
-*Home:home
-*Create:create_page
-*Content:article/
-*Test:home/test
-
--->
 
 <?php
 
