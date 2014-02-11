@@ -20,10 +20,10 @@ $page_handler->set_page_header('Home', $depth);
     }
     echo create_slug('DOES THIS THING WORK OR NOT 100 2333 **56 ] {');
     echo '<br>';
-    echo $_SERVER['REQUEST_URI'];
+    //echo $_SERVER['REQUEST_URI'];
 ?>
 
 <?php
 # sets the footer of the page
-//$page_handler->set_page_footer();
+$page_handler->set_page_footer();
 ?>

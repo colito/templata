@@ -20,7 +20,7 @@
 </head>
 
 <!-- oncontextmenu when this returns false right-click is disabled -->
-<body {right_click} >
+<body {right_click}>
 
 <div id="topper">
 
@@ -41,7 +41,7 @@
 </div>
 
 <div class="container_12 clearfix">
-    {content}
+    {body_content}
 </div>
 
 <div id="footer">
@@ -57,4 +57,3 @@
     });
 </script>
 </html>
-<?php ob_flush();?>
