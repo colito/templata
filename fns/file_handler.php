@@ -4,7 +4,10 @@ class FileHandler
     # takes a snapshot of /template/template.php and creates a new file from it.
     public function get_template_content()
     {
-        $template_path = '../template/template.php';
+        $config = new Config();
+        $active_template = $config->active_template;
+
+        $template_path = APP_ROOT_DIR.'/template/'.$active_template.'/index.php';
 
         $file_contents = fopen($template_path, "r");
 

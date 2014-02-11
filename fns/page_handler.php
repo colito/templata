@@ -2,6 +2,43 @@
 //require_once('../config.php');
 class PageHandler
 {
+    public function output_template($page_name, $depth)
+    {
+        $page_title = $page_name;
+        $config = new Config();
+        $active_template = $config->active_template;
+        $app_name = $config->app_name;
+
+        $template_path = APP_ROOT_DIR.'/template/'.$active_template.'/index.php';
+        $template_res = $depth.'template/'.$active_template;
+        $main_images = $depth.'img';
+        $favicon = $depth.'img/favicon.ico';
+
+        $file_contents = fopen($template_path, "r");
+
+        while(!feof($file_contents))
+        {
+            $data = fread($file_contents, 500000);
+        }
+        fclose($file_contents);
+
+
+        $include = str_replace('{content}', '{this is where the content will be}', $data);
+        $include = str_replace('{page_title}', $page_title, $include);
+        $include = str_replace('{app_name}', $app_name, $include);
+
+        $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
+        $include = str_replace('{template_res}', $template_res, $include);
+
+        $include = str_replace('{main_image_directory}', $main_images, $include);
+        $include = str_replace('{favicon}', $favicon, $include);
+
+        $include = str_replace('{navigation_menu}', $this->navigation_menu($depth), $include);
+        $include = str_replace('{mobi_navigation_menu}', $this->navigation_menu($depth), $include);
+
+        return $include;
+    }
+
     public function set_page_header($page_name, $depth)
     {
         # $page_name is already in '../includes/header.php'
