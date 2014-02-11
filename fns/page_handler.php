@@ -42,7 +42,9 @@ class PageHandler
 
     public function link_handler()
     {
-        $links_file = APP_ROOT_DIR.'/config.php';
+        $config = new Config();
+        $links = $config->navigation_links;
+        $links_file = APP_ROOT_DIR.$links;
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
         # array clean-up
