@@ -6,8 +6,8 @@ require_once(APP_ROOT_DIR.'/fns/file_handler.php');
 # Sets the header of the page.
 # Class has already been instantiated in ../fns/page_handler.php as $page_handler
 # Takes page name as parameter and the relative root for main navigation
-$depth = $file_handler->relative_root(dirname(__FILE__));
 $page_handler = new PageHandler();
+$depth = $page_handler->relative_link_path(dirname(__FILE__));
 $page_handler->set_page_header('Content', $depth);
 
 ?>
@@ -26,6 +26,10 @@ elseif($article_id == 2)
 {
     require_once('sample/index.php');
 }
+elseif($article_id == 'how-to-say-hello')
+{
+    echo 'This is how you say hello : HELLO!!!';
+}
 else{
     echo '<p>';
     echo 'Select an article';
@@ -33,6 +37,8 @@ else{
     echo '<a href="'.$depth.'article/1">Construction</a>';
     echo '<br>';
     echo '<a href="'.$depth.'article/2">Sample</a>';
+    echo '<br>';
+    echo '<a href="'.$depth.'article/how-to-say-hello">Say Hi</a>';
     echo '</p>';
 }
 
