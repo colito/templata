@@ -19,7 +19,8 @@ $page_handler->set_page_header('Home', $depth);
         return $slug;
     }
     echo create_slug('DOES THIS THING WORK OR NOT 100 2333 **56 ] {');
-    //returns 'does-this-thing-work-or-not'
+    echo '<br>';
+    echo $_SERVER['REQUEST_URI'];
 ?>
 
 <?php
