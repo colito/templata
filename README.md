@@ -31,5 +31,13 @@ Developer Notes
 17:07
 * Attempted to dynamisize url re-writing (still needs a lot of work)
 
-2014-02-07
+2014-02-11
 
+16:39
+* Restructured app to be based off a template file with all the necessary styling
+* Restructural change has only been implemented and tested in home/test/index.php
+* Navigation menu's are currently not displaying correctly
+* App is still pending the ability to display any given content
+* App needs to be able to validate if the given template name in the config is accurate
+* Need to standardize placeholders within the index.php file of the template
+* Need to create a 'libs' directory where CSS, JS, and PHP classes will reside
