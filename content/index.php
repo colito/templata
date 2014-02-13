@@ -30,6 +30,10 @@ elseif($article_id == 'how-to-say-hello')
 {
     echo 'This is how you say hello : HELLO!!!';
 }
+elseif($article_id == 'convert-bytes')
+{
+    require_once('sample/convert_bytes/convert_bytes.php');
+}
 else{
     echo '<p>';
     echo 'Select an article';
@@ -39,6 +43,8 @@ else{
     echo '<a href="'.$depth.'article/2">Sample</a>';
     echo '<br>';
     echo '<a href="'.$depth.'article/how-to-say-hello">Say Hi</a>';
+    echo '<br>';
+    echo '<a href="'.$depth.'article/convert-bytes">Convert Bytes</a>';
     echo '</p>';
 }
 
