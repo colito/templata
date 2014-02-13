@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="{template_res}/css/style.css" type='text/css' media="screen">
 
     <!-- JQuery 2.0.3-->
+    <!--
     <script type="text/javascript" src="{template_res}/js/main_jquery"></script>
+    -->
 
 </head>
 
@@ -25,7 +27,7 @@
 <div id="topper">
 
     <div id="title">
-        <h1><a href="navi_home">{app_name}</a></h1>
+        <h1><a href="{relative}home">{app_name}</a></h1>
     </div>
 
     <div id="switch"></div>
@@ -49,6 +51,7 @@
 </div>
 </body>
 <!-- Menu toggle for smart phones -->
+<!--
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
         $("#switch").click(function(){
@@ -56,4 +59,5 @@
         });
     });
 </script>
+-->
 </html>

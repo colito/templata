@@ -11,8 +11,12 @@ $depth = $page_handler->relative_link_path(dirname(__FILE__));
 
 //echo $file_handler->get_template_content();
 
-$template_output = $page_handler->output_template('Test', $depth);
-echo $template_output;
+//$template_output = $page_handler->output_template('Test', $depth);
+//echo $template_output;
 //var_dump($template_output);
+
+echo $page_handler->output_template('Test', $depth);
+
+//var_dump($page_handler->navigation_menu2());
 
 ?>
