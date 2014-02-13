@@ -48,3 +48,6 @@ Developer Notes
 * Rendering a page based on a template has been resolved
 * Code requires clean up
 * All testing has been conducted oh home/test/index.php
+
+16:26
+* Restored navigation menu toggle for smartphone screen resolutions
