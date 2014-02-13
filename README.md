@@ -41,3 +41,10 @@ Developer Notes
 * App needs to be able to validate if the given template name in the config is accurate
 * Need to standardize placeholders within the index.php file of the template
 * Need to create a 'libs' directory where CSS, JS, and PHP classes will reside
+
+2014-02-13
+
+16:20
+* Rendering a page based on a template has been resolved
+* Code requires clean up
+* All testing has been conducted oh home/test/index.php
