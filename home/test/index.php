@@ -1,22 +1,13 @@
 <?php
-
 require_once('../../config.php');
 require_once(APP_ROOT_DIR.'/fns/page_handler.php');
-require_once(APP_ROOT_DIR.'/fns/file_handler.php');
-
-$file_handler = new FileHandler();
 
 $page_handler = new PageHandler();
-$depth = $page_handler->relative_link_path(dirname(__FILE__));
 
-//echo $file_handler->get_template_content();
+$page_title = 'Test';
+$relative_path_depth = $page_handler->relative_link_path(dirname(__FILE__));
+$body_content = $page_handler->get_content($relative_path_depth, 'sample/index2.php');
 
-//$template_output = $page_handler->output_template('Test', $depth);
-//echo $template_output;
-//var_dump($template_output);
-
-echo $page_handler->output_template('Test', $depth);
-
-//var_dump($page_handler->navigation_menu2());
+$page_handler->output_template($page_title, $relative_path_depth, $body_content);
 
 ?>
