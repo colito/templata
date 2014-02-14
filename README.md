@@ -51,3 +51,8 @@ Developer Notes
 
 16:26
 * Restored navigation menu toggle for smartphone screen resolutions
+
+2014-02-14
+
+14:55
+* home/test/index.php displays content of a specified file when outputting the template
