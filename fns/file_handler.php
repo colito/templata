@@ -37,6 +37,13 @@ class FileHandler
         return $data;
     }
 
+    public function require_content($depth, $file_name)
+    {
+        $file_path = $depth.'content/'.$file_name;
+        $content = file_get_contents($file_path);
+        return $content;
+    }
+
     # creates a new file as specified by the user and places it within the content directory
     # only works on linux
     public function create_new_page($new_file)
