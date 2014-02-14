@@ -135,7 +135,14 @@ class PageHandler
         return $right_click_status;
     }
 
-    public function output_template($page_name, $depth)
+    public function get_content($depth, $file_name)
+    {
+        $file_path = $depth.'content/'.$file_name;
+        $content = file_get_contents($file_path);
+        return $content;
+    }
+
+    public function output_template($page_name, $depth, $body_content = null)
     {
         $page_title = $page_name;
         $config = new Config();
@@ -155,23 +162,25 @@ class PageHandler
         }
         fclose($file_contents);
 
-
-        $include = str_replace('{body_content}', '[this is where the content will be]', $data);
+        #
+        $include = str_replace('{app_name}', $app_name, $data);
         $include = str_replace('{page_title}', $page_title, $include);
-        $include = str_replace('{app_name}', $app_name, $include);
 
+        # Pathing
         $include = str_replace('{relative}', $depth, $include);
-
-        $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
-        $include = str_replace('{template_res}', $template_res, $include);
-
-        $include = str_replace('{main_image_directory}', $main_images, $include);
         $include = str_replace('{favicon}', $favicon, $include);
+        $include = str_replace('{template_res}', $template_res, $include);
+        $include = str_replace('{main_image_directory}', $main_images, $include);
 
+        # Body
+        $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
+        $include = str_replace('{body_content}', $body_content, $include);
+
+        # Navigation
         $include = str_replace('{navigation_menu}', $this->navigation_menu2($depth), $include);
         $include = str_replace('{mobi_navigation_menu}', $this->navigation_menu2($depth), $include);
 
-        return $include;
+        echo $include;
     }
 }
 
