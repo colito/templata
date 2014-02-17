@@ -7,16 +7,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 
-    <link rel="icon" type="image/png" href="{main_image_directory}/favicon.ico">
+    <link rel="icon" type="image/png" href="{templata_images}/favicon.ico">
 
-    <link rel="stylesheet" href="{template_res}/css/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{template_res}/css/normalize.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{template_res}/css/grid.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{template_res}/css/style.css" type='text/css' media="screen">
+    <!-- Using  -->
+    <link rel="stylesheet" href="{templata_libs}/css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{templata_libs}/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{templata_libs}/css/grid.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{templata_libs}/css/style.css" type='text/css' media="screen">
 
     <!-- JQuery 2.0.3-->
 
-    <script type="text/javascript" src="{relative}/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="{templata_libs}/js/jquery-2.0.3.min.js"></script>
 
 
 </head>
