@@ -56,3 +56,13 @@ Developer Notes
 
 14:55
 * home/test/index.php displays content of a specified file when outputting the template
+
+2014-02-17:
+
+14:17
+== OBJECTIVES ==
+* Read folder contents
+* Read jQuery file name from specified directory
+* Create a new template to test for establishing a site
+* Read retrive content from a designated folder
+* Set a home page specied on the config file
