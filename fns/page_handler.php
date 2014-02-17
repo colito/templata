@@ -142,6 +142,11 @@ class PageHandler
         return $content;
     }
 
+    public function main_libraries()
+    {
+
+    }
+
     public function output_template($page_name, $depth, $body_content = null)
     {
         $page_title = $page_name;
@@ -151,8 +156,8 @@ class PageHandler
 
         $template_path = APP_ROOT_DIR.'/template/'.$active_template.'/index.php';
         $template_res = $depth.'template/'.$active_template;
-        $main_images = $depth.'img';
-        $favicon = $depth.'img/favicon.ico';
+        $main_images = $depth.$config->main_images_directory;
+        $favicon = $main_images.'/favicon/favicon.ico';
 
         $file_contents = fopen($template_path, "r");
 
@@ -169,8 +174,8 @@ class PageHandler
         # Pathing
         $include = str_replace('{relative}', $depth, $include);
         $include = str_replace('{favicon}', $favicon, $include);
-        $include = str_replace('{template_res}', $template_res, $include);
-        $include = str_replace('{main_image_directory}', $main_images, $include);
+        $include = str_replace('{templata_libs}', $template_res, $include);
+        $include = str_replace('{templata_images}', $main_images, $include);
 
         # Body
         $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
