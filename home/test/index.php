@@ -1,6 +1,6 @@
 <?php
 require_once('../../config.php');
-require_once(APP_ROOT_DIR.'/fns/page_handler.php');
+require_once(T_FNS.'page_handler.php');
 
 $page_handler = new PageHandler();
 
