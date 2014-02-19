@@ -25,7 +25,7 @@ define('main_css_reset', '/libs/css/reset.css');
 define('main_css_normalize', '/libs/css/normalize.css');
 define('main_css_grid', '/libs/css/grid.css');
 define('main_css_style', '/libs/css/style.css');
-define('main_js', '/js/');
+define('main_js', '/libs/js/');
 define('main_jquery', '/libs/js/jquery-2.0.3.min.js');
 
 
