@@ -7,7 +7,7 @@ Class Config
     public $password = '';
     public $right_click = 0; # disables right-click event on the site if set to 0. default = 1
     public $navigation_links = 'includes/nav_links.php';
-    public $active_template = 'templata_basic';
+    public $active_template = 'theone';
 
     public $templata_content_directory = 'content';
     public $templata_images_directory = 'img';
