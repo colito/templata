@@ -1,0 +1,103 @@
+h1 {
+	font-size: 1.750em;
+	color: darkgrey; /*#BED3DF;*/
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-shadow: 0px -1px 0px rgba(0,0,0,.6); /* 50% black coming from the top */
+}
+
+#header	{
+	
+	margin-left: 1%;
+	margin-top: 2%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to { 
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to { 
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+#gear img
+{
+   animation-name: rotate; 
+   -moz-animation-name:rotate; 
+   -webkit-animation-name: rotate; 
+   animation-duration: 5s; 
+   -moz-animation-duration:  5s; 
+   -webkit-animation-duration: 5s;
+   animation-iteration-count: infinite;
+   -moz-animation-iteration-count: infinite;
+   -webkit-animation-iteration-count: infinite;
+   animation-timing-function: linear;
+   -moz-animation-timing-function: linear;
+   -webkit-animation-timing-function: linear;
+   margin-top: 2%;
+   margin-left: 34.5%;
+}
+
+#par	{
+	margin-top: 1%;
+}
+
+p 	{
+	text-align: center;
+	color: lightslategrey;
+	font-weight: bold;
+}
+
+/*MEDIA QUERIES
+------------------------------------------------*/
+
+/* medium --------------------------*/
+@media screen and (max-width : 1024px)	{
+
+h1	{
+	font-size: 1.65em;
+	text-align: center;
+}
+
+#gear img	{
+	margin-top: 5%;
+	margin-left: 30%;
+}
+
+#par	{
+	margin-top: 3%;
+}
+
+}
+
+/* small ---------------------------*/
+@media screen and (max-width : 480px)	{
+
+h1	{
+	font-size: 1.5em;
+}
+#gear img	{
+	margin-top: 5%;
+	margin-left: 3%;
+}
+
+}
