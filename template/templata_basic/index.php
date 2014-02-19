@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="{templata_libs}/css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="{templata_libs}/css/normalize.css" type="text/css" media="screen">
     <link rel="stylesheet" href="{templata_libs}/css/grid.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{templata_libs}/css/style.css" type='text/css' media="screen">
+    <link rel="stylesheet" href="{templata_res}/css/style.css" type='text/css' media="screen">
 
     <!-- JQuery 2.0.3-->
 
-    <script type="text/javascript" src="{templata_libs}/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="{templata_jquery}"></script>
 
 
 </head>
