@@ -1,19 +1,20 @@
 <?php
 Class Config
 {
-    public $app_name = 'Templata';
+    public $app_name = '';
     public $home_page = '';
     public $user_name = '';
     public $password = '';
     public $right_click = 0; # disables right-click event on the site if set to 0. default = 1
-    public $navigation_links = '/includes/nav_links.php';
+    public $navigation_links = 'includes/nav_links.php';
     public $active_template = 'templata_basic';
 
-    public $main_content_directory = 'content';
-    public $main_images_directory = 'img';
+    public $templata_content_directory = 'content';
+    public $templata_images_directory = 'img';
 
     # resources
-    public $main_jquey_path = '/libs/js/jquery';
+    public $templata_libraries = 'libs';
+    public $templata_jquey_path = 'libs/js/jquery';
 
 }
 ?>
