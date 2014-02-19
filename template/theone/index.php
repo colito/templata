@@ -1,9 +1,3 @@
-<?php
-ob_start();
-require_once('../config.php');
-$config = new Config();
-?>
-
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -13,13 +7,16 @@ $config = new Config();
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 
-    <link rel="stylesheet" href="<?php echo main_css?>normalize.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo main_css?>grid.css" type="text/css" media="screen">
+    <link rel="icon" type="image/png" href="{favicon}">
+
+    <link rel="stylesheet" href="{templata_libs}/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{templata_libs}/css/grid.css" type="text/css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="<?php echo main_css?>flexslider.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo main_css?>style.css" type='text/css' media="screen">
+    <link rel="stylesheet" href="{template_res}/css/flexslider.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template_res}/css/style.css" type='text/css' media="screen">
 
     <!-- GA -->
+    <!--
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-38880588-1']);
@@ -31,9 +28,9 @@ $config = new Config();
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+    -->
 
-    <!-- JQuery 2.0.3-->
-    <script type="text/javascript" src="<?php echo main_jquery?>"></script>
+    <script type="text/javascript" src="{templata_jquery}"></script>
 
 </head>
 
@@ -42,16 +39,16 @@ $config = new Config();
 <div id="topper">
 
     <div id="title">
-        <h1><a href="<?php echo navi_home ?>"><?php echo $config->site_name; ?></a></h1>
+        <h1><a href="{relative}home">{app_name}</a></h1>
     </div>
 
     <div id="switch"></div>
 
     <div id="navigation">
         <ul>
-            <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
-            <li id="<?php echo $solutions_active_page ?>" class="solutions"><a href="<?php echo navi_solutions ?>">Solutions</a></li>
-            <li id="<?php echo $contact_active_page ?>" class="contact"><a href="<?php echo navi_contact ?>">Contact Us</a></li>
+            <li id="" class="home"><a href="#">Home</a></li>
+            <li id="" class="solutions"><a href="#">Solutions</a></li>
+            <li id="" class="contact"><a href="#">Contact Us</a></li>
         </ul>
     </div>
 
@@ -59,9 +56,9 @@ $config = new Config();
 
 <div id="panel">
     <ul>
-        <li id="<?php echo $home_active_page ?>" class="home"><a href="<?php echo navi_home ?>">Home</a></li>
-        <li id="<?php echo $solutions_active_page ?>" class="solutions"><a href="<?php echo navi_solutions ?>">Solutions</a></li>
-        <li id="<?php echo $contact_active_page ?>" class="contact"><a href="<?php echo navi_contact ?>">Contact Us</a></li>
+        <li id="" class="home"><a href="">Home</a></li>
+        <li id="" class="solutions"><a href="">Solutions</a></li>
+        <li id="" class="contact"><a href="">Contact Us</a></li>
     </ul>
 </div>
 
@@ -76,12 +73,17 @@ $config = new Config();
     </div>
 </div>
 
-<?php
-if($page_name == 'Home')
-{
-    require_once(main_include.'slider_setting.php');
-}
-?>
+<script type="text/javascript" src="{template_res}/js/flexslider.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            easing: "string",
+            slideshowSpeed: 7000,
+            animationSpeed: 850
+        });
+    });
+</script>
 
 </body>
 <!-- Menu toggle for smart phones -->
@@ -93,4 +95,3 @@ if($page_name == 'Home')
     });
 </script>
 </html>
-<?php ob_flush();?>
