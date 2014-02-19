@@ -139,16 +139,18 @@ class PageHandler
         return $right_click_status;
     }
 
-    public function get_content($depth, $file_name)
+    public function get_content($depth, $dir, $file_name)
     {
-        $file_path = $depth.'content/'.$file_name;
+        $config = new Config();
+        $content_direcory = $config->templata_content_directory;
+        $file_path = $depth.$content_direcory.'/'.$dir.'/'.$file_name;
         $content = file_get_contents($file_path);
         return $content;
     }
 
-    public function main_libraries()
+    public function main_libraries($depth)
     {
-
+        
     }
 
     public function get_jquery($depth)
@@ -157,8 +159,10 @@ class PageHandler
         $jquery_path = $depth.$config->templata_jquey_path;
 
         $resource_file = glob($jquery_path.'/jquery*');
+        $resource_file['jquery'] = $resource_file[0];
+        unset($resource_file[0]);
 
-        return $resource_file;
+        return $resource_file['jquery'];
     }
 
     public function get_resource($depth, $resource)
@@ -169,13 +173,13 @@ class PageHandler
 
         foreach($libs as $lib)
         {
-            $base_name[basename($lib)] = glob($lib.'/*');
+            $lib_array[basename($lib)] = glob($lib.'/*');
         }
 
-        return $base_name;
+        return $lib_array;
     }
 
-    public function output_template($page_name, $depth, $body_content = null)
+    public function output_page($page_name, $depth, $body_content = null)
     {
         $page_title = $page_name;
         $config = new Config();
@@ -185,7 +189,7 @@ class PageHandler
         $template_path = APP_ROOT_DIR.'/template/'.$active_template.'/index.php';
         $template_res = $depth.'template/'.$active_template;
         $templata_libs = $depth.$config->templata_libraries;
-        $main_images = $depth.$config->main_images_directory;
+        $main_images = $depth.$config->templata_images_directory;
         $favicon = $main_images.'/favicon/favicon.ico';
 
         $file_contents = fopen($template_path, "r");
@@ -200,22 +204,23 @@ class PageHandler
         $include = str_replace('{app_name}', $app_name, $data);
         $include = str_replace('{page_title}', $page_title, $include);
 
+        # Body
+        $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
+        $include = str_replace('{body_content}', $body_content, $include);
+
         # Pathing
         $include = str_replace('{relative}', $depth, $include);
         $include = str_replace('{favicon}', $favicon, $include);
         $include = str_replace('{templata_libs}', $templata_libs, $include);
-        $include = str_replace('{templata_res}', $template_res, $include);
+        $include = str_replace('{template_res}', $template_res, $include);
         $include = str_replace('{templata_images}', $main_images, $include);
         $include = str_replace('{templata_jquery}', $this->get_jquery($depth), $include);
-
-        # Body
-        $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
-        $include = str_replace('{body_content}', $body_content, $include);
 
         # Navigation
         $include = str_replace('{navigation_menu}', $this->navigation_menu2($depth), $include);
         $include = str_replace('{mobi_navigation_menu}', $this->navigation_menu2($depth), $include);
 
+        //echo '<img src="'.$main_images.'/theone/1.jpg">';
         echo $include;
     }
 }
