@@ -5,9 +5,17 @@
 # *Link Name:actual_link.file_extension
 # This might be moved to a more appropriate location
 
+# Templata Basic
 *Home:home
 *Content:article/
 *Test:home/test
+
+# The One
+Home
+Solutions
+Contact
+
+
 
 
             CASCADING STYLE SHEET FILES
