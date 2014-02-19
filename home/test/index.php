@@ -10,4 +10,6 @@ $body_content = $page_handler->get_content($relative_path_depth, 'sample/index2.
 
 $page_handler->output_template($page_title, $relative_path_depth, $body_content);
 
+var_dump($page_handler->get_resource($relative_path_depth, 'jquery'));
+//var_dump($page_handler->get_jquery($relative_path_depth));
 ?>
