@@ -66,7 +66,7 @@ Developer Notes
 * Create a new template to test for establishing a site
 * Read and retreive content from a designated folder
 * Set a home page specied within the config file
-==
+
 
 2014-02-19:
 
@@ -76,7 +76,7 @@ Developer Notes
 * Create a new template to test for establishing a site
 * Read and retreive content from a designated folder
 * Set a home page specied within the config file
-==
+
 
 * Created a special function which gets the jquery file path
 * Minor code clean-up
