@@ -64,5 +64,17 @@ Developer Notes
 * Read folder contents
 * Read jQuery file name from specified directory
 * Create a new template to test for establishing a site
-* Read retrive content from a designated folder
-* Set a home page specied on the config file
+* Read and retreive content from a designated folder
+* Set a home page specied within the config file
+
+2014-02-19:
+
+10:47
+== OBJECTIVES ==
+* Read jQuery file name from specified directory (ACHIEVED)
+* Create a new template to test for establishing a site
+* Read and retreive content from a designated folder
+* Set a home page specied within the config file
+
+* Created a special function which gets the jquery file path
+* Minor code clean-up
