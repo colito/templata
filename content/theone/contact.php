@@ -1,15 +1,9 @@
-<?php
-$page_name = 'Contact Us';
-$contact_active_page = 'active_page';
-require_once('../includes/header.php');
-?>
-
-    <div id='content' class='grid_5 omega'>
+s    <div id='content' class='grid_5 omega'>
         <h2>Contact Us</h2>
         <p>Drop us a mail. We'd like to hear from you</p>
         <br/>
         <p>
-            <img src='../../../img/theone/images/mail.gif' width='260' height='160' />
+            <img src='{templata_images}/theone/mail.gif' width='260' height='160' />
         </p>
         <br/>
         <p>
@@ -68,6 +62,38 @@ require_once('../includes/header.php');
         </form>
     </div>
 
-<?php require_once('../includes/validate_email.php'); ?>
+<script type='text/javascript' src="<{template_res}/js/validEmail.js"></script>
+<script type="text/javascript">
 
-<?php require_once('../includes/footer.php') ?>
+    var $submit = $(".submit input");
+    var $required = $(".required");
+    function containsBlanks() {
+        var blanks = $required.map(function(){ return $(this).val() == "";});
+        return $.inArray(true, blanks) != -1;
+    }
+
+    function requiredFilledIn() {
+        if(containsBlanks() || !$("#email").validEmail())
+            $submit.attr("disabled","disabled");
+        else
+            $submit.removeAttr("disabled");
+    }
+
+    $("#form span").hide();
+    $("input,textarea").focus(function(){
+        $(this).next().fadeIn("slow");
+    }).blur(function(){
+            $(this).next().fadeOut("slow");
+        }).keyup(function(){
+            //Check all required fields.
+            requiredFilledIn();
+        });
+
+    $("#email").validEmail({on:"keyup", success:function(){
+        $(this).next().removeClass("error").addClass("valid");
+    }, failure:function(){
+        $(this).next().removeClass("valid").addClass("error");
+    }});
+
+    requiredFilledIn();
+</script>
