@@ -46,9 +46,9 @@
 
     <div id="navigation">
         <ul>
-            <li id="" class="home"><a href="#">Home</a></li>
-            <li id="" class="solutions"><a href="#">Solutions</a></li>
-            <li id="" class="contact"><a href="#">Contact Us</a></li>
+            <li id="" class="home"><a href="?theone=index">Home</a></li>
+            <li id="" class="solutions"><a href="?theone=solutions">Solutions</a></li>
+            <li id="" class="contact"><a href="?theone=contact">Contact Us</a></li>
         </ul>
     </div>
 
@@ -56,9 +56,9 @@
 
 <div id="panel">
     <ul>
-        <li id="" class="home"><a href="">Home</a></li>
-        <li id="" class="solutions"><a href="">Solutions</a></li>
-        <li id="" class="contact"><a href="">Contact Us</a></li>
+        <li id="" class="?theone=index"><a href="">Home</a></li>
+        <li id="" class="?theone=solutions"><a href="">Solutions</a></li>
+        <li id="" class="?theone=contact"><a href="">Contact Us</a></li>
     </ul>
 </div>
 
