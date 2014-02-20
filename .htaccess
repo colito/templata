@@ -1,6 +1,12 @@
 RewriteEngine On    # Turn on the rewriting engine
+
 RewriteCond   %{REQUEST_URI} ^/index.php
 RewriteRule   .* index.php [L]
-RewriteRule   ^article/?$    content/index.php   [NC,L] # Handle requests
-RewriteRule   ^article/([A-Za-z0-9-]+)/?$    content/index.php?article=$1  [NC,L]
-#RewriteRule   ^(.*)/img/(.*)$ $1/img/$2 [L,R=301]
+#RewriteRule   ^/?$ home/test/index.php
+RewriteRule   ^article/?$                   content/index.php   [NC,L]
+RewriteRule   ^article/([A-Za-z0-9-]+)/?$   content/index.php?article=$1  [NC,L]
+RewriteRule   ^cat/?$                       home/test/index.php  [NC,L]
+RewriteRule   ^cat/([A-Za-z0-9-]+)/?$       home/test/index.php?cat=$1  [NC,L]
+
+#RewriteCond %{HTTP_HOST} ^localhost [NC]
+#RewriteRule ^(.*)$ http://localhost/emp/templata/home/test/$1 [L,R=301]
