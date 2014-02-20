@@ -2,7 +2,8 @@
 Class Config
 {
     public $app_name = '';
-    public $home_page = '';
+    public $landing_directory = 'guide';
+    public $landing_page = 'index';
     public $user_name = '';
     public $password = '';
     public $right_click = 0; # disables right-click event on the site if set to 0. default = 1
