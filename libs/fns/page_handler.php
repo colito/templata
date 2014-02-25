@@ -179,9 +179,9 @@ class PageHandler
         return $lib_array;
     }
 
-    public function output_page($page_name, $depth, $body_content = null)
+    public function output_page($depth, $body_content = null)
     {
-        $page_title = $page_name;
+        //$page_title = $page_name;
         $config = new Config();
         $active_template = $config->active_template;
         $app_name = $config->app_name;
@@ -202,6 +202,19 @@ class PageHandler
 
         # App
         $include = str_replace('{app_name}', $app_name, $data);
+
+        # getting page name from source '[page:page_name]'
+        preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
+
+        # removing page name placeholder from the source output
+        $body_content = str_replace($page_name_matches[0][0], '', $body_content);
+
+        # assigning page title
+        $page_title = $page_name_matches[1][0];
+
+        # cleaning up page title
+        $page_title = str_replace('page:', '', $page_title);
+
         $include = str_replace('{page_title}', $page_title, $include);
 
         # Body
