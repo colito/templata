@@ -8,5 +8,7 @@ RewriteRule   ^article/([A-Za-z0-9-]+)/?$   content/index.php?article=$1  [NC,L]
 RewriteRule   ^cat/?$                       home/test/index.php  [NC,L]
 RewriteRule   ^cat/([A-Za-z0-9-]+)/?$       home/test/index.php?cat=$1  [NC,L]
 
+RewriteRule   ^articles/(\w+)/([0-9]+)/?$     home/test/index.php?theone=$1
+
 #RewriteCond %{HTTP_HOST} ^localhost [NC]
 #RewriteRule ^(.*)$ http://localhost/emp/templata/home/test/$1 [L,R=301]
