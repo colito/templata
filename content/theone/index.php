@@ -1,3 +1,4 @@
+[page:Home]
 <div id='content' class='grid_12'>
     <h2>Welcome</h2>
     <p>Herein beloved is our love made perfect. Live life on the edge of greatness

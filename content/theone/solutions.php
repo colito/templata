@@ -1,3 +1,5 @@
+[page:Solutions]
+
 <div id='content' class='grid_5'>
     <p>
         1 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi.

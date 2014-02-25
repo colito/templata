@@ -1,4 +1,6 @@
-s    <div id='content' class='grid_5 omega'>
+[page:Contact Us]
+
+    <div id='content' class='grid_5 omega'>
         <h2>Contact Us</h2>
         <p>Drop us a mail. We'd like to hear from you</p>
         <br/>
