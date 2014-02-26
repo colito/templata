@@ -192,8 +192,8 @@ class PageHandler
         $active_template = $config->active_template;
         $app_name = $config->app_name;
 
-        $template_path = APP_ROOT_DIR.'/template/'.$active_template.'/index.php';
-        $template_res = $depth.'template/'.$active_template;
+        $template_path = APP_ROOT_DIR.'/templates/'.$active_template.'/index.php';
+        $template_res = $depth.'templates/'.$active_template;
         $templata_libs = $depth.$config->templata_libraries;
         $main_images = $depth.$config->templata_images_directory;
         $favicon = $main_images.'/favicon/favicon.ico';
