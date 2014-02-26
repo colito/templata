@@ -80,3 +80,17 @@ Developer Notes
 
 * Created a special function which gets the jquery file path
 * Minor code clean-up
+
+2014-02-26:
+
+12:17
+* Created a new template to test establishing a site from scratch
+* Site retreives content specified within GET parameters
+* Home page can specified within the config file
+* Page name can now be specified on the a page using the following notation: [page:Page Name]
+* Removed unused files
+* Cleaned up the code a bit
+
+== FUTURE OBJECTIVES ===
+* Implement use of clean URL's
+* Explore ways of injecting some PHP code in the form of modules
