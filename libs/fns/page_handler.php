@@ -20,6 +20,12 @@ class PageHandler
     public function relative_link_path($file_root_path)
     {
         $app_root = APP_ROOT_DIR;
+
+        if($file_root_path == $app_root)
+        {
+            return;
+        }
+
         $relative_path = str_replace($app_root.'/', '', $file_root_path);
         $path_array = explode('/', $relative_path);
         //$depth = count($path_array);
