@@ -11,7 +11,7 @@ Class Config
     public $active_template = 'theone';
 
     public $templata_content_directory = 'content';
-    public $templata_images_directory = 'img';
+    public $templata_images_directory = 'images';
 
     # resources
     public $templata_libraries = 'libs';
