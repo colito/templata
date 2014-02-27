@@ -14,6 +14,7 @@ Test:home/test
 *Home:?category=theone&id=index
 *Solutions:?category=theone&id=solutions
 *Contact:?category=theone&id=contact
+*Hello:?category=theone&id=hello
 
 
 
