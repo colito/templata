@@ -104,3 +104,6 @@ Developer Notes
 
 == FUTURE OBJECTIVES ==
 * Standardize and dynamisize placeholders especially placeholders that represent specific files
+
+13:39
+* Now has allowance to output php generated content
