@@ -2,20 +2,6 @@
 //require_once('../config.php');
 class PageHandler
 {
-
-    public function set_page_header($page_name, $depth)
-    {
-        # $page_name is already in '../includes/header.php'
-        //return require_once('../includes/header.php');
-        return require_once(main_header);
-        //return 'Another hello!';
-    }
-
-    public function set_page_footer()
-    {
-        return require_once(main_footer);
-    }
-
     # needs to determine depth levels from number of directories not number of overall files
     public function relative_link_path($file_root_path)
     {
@@ -23,7 +9,7 @@ class PageHandler
 
         if($file_root_path == $app_root)
         {
-            return;
+            return '';
         }
 
         $relative_path = str_replace($app_root.'/', '', $file_root_path);
@@ -127,6 +113,52 @@ class PageHandler
         return $overall_output;
     }
 
+    public function css_files()
+    {
+        $config = new Config();
+        $links = $config->navigation_links;
+        $links_file = APP_ROOT_DIR.'/'.$links;
+
+        $lines = file($links_file, FILE_IGNORE_NEW_LINES);
+
+        //preg_match_all("/\[(.*?)\]/", $lines, $css_matches);
+
+        # array clean-up
+        $clean_lines = array();
+        foreach($lines as $line)
+        {
+            # checks array for an occupied array index.
+            if(!empty($line))
+            {
+                if(preg_match_all("/\[(css:.*?)\]/", $line, $css_matches))
+                {
+                    $clean_lines[] = $css_matches[1];
+                }
+            }
+        }
+
+        for($i = 0; $i< count($clean_lines); $i++)
+        {
+            $css_file = str_replace('css:', '', $clean_lines[$i][0]);
+            $css_files[] = $css_file;
+        }
+
+        return $css_files;
+    }
+
+    public function unpack_css_files()
+    {
+        $css_files = $this->css_files();
+
+        $css_links = '';
+        foreach($css_files as $css_file)
+        {
+            $css_links .= '<link rel="stylesheet" href="{templata_libs}/css/'.$css_file.'" type="text/css" media="screen">';
+        }
+
+        return $css_links;
+    }
+
     public function right_click_status($status)
     {
         switch ($status)
@@ -168,7 +200,9 @@ class PageHandler
         $resource_file['jquery'] = $resource_file[0];
         unset($resource_file[0]);
 
-        return $resource_file['jquery'];
+        $jquery_link = '<script type="text/javascript" src="'.$resource_file['jquery'].'"></script>';
+
+        return $jquery_link;
     }
 
     public function get_resource($depth, $resource)
@@ -194,6 +228,8 @@ class PageHandler
 
         $template_path = APP_ROOT_DIR.'/templates/'.$active_template.'/index.php';
         $template_res = $depth.'templates/'.$active_template;
+
+        $templata_css = $this->unpack_css_files();
         $templata_libs = $depth.$config->templata_libraries;
         $main_images = $depth.$config->templata_images_directory;
         $favicon = $main_images.'/favicon/favicon.ico';
@@ -208,6 +244,7 @@ class PageHandler
 
         # App
         $include = str_replace('{app_name}', $app_name, $data);
+        $include = str_replace('{templata_css}', $templata_css, $include);
 
         # getting page name from source '[page:page_name]'
         preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
@@ -237,7 +274,7 @@ class PageHandler
 
         # Navigation
         $include = str_replace('{navigation_menu}', $this->navigation_menu2($depth), $include);
-        $include = str_replace('{mobi_navigation_menu}', $this->navigation_menu2($depth), $include);
+        $include = str_replace('{mobile_navigation_menu}', $this->navigation_menu2($depth), $include);
 
         //echo '<img src="'.$main_images.'/theone/1.jpg">';
         echo $include;
