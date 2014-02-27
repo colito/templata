@@ -9,6 +9,10 @@
 
     <link rel="icon" type="image/png" href="{favicon}">
 
+    <!-- CSS Libraries -->
+
+    <!--{templata_css}-->
+
     <link rel="stylesheet" href="{templata_libs}/css/normalize.css" type="text/css" media="screen">
     <link rel="stylesheet" href="{templata_libs}/css/grid.css" type="text/css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
@@ -30,7 +34,7 @@
     </script>
     -->
 
-    <script type="text/javascript" src="{templata_jquery}"></script>
+    {templata_jquery}
 
 </head>
 
@@ -39,27 +43,19 @@
 <div id="topper">
 
     <div id="title">
-        <h1><a href="{relative}home">{app_name}</a></h1>
+        <h1><a href="index.php">{app_name}</a></h1>
     </div>
 
     <div id="switch"></div>
 
     <div id="navigation">
-        <ul>
-            <li id="" class="home"><a href="?category=theone&id=index">Home</a></li>
-            <li id="" class="solutions"><a href="?category=theone&id=solutions">Solutions</a></li>
-            <li id="" class="contact"><a href="?category=theone&id=contact">Contact Us</a></li>
-        </ul>
+        {navigation_menu}
     </div>
 
 </div>
 
 <div id="panel">
-    <ul>
-        <li id="" class="?category=theone&id=index"><a href="">Home</a></li>
-        <li id="" class="?category=theone&id=solutions"><a href="">Solutions</a></li>
-        <li id="" class="?category=theone&id=contact"><a href="">Contact Us</a></li>
-    </ul>
+    {mobile_navigation_menu}
 </div>
 
 <div class="container_12 clearfix">

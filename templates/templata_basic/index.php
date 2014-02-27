@@ -9,26 +9,19 @@
 
     <link rel="icon" type="image/png" href="{favicon}">
 
-    <!-- Using  -->
-    <link rel="stylesheet" href="{templata_libs}/css/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{templata_libs}/css/normalize.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{templata_libs}/css/grid.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{templata_res}/css/style.css" type='text/css' media="screen">
-
-    <!-- JQuery 2.0.3-->
+    <!-- CSS Libraries -->
+    {templata_css}
 
     <script type="text/javascript" src="{templata_jquery}"></script>
 
-
 </head>
 
-<!-- oncontextmenu when this returns false right-click is disabled -->
 <body {right_click}>
 
 <div id="topper">
 
     <div id="title">
-        <h1><a href="{relative}home">{app_name}</a></h1>
+        <h1><a href="index.php">{app_name}</a></h1>
     </div>
 
     <div id="switch"></div>
@@ -40,19 +33,22 @@
 </div>
 
 <div id="panel">
-    {mobi_navigation_menu}
+    {mobile_navigation_menu}
 </div>
 
 <div class="container_12 clearfix">
+
     {body_content}
+
+    <div id='footer' class='grid_12'>
+        <div id='copyright'>
+            <p>&copy; 2013 Templata. All Rights Reserved</p>
+        </div>
+    </div>
 </div>
 
-<div id="footer">
-    <!-- <p>Copyright (c) 2013</p> -->
-</div>
 </body>
 <!-- Menu toggle for smart phones -->
-
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
         $("#switch").click(function(){
