@@ -1,4 +1,4 @@
-[page:Contact Us]
+<!-- [page:Contact Us] -->
 
     <div id='content' class='grid_5 omega'>
         <h2>Contact Us</h2>
@@ -64,7 +64,7 @@
         </form>
     </div>
 
-<script type='text/javascript' src="<{template_res}/js/validEmail.js"></script>
+<script type='text/javascript' src="{template_res}/js/validEmail.js"></script>
 <script type="text/javascript">
 
     var $submit = $(".submit input");

@@ -9,7 +9,7 @@ class PageHandler
 
         if($file_root_path == $app_root)
         {
-            return '';
+            return;
         }
 
         $relative_path = str_replace($app_root.'/', '', $file_root_path);
@@ -221,7 +221,6 @@ class PageHandler
 
     public function output_page($depth, $body_content = null)
     {
-        //$page_title = $page_name;
         $config = new Config();
         $active_template = $config->active_template;
         $app_name = $config->app_name;
