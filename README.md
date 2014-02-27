@@ -91,6 +91,16 @@ Developer Notes
 * Removed unused files
 * Cleaned up the code a bit
 
-== FUTURE OBJECTIVES ===
+== FUTURE OBJECTIVES ==
 * Implement use of clean URL's
 * Explore ways of injecting some PHP code in the form of modules
+
+2014-02-27
+
+10:49
+* Fixed pathing to email validation js located in the theone template js directory
+* Added contact form validation script under tools/validation
+* All navigation links are now retrieved from includes/nav_links.php
+
+== FUTURE OBJECTIVES ==
+* Standardize and dynamisize placeholders especially placeholders that represent specific files
