@@ -88,18 +88,6 @@ class PageHandler
     {
         $x = $this->link_handler();
 
-        echo '<ul>';
-        foreach($x['nav_links'] as $y)
-        {
-            echo '<li><a href=" '.$depth.$y['link'].' ">'.$y['link_name'].'</a></li>';
-        }
-        echo '</ul>';
-    }
-
-    public function navigation_menu2($depth = null)
-    {
-        $x = $this->link_handler();
-
         $output = '';
         foreach($x['nav_links'] as $y)
         {
@@ -177,7 +165,8 @@ class PageHandler
         return $right_click_status;
     }
 
-    public function get_content($depth, $dir, $file_name)
+    # this get content function will soon be deprecated (hence the _depr suffix)
+    public function get_content_depr($depth, $dir, $file_name)
     {
         $config = new Config();
         $content_direcory = $config->templata_content_directory;
@@ -186,9 +175,13 @@ class PageHandler
         return $content;
     }
 
-    public function main_libraries($depth)
+    public function get_content($depth, $dir, $file_name)
     {
-        
+        $config = new Config();
+        $content_direcory = $config->templata_content_directory;
+        $file_path = $depth.$content_direcory.'/'.$dir.'/'.$file_name;
+        $content = $this->get_script_output($file_path);
+        return $content;
     }
 
     public function get_jquery($depth)
@@ -236,13 +229,15 @@ class PageHandler
 
         $contact_form_validation = $depth.'tools/validation/contact-form.php';
 
-        $file_contents = fopen($template_path, "r");
+//        $file_contents = fopen($template_path, "r");
+//
+//        while(!feof($file_contents))
+//        {
+//            $data = fread($file_contents, 500000);
+//        }
+//        fclose($file_contents);
 
-        while(!feof($file_contents))
-        {
-            $data = fread($file_contents, 500000);
-        }
-        fclose($file_contents);
+        $data = $this->get_script_output($template_path);
 
         # App
         $include = str_replace('{app_name}', $app_name, $data);
@@ -273,11 +268,29 @@ class PageHandler
         $include = str_replace('{validation:contact-form}', $contact_form_validation, $include);
 
         # Navigation
-        $include = str_replace('{navigation_menu}', $this->navigation_menu2($depth), $include);
-        $include = str_replace('{mobile_navigation_menu}', $this->navigation_menu2($depth), $include);
+        $include = str_replace('{navigation_menu}', $this->navigation_menu($depth), $include);
+        $include = str_replace('{mobile_navigation_menu}', $this->navigation_menu($depth), $include);
 
-        //echo '<img src="'.$main_images.'/theone/1.jpg">';
         echo $include;
+    }
+
+    public function get_script_output($path, $print = FALSE)
+    {
+        ob_start();
+
+        if( is_readable($path) && $path )
+        {
+            include $path;
+        }
+        else
+        {
+            return FALSE;
+        }
+
+        if( $print == FALSE )
+            return ob_get_clean();
+        else
+            echo ob_get_clean();
     }
 }
 
