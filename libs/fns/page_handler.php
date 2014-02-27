@@ -221,6 +221,7 @@ class PageHandler
 
     public function output_page($depth, $body_content = null)
     {
+        # Declarations
         $config = new Config();
         $active_template = $config->active_template;
         $app_name = $config->app_name;
@@ -232,6 +233,8 @@ class PageHandler
         $templata_libs = $depth.$config->templata_libraries;
         $main_images = $depth.$config->templata_images_directory;
         $favicon = $main_images.'/favicon/favicon.ico';
+
+        $contact_form_validation = $depth.'tools/validation/contact-form.php';
 
         $file_contents = fopen($template_path, "r");
 
@@ -253,13 +256,10 @@ class PageHandler
 
         # assigning page title
         $page_title = $page_name_matches[1][0];
-
-        # cleaning up page title
+            # cleaning up page title
         $page_title = str_replace('page:', '', $page_title);
-
         $include = str_replace('{page_title}', $page_title, $include);
 
-        # Body
         $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
         $include = str_replace('{body_content}', $body_content, $include);
 
@@ -270,6 +270,7 @@ class PageHandler
         $include = str_replace('{template_res}', $template_res, $include);
         $include = str_replace('{templata_images}', $main_images, $include);
         $include = str_replace('{templata_jquery}', $this->get_jquery($depth), $include);
+        $include = str_replace('{validation:contact-form}', $contact_form_validation, $include);
 
         # Navigation
         $include = str_replace('{navigation_menu}', $this->navigation_menu2($depth), $include);
