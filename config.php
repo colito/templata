@@ -10,6 +10,7 @@ Class Config
     public $navigation_links = 'includes/nav_links.php';
     //public $active_template = 'templata_basic';
     public $active_template = 'theone';
+    public $email_to = 'somebody@somewhere.com';
 
     public $templata_content_directory = 'content';
     public $templata_images_directory = 'images';
