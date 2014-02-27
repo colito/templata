@@ -109,8 +109,6 @@ class PageHandler
 
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
-        //preg_match_all("/\[(.*?)\]/", $lines, $css_matches);
-
         # array clean-up
         $clean_lines = array();
         foreach($lines as $line)
@@ -175,12 +173,27 @@ class PageHandler
         return $content;
     }
 
-    public function get_content($depth, $dir, $file_name)
+    public function get_content($depth, $dir, $file)
     {
         $config = new Config();
-        $content_direcory = $config->templata_content_directory;
-        $file_path = $depth.$content_direcory.'/'.$dir.'/'.$file_name;
-        $content = $this->get_script_output($file_path);
+        $path = $dir.'/'.$file;
+        $templata_content_dir = $config->templata_content_directory;
+        $full_path = $depth.$templata_content_dir.'/'.$path;
+
+        if(file_exists($full_path.'.html'))
+        {
+            $full_path .= '.html';
+        }
+        elseif(file_exists($full_path.'.php'))
+        {
+            $full_path .= '.php';
+        }
+        else
+        {
+            $full_path = $templata_content_dir.'/default.php';
+        }
+
+        $content = $this->get_script_output($full_path);
         return $content;
     }
 
@@ -216,8 +229,19 @@ class PageHandler
     {
         # Declarations
         $config = new Config();
-        $active_template = $config->active_template;
         $app_name = $config->app_name;
+
+        # Template override; overrides existing template if user has specified a template on the content source
+        if(preg_match_all("/\[(template:.*?)\]/", $body_content, $template_name_matches))
+        {
+            $body_content = str_replace($template_name_matches[0][0], '', $body_content);
+            $active_template = $template_name_matches[1][0];
+            $active_template = str_replace('template:', '', $active_template);
+        }
+        else
+        {
+            $active_template = $config->active_template;
+        }
 
         $template_path = APP_ROOT_DIR.'/templates/'.$active_template.'/index.php';
         $template_res = $depth.'templates/'.$active_template;
@@ -274,6 +298,7 @@ class PageHandler
         echo $include;
     }
 
+    # Retrieves a scripts' output
     public function get_script_output($path, $print = FALSE)
     {
         ob_start();
