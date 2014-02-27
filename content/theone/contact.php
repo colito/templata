@@ -53,8 +53,8 @@
             </dl>
 
             <?php
-            if(isset($_GET['feedback']))	{
-                $feedback = $_GET['feedback'];
+            if(!empty($_GET['validation-feedback']))	{
+                $feedback = $_GET['validation-feedback'];
             }
             else	{
                 $feedback = "";
