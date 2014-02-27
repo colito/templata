@@ -16,7 +16,7 @@
     </div>
 
     <div id='form' class='grid_7 omega'>
-        <form action='../includes/contact_validation.php' method='post'>
+        <form action='{validation:contact-form}' method='post'>
             <dl>
                 <dt>
                 <dd><label for='name'>Name:</label></dd>
