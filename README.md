@@ -107,3 +107,7 @@ Developer Notes
 
 13:39
 * Now has allowance to output php generated content
+
+14:39
+* Active template can now be overridden within a content source file
+* get_content function now verifies if a file exists and only caters for .html and .php files
