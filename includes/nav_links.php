@@ -6,9 +6,9 @@
 # This might be moved to a more appropriate location
 
 # Templata Basic
-Home:home
-Content:article/
-Test:home/test
+Home:
+Content:
+Test:
 
 # The One
 *Home:?category=theone&id=index
