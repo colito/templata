@@ -188,6 +188,10 @@ class PageHandler
         {
             $full_path .= '.php';
         }
+        elseif(file_exists($full_path.'.txt'))
+        {
+            $full_path .= '.txt';
+        }
         else
         {
             $full_path = $templata_content_dir.'/default.php';
@@ -243,7 +247,17 @@ class PageHandler
             $active_template = $config->active_template;
         }
 
-        $template_path = APP_ROOT_DIR.'/templates/'.$active_template.'/index.php';
+        $template_path = APP_ROOT_DIR.'/templates/'.$active_template.'/index';
+
+        if(file_exists($template_path.'.html'))
+        {
+            $template_path .= '.html';
+        }
+        elseif(file_exists($template_path.'.php'))
+        {
+            $template_path .= '.php';
+        }
+
         $template_res = $depth.'templates/'.$active_template;
 
         $templata_css = $this->unpack_css_files();
