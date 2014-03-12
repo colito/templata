@@ -2,6 +2,8 @@
 //require_once('../config.php');
 class PageHandler
 {
+    /*** LINK MANAGEMENT ***********************************************************************/
+
     # needs to determine depth levels from number of directories not number of overall files
     public function relative_link_path($file_root_path)
     {
@@ -84,6 +86,38 @@ class PageHandler
         return $nav_links;
     }
 
+         /*** LINK EXTRACTION **************************************************/
+
+    # Gets href="" link
+    public function extract_anchor_link($body_content)
+    {
+        preg_match_all('/href=\"(.*?)\"/', $body_content, $link_matches);
+
+        return $link_matches[1];
+    }
+
+    # Gets src="" link
+    public function extract_source_link($body_content)
+    {
+        preg_match_all('/src=\"(.*?)\"/', $body_content, $source_matches);
+
+        return $source_matches[1];
+    }
+
+    # Gets src="" or href="" link depending on the type parameeter
+    public function extract_link($body_content, $type)
+    {
+        preg_match_all('/'.$type.'=\"(.*?)\"/', $body_content, $link_matches);
+
+        return $link_matches[1];
+    }
+            /*** END OF LINK EXTRACTION ******/
+
+    /*** END OF LINK MANAGEMENT ************************/
+
+
+
+    /*** NAVIGATION ***********************************************************************/
     public function navigation_menu($depth = null)
     {
         $x = $this->link_handler();
@@ -100,7 +134,13 @@ class PageHandler
 
         return $overall_output;
     }
+    /*** END OF NAVIGATION ************************/
 
+
+
+
+
+    /*** SOURCE FILES **************************************************************/
     public function css_files()
     {
         $config = new Config();
@@ -144,6 +184,39 @@ class PageHandler
 
         return $css_links;
     }
+
+    public function get_jquery($depth)
+    {
+        $config = new Config();
+        $jquery_path = $depth.$config->templata_jquey_path;
+
+        $resource_file = glob($jquery_path.'/jquery*');
+        $resource_file['jquery'] = $resource_file[0];
+        unset($resource_file[0]);
+
+        $jquery_link = '<script type="text/javascript" src="'.$resource_file['jquery'].'"></script>';
+
+        return $jquery_link;
+    }
+
+    public function get_resource($depth, $resource)
+    {
+        $config = new Config();
+        $lib_path = $depth.$config->templata_libraries;
+        $libs = glob($lib_path.'/*');
+
+        foreach($libs as $lib)
+        {
+            $lib_array[basename($lib)] = glob($lib.'/*');
+        }
+
+        return $lib_array;
+    }
+    /*** END OF SOURCE FILES*****************/
+
+
+
+    /*** PAGE RENDERING *******************************************************************/
 
     public function right_click_status($status)
     {
@@ -199,34 +272,6 @@ class PageHandler
 
         $content = $this->get_script_output($full_path);
         return $content;
-    }
-
-    public function get_jquery($depth)
-    {
-        $config = new Config();
-        $jquery_path = $depth.$config->templata_jquey_path;
-
-        $resource_file = glob($jquery_path.'/jquery*');
-        $resource_file['jquery'] = $resource_file[0];
-        unset($resource_file[0]);
-
-        $jquery_link = '<script type="text/javascript" src="'.$resource_file['jquery'].'"></script>';
-
-        return $jquery_link;
-    }
-
-    public function get_resource($depth, $resource)
-    {
-        $config = new Config();
-        $lib_path = $depth.$config->templata_libraries;
-        $libs = glob($lib_path.'/*');
-
-        foreach($libs as $lib)
-        {
-            $lib_array[basename($lib)] = glob($lib.'/*');
-        }
-
-        return $lib_array;
     }
 
     public function output_page($depth, $body_content = null)
@@ -331,6 +376,7 @@ class PageHandler
         else
             echo ob_get_clean();
     }
+    /*** END OF PAGE RENDERING ***********/
 }
 
 ?>
