@@ -89,27 +89,67 @@ class PageHandler
          /*** LINK EXTRACTION **************************************************/
 
     # Gets href="" link
-    public function extract_anchor_link($body_content)
+    public function extract_hyper_links($body_content)
     {
-        preg_match_all('/href=\"(.*?)\"/', $body_content, $link_matches);
+        if(preg_match_all('/<a href=\"(.*?)\">/', $body_content, $link_matches) ||
+            preg_match_all('/<a href=\'(.*?)\'>/', $body_content, $link_matches))
+        {
+            $extracted_links = $link_matches[1];
+        }
+        else
+        {
+            $extracted_links = 'no link found';
+        }
 
-        return $link_matches[1];
+        return $extracted_links;
+    }
+
+    # Gets href="" link
+    public function extract_href_links($body_content)
+    {
+        if(preg_match_all('/href=\"(.*?)\"/', $body_content, $link_matches) ||
+            preg_match_all('/href=\'(.*?)\'/', $body_content, $link_matches))
+        {
+            $extracted_links = $link_matches[1];
+        }
+        else
+        {
+            $extracted_links = 'no link found';
+        }
+
+        return $extracted_links;
     }
 
     # Gets src="" link
-    public function extract_source_link($body_content)
+    public function extract_src_links($body_content)
     {
-        preg_match_all('/src=\"(.*?)\"/', $body_content, $source_matches);
+        if(preg_match_all('/src=\"(.*?)\"/', $body_content, $source_matches) ||
+            preg_match_all('/src=\'(.*?)\'/', $body_content, $source_matches))
+        {
+            $extracted_links = $source_matches[1];
+        }
+        else
+        {
+            $extracted_links = 'no link found';
+        }
 
-        return $source_matches[1];
+        return $extracted_links;
     }
 
-    # Gets src="" or href="" link depending on the type parameeter
-    public function extract_link($body_content, $type)
+    # Gets src="" or href="" or any other link depending on the type parameeter
+    public function extract_links($body_content, $type)
     {
-        preg_match_all('/'.$type.'=\"(.*?)\"/', $body_content, $link_matches);
+        if(preg_match_all('/'.$type.'=\"(.*?)\"/', $body_content, $link_matches) ||
+            preg_match_all('/'.$type.'=\'(.*?)\'/', $body_content, $link_matches))
+        {
+            $extracted_links = $link_matches[1];
+        }
+        else
+        {
+            $extracted_links = 'no link found';
+        }
 
-        return $link_matches[1];
+        return $extracted_links;
     }
             /*** END OF LINK EXTRACTION ******/
 
@@ -135,7 +175,6 @@ class PageHandler
         return $overall_output;
     }
     /*** END OF NAVIGATION ************************/
-
 
 
 
@@ -218,6 +257,7 @@ class PageHandler
 
     /*** PAGE RENDERING *******************************************************************/
 
+    # disables mouse right-click if set to 0
     public function right_click_status($status)
     {
         switch ($status)
