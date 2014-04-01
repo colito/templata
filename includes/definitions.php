@@ -6,7 +6,7 @@
 # navigation links *******************************************/
 # now replaced by navigation links above
 define('navi_home', 'home');
-define('navi_admin', main_admin);
+//define('navi_admin', main_admin);
 
 
 # included file paths ***************************************/
