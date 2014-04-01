@@ -123,7 +123,7 @@ class PageHandler extends Operator
 
         # assigning page title
         $page_title = $page_name_matches[1][0];
-            # cleaning up page title
+        # cleaning up page title
         $page_title = str_replace('page:', '', $page_title);
         $include = str_replace('{page_title}', $page_title, $include);
 
