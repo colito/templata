@@ -37,7 +37,7 @@ abstract class Operator
     public function link_handler()
     {
         $config = new Config();
-        $links = $config->navigation_links;
+        $links = 'templates/'.$config->active_template.'/'.$config->navigation_links;//$config->navigation_links;
         $links_file = APP_ROOT_DIR.'/'.$links;
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
