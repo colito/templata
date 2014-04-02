@@ -17,10 +17,10 @@ Contact:?category=theone&id=contact
 Hello:?category=theone&id=hello
 
 # Greenwhich
-*Home:?category=greenwhich&id=home
-*Products:?category=greenwhich&id=products
+*Home:greenwhich/home.html
+*Products:greenwhich/products.html
 *Calender:#
-*Contact:?category=greenwhich&id=contact
+*Contact:greenwhich/contact.html
 
 
 
