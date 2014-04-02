@@ -167,45 +167,6 @@ class PageHandler extends Operator
         echo $page_output;
     }
 
-    # Turns standard relative hyperlinks into links that are userfriendly to the overall system
-    # Links should strictly be one level deep in order for them to work
-    # First part of the link represents a physical directory within the systems content directory
-    # and the second part represents the actual file whose content is required to be displayed.
-    public function href_link_transformer($href_source)
-    {
-        $raw_href_links = $this->extract_links($href_source);
-
-        $raw_href_links3 = array();
-        foreach($raw_href_links as $raw_href_links2)
-        {
-            # eliminating links containing 'www' or 'http' because such links need not to be re-written
-            if(strpos($raw_href_links2, 'http') === false)
-            {
-                if(strpos($raw_href_links2, 'www') === false)
-                {
-                    if(strpos($raw_href_links2, '.co') === false)
-                    {
-                        if(strpos($raw_href_links2, '.html') != false || strpos($raw_href_links2, '.php') != false)
-                        {
-                            $raw_href_links3[$raw_href_links2] = $raw_href_links2;
-                        }
-                    }
-                }
-            }
-        }
-
-        # modify urls to make them useful to the system
-        $new_href_links = array();
-        foreach($raw_href_links3 as $raw_href_links4)
-        {
-            # notation -> ?category=category&id=page
-            $exploded_link = explode('/',$raw_href_links4);
-            $new_href_links[$raw_href_links4] = '?category='.$exploded_link[0].'&id='.$exploded_link[1];
-        }
-
-        return $new_href_links;
-    }
-
     # Retrieves a scripts' output after execution
     public function get_script_output($path, $print = FALSE)
     {
