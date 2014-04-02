@@ -7,7 +7,7 @@ Class Config
     public $user_name = '';
     public $password = '';
     public $right_click = 1; # disables right-click event on the site if set to 0. default = 1
-    public $navigation_links = 'includes/nav_links.php';
+    public $navigation_links = 'includes/nav_links.php'; # this is relative within the actual template's root directory
     //public $active_template = 'templata_basic';
     //public $active_template = 'theone';
     public $active_template = 'greenwhich';
