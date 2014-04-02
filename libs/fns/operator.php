@@ -88,10 +88,10 @@ abstract class Operator
     /*** LINK EXTRACTION **************************************************/
 
     # Gets href="" link
-    public function extract_hyper_links($body_content)
+    public function extract_hyper_links($content)
     {
-        if(preg_match_all('/<a href=\"(.*?)\">/', $body_content, $link_matches) ||
-            preg_match_all('/<a href=\'(.*?)\'>/', $body_content, $link_matches))
+        if(preg_match_all('/<a href=\"(.*?)\">/', $content, $link_matches) ||
+            preg_match_all('/<a href=\'(.*?)\'>/', $content, $link_matches))
         {
             $extracted_links = $link_matches[1];
         }
@@ -104,48 +104,48 @@ abstract class Operator
     }
 
     # Gets href="" link
-    public function extract_href_links($body_content)
+    public function extract_href_links($content)
     {
-        if(preg_match_all('/href=\"(.*?)\"/', $body_content, $link_matches) ||
-            preg_match_all('/href=\'(.*?)\'/', $body_content, $link_matches))
+        if(preg_match_all('/href=\"(.*?)\"/', $content, $link_matches) ||
+            preg_match_all('/href=\'(.*?)\'/', $content, $link_matches))
         {
             $extracted_links = $link_matches[1];
         }
         else
         {
-            $extracted_links = 'no link found';
+            $extracted_links = 'no links found';
         }
 
         return $extracted_links;
     }
 
     # Gets src="" link
-    public function extract_src_links($body_content)
+    public function extract_src_links($content)
     {
-        if(preg_match_all('/src=\"(.*?)\"/', $body_content, $source_matches) ||
-            preg_match_all('/src=\'(.*?)\'/', $body_content, $source_matches))
+        if(preg_match_all('/src=\"(.*?)\"/', $content, $source_matches) ||
+            preg_match_all('/src=\'(.*?)\'/', $content, $source_matches))
         {
             $extracted_links = $source_matches[1];
         }
         else
         {
-            $extracted_links = 'no link found';
+            $extracted_links = 'no links found';
         }
 
         return $extracted_links;
     }
 
-    # Gets src="" or href="" or any other link depending on the type parameeter
-    public function extract_links($body_content, $type = 'html')
+    # Gets src="" or href="" or any other link depending on the type parameeter. Default = href
+    public function extract_links($content, $type = 'href')
     {
-        if(preg_match_all('/'.$type.'=\"(.*?)\"/', $body_content, $link_matches) ||
-            preg_match_all('/'.$type.'=\'(.*?)\'/', $body_content, $link_matches))
+        if(preg_match_all('/'.$type.'=\"(.*?)\"/', $content, $link_matches) ||
+            preg_match_all('/'.$type.'=\'(.*?)\'/', $content, $link_matches))
         {
             $extracted_links = $link_matches[1];
         }
         else
         {
-            $extracted_links = 'no link found';
+            $extracted_links = 'no links found';
         }
 
         return $extracted_links;
