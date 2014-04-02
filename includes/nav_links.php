@@ -20,7 +20,7 @@ Hello:?category=theone&id=hello
 *Home:greenwhich/home.html
 *Products:greenwhich/products.html
 *Calender:#
-*Contact:greenwhich/contact.html
+*Contact:greenwhich/contact
 
 
 
