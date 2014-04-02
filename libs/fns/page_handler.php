@@ -1,13 +1,11 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 require_once('operator.php');
 class PageHandler extends Operator
 {
     /*** PAGE RENDERING *******************************************************************/
 
-    # disables mouse right-click if set to 0
-    public function right_click_status($status)
+    # Disables mouse right-click if set to 0
+    public function right_click_switch($status)
     {
         switch ($status)
         {
@@ -25,16 +23,7 @@ class PageHandler extends Operator
         return $right_click_status;
     }
 
-    # this get content function will soon be deprecated (hence the _depr suffix)
-    public function get_content_depr($depth, $dir, $file_name)
-    {
-        $config = new Config();
-        $content_direcory = $config->templata_content_directory;
-        $file_path = $depth.$content_direcory.'/'.$dir.'/'.$file_name;
-        $content = file_get_contents($file_path);
-        return $content;
-    }
-
+    # Retrieves content from within one of the files stored within the content directory
     public function get_content($depth, $dir, $file)
     {
         $config = new Config();
@@ -42,7 +31,11 @@ class PageHandler extends Operator
         $templata_content_dir = $config->templata_content_directory;
         $full_path = $depth.$templata_content_dir.'/'.$path;
 
-        if(file_exists($full_path.'.html'))
+        if(file_exists($full_path))
+        {
+            $full_path = $full_path;
+        }
+        elseif(file_exists($full_path.'.html'))
         {
             $full_path .= '.html';
         }
@@ -63,7 +56,11 @@ class PageHandler extends Operator
         return $content;
     }
 
-    public function output_page($depth, $body_content = null)
+    # This function puts together all the necessary elements required to output an entire page and modifies
+    # some of them by replacing predetermined placeholders.
+    # It's capable of displaying a page as well but it's main purpose is to sum up page contents reuirted in order
+    # to display a page.
+    public function output_page($depth, $body_content = null, $output_mode = 1)
     {
         # Declarations
         $config = new Config();
@@ -143,10 +140,73 @@ class PageHandler extends Operator
         $include = str_replace('{navigation_menu}', $this->navigation_menu($depth), $include);
         $include = str_replace('{mobile_navigation_menu}', $this->navigation_menu($depth), $include);
 
-        echo $include;
+        switch($output_mode)
+        {
+            case 0:
+                echo $include;
+                break;
+
+            case 1:
+                return $include;
+        }
     }
 
-    # Retrieves a scripts' output
+    # Only used for displaying the final output
+    public function display_page($relative_path_depth, $body_content)
+    {
+        $page_output = $this->output_page($relative_path_depth, $body_content, 1);
+
+        # Replace standard relative hyperlinks before displaying
+        $href_links = $this->href_link_transformer($page_output);
+        foreach($href_links as $key=>$href_link)
+        {
+            $page_output = str_replace($key, $href_link, $page_output);
+        }
+
+        # Display the page.
+        echo $page_output;
+    }
+
+    # Turns standard relative hyperlinks into links that are userfriendly to the overall system
+    # Links should strictly be one level deep in order for them to work
+    # First part of the link represents a physical directory within the systems content directory
+    # and the second part represents the actual file whose content is required to be displayed.
+    public function href_link_transformer($href_source)
+    {
+        $raw_href_links = $this->extract_links($href_source);
+
+        $raw_href_links3 = array();
+        foreach($raw_href_links as $raw_href_links2)
+        {
+            # eliminating links containing 'www' or 'http' because such links need not to be re-written
+            if(strpos($raw_href_links2, 'http') === false)
+            {
+                if(strpos($raw_href_links2, 'www') === false)
+                {
+                    if(strpos($raw_href_links2, '.co') === false)
+                    {
+                        if(strpos($raw_href_links2, '.html') != false || strpos($raw_href_links2, '.php') != false)
+                        {
+                            $raw_href_links3[$raw_href_links2] = $raw_href_links2;
+                        }
+                    }
+                }
+            }
+        }
+
+        # modify urls to make them useful to the system
+        $new_href_links = array();
+        foreach($raw_href_links3 as $raw_href_links4)
+        {
+            # notation -> ?category=category&id=page
+            $exploded_link = explode('/',$raw_href_links4);
+            $new_href_links[$raw_href_links4] = '?category='.$exploded_link[0].'&id='.$exploded_link[1];
+        }
+
+        return $new_href_links;
+    }
+
+    # Retrieves a scripts' output after execution
     public function get_script_output($path, $print = FALSE)
     {
         ob_start();
