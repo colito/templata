@@ -23,6 +23,6 @@ else
 
 $body_content = $page_handler->get_content($relative_path_depth, $category, $landing_page);
 
-$page_handler->output_page($relative_path_depth, $body_content);
+$page_handler->display_page($relative_path_depth, $body_content);
 
 ?>
