@@ -124,7 +124,7 @@ class PageHandler extends Operator
         $page_title = str_replace('page:', '', $page_title);
         $include = str_replace('{page_title}', $page_title, $include);
 
-        $include = str_replace('{right_click}', $this->right_click_status($config->right_click), $include);
+        $include = str_replace('{right_click}', $this->right_click_switch($config->right_click), $include);
         $include = str_replace('{body_content}', $body_content, $include);
 
         # Pathing
