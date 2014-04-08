@@ -182,11 +182,14 @@ abstract class Operator
 
         # modify urls to make them useful to the system
         $new_href_links = array();
-        foreach($raw_href_links3 as $raw_href_links4)
+        foreach($raw_href_links3 as $key => $raw_href_links4)
         {
-            # notation -> ?category=category&id=page
+            # notation -> ?category=category&id=page_name
             $exploded_link = explode('/',$raw_href_links4);
-            $new_href_links[$raw_href_links4] = '?category='.$exploded_link[0].'&id='.$exploded_link[1];
+            if(!empty($new_href_links[$key]))
+            {
+                $new_href_links[$key] = '?category='.$exploded_link[0].'&id='.$exploded_link[1];
+            }
         }
 
         return $new_href_links;
@@ -251,6 +254,7 @@ abstract class Operator
         return $css_files;
     }
 
+    /* # Temporarily decomissioned.
     public function unpack_css_files()
     {
         $css_files = $this->css_files();
@@ -262,7 +266,7 @@ abstract class Operator
         }
 
         return $css_links;
-    }
+    }*/
 
     public function get_jquery($depth)
     {

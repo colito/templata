@@ -91,7 +91,8 @@ class PageHandler extends Operator
 
         $template_res = $depth.'templates/'.$active_template;
 
-        $templata_css = $this->unpack_css_files();
+        # Funcction has been temporarily decommissioned
+        //$templata_css = $this->unpack_css_files();
         $templata_libs = $depth.$config->templata_libraries;
         $main_images = $depth.$config->templata_images_directory;
         $favicon = $main_images.'/favicon/favicon.ico';
@@ -110,7 +111,8 @@ class PageHandler extends Operator
 
         # App
         $include = str_replace('{app_name}', $app_name, $data);
-        $include = str_replace('{templata_css}', $templata_css, $include);
+        # Funcction has been temporarily decommissioned
+        //$include = str_replace('{templata_css}', $templata_css, $include);
 
         # getting page name from source '[page:page_name]'
         preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
