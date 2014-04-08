@@ -186,9 +186,13 @@ abstract class Operator
         {
             # notation -> ?category=category&id=page_name
             $exploded_link = explode('/',$raw_href_links4);
-            if(!empty($new_href_links[$key]))
+
+            if(!empty($exploded_link[0]) && !empty($exploded_link[1]))
             {
-                $new_href_links[$key] = '?category='.$exploded_link[0].'&id='.$exploded_link[1];
+                if(empty($new_href_links[$key]))
+                {
+                    $new_href_links[$key] = '?category='.$exploded_link[0].'&id='.$exploded_link[1];
+                }
             }
         }
 
