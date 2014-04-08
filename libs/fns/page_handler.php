@@ -65,6 +65,7 @@ class PageHandler extends Operator
         # Declarations
         $config = new Config();
         $app_name = $config->app_name;
+        $base_url = $config->base_url;
 
         # Template override; overrides existing template if user has specified a template on the content source
         if(preg_match_all("/\[(template:.*?)\]/", $body_content, $template_name_matches))
@@ -142,6 +143,7 @@ class PageHandler extends Operator
         $include = str_replace('{body_content}', $body_content, $include);
 
         # Pathing
+        $include = str_replace('{base_url}', '<base href="'.$base_url.'"/>', $include);
         $include = str_replace('{relative}', $depth, $include);
         $include = str_replace('{favicon}', $favicon, $include);
         $include = str_replace('{templata_libs}', $templata_libs, $include);

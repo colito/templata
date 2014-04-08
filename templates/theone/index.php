@@ -3,7 +3,7 @@
 <head>
 
     <!-- Base path: Very important especially when the systems uses clean URLs -->
-    <base href="http://localhost/emp/templata/" />
+    {base_url}
 
     <title>{page_title}</title>
 
