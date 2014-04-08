@@ -118,12 +118,24 @@ class PageHandler extends Operator
         preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
 
         # removing page name placeholder from the source output
-        $body_content = str_replace($page_name_matches[0][0], '', $body_content);
+        if(!empty($page_name_matches[0][0]))
+        {
+            $body_content = str_replace($page_name_matches[0][0], '', $body_content);
+        }
 
         # assigning page title
-        $page_title = $page_name_matches[1][0];
-        # cleaning up page title
-        $page_title = str_replace('page:', '', $page_title);
+        if(!empty($page_name_matches[1][0]))
+        {
+            $page_title = $page_name_matches[1][0];
+
+            # cleaning up page title
+            $page_title = str_replace('page:', '', $page_title);
+        }
+        else
+        {
+            $page_title = 'Unnamed';
+        }
+
         $include = str_replace('{page_title}', $page_title, $include);
 
         $include = str_replace('{right_click}', $this->right_click_switch($config->right_click), $include);
@@ -162,6 +174,7 @@ class PageHandler extends Operator
         $href_links = $this->href_link_transformer($page_output);
         foreach($href_links as $key=>$href_link)
         {
+            //var_dump($href_links);
             $page_output = str_replace($key, $href_link, $page_output);
         }
 
