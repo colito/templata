@@ -2,7 +2,7 @@
 Class Config
 {
     public $app_name = '';
-    public $landing_directory = 'greenwhich';
+    public $landing_directory = 'theone';
     public $landing_page = 'index';
     public $user_name = '';
     public $password = '';
