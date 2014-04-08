@@ -111,3 +111,14 @@ Developer Notes
 14:39
 * Active template can now be overridden within a content source file
 * get_content function now verifies if a file exists and only caters for .html and .php files
+
+2014-04-08
+
+16:52
+* Implemented clean URLs (now working)
+* Base url for sustaining relative paths when rewriting URLs is adjustable from the config file
+* Added base_url placeholder to template index file
+* Created Operator abstract class which comprises of the more fundamental function
+* PageHandler class now only handles page processing
+* Templates are now to contain their own navigation_links file
+* Templates are now also to have all their own CSS files that they will require
