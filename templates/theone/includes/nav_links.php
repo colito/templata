@@ -7,10 +7,15 @@
 
 
 # The One
-*Home:theone/index.php
-*Solutions:theone/solutions.php
-*Contact:theone/contact.php
-*Hello:theone/hello.php
+Home:theone/index.php
+Solutions:theone/solutions.php
+Contact:theone/contact.php
+Hello:theone/hello.php
+
+*Home:theone/index
+*Solutions:theone/solutions
+*Contact:theone/contact
+*Hello:theone/hello
 
 
             CASCADING STYLE SHEET FILES
