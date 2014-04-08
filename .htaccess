@@ -1,14 +1,17 @@
-RewriteEngine On    # Turn on the rewriting engine
+RewriteEngine on
 
-RewriteCond   %{REQUEST_URI} ^/index.php
-RewriteRule   .* index.php [L]
-#RewriteRule   ^/?$ home/test/index.php
-RewriteRule   ^article/?$                   content/index.php   [NC,L]
-RewriteRule   ^article/([A-Za-z0-9-]+)/?$   content/index.php?article=$1  [NC,L]
-RewriteRule   ^cat/?$                       home/test/index.php  [NC,L]
-RewriteRule   ^cat/([A-Za-z0-9-]+)/?$       home/test/index.php?cat=$1  [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)$ index.php?p=$1 [L]
 
-RewriteRule   ^articles/(\w+)/([0-9]+)/?$     home/test/index.php?theone=$1
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/$ index.php?p=$1 [L]
 
-#RewriteCond %{HTTP_HOST} ^localhost [NC]
-#RewriteRule ^(.*)$ http://localhost/emp/templata/home/test/$1 [L,R=301]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)$ index.php?category=$1&id=$2 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/$ index.php?category=$1&id=$2 [L]
