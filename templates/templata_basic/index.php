@@ -15,7 +15,7 @@
     <!-- CSS Libraries -->
     {templata_css}
 
-    <script type="text/javascript" src="{templata_jquery}"></script>
+    {templata_jquery}
 
 </head>
 
