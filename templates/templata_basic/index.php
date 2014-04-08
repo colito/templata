@@ -2,6 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 
+    <!-- Base path: Very important especially when the systems uses clean URLs -->
+    {base_url}
+
     <title>{page_title}</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
