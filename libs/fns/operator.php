@@ -37,7 +37,7 @@ abstract class Operator
     public function link_handler()
     {
         $config = new Config();
-        $links = 'templates/'.$config->active_template.'/'.$config->navigation_links;//$config->navigation_links;
+        $links = 'templates/'.$config->active_template.'/'.$config->navigation_links;
         $links_file = APP_ROOT_DIR.'/'.$links;
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
@@ -231,7 +231,8 @@ abstract class Operator
     {
         $config = new Config();
         $links = $config->navigation_links;
-        $links_file = APP_ROOT_DIR.'/'.$links;
+        $active_template = $config->active_template;
+        $links_file = 'templates/'.$active_template.'/'.$links;
 
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
@@ -258,7 +259,6 @@ abstract class Operator
         return $css_files;
     }
 
-    /* # Temporarily decomissioned.
     public function unpack_css_files()
     {
         $css_files = $this->css_files();
@@ -266,11 +266,11 @@ abstract class Operator
         $css_links = '';
         foreach($css_files as $css_file)
         {
-            $css_links .= '<link rel="stylesheet" href="{templata_libs}/css/'.$css_file.'" type="text/css" media="screen">';
+            $css_links .= '<link rel="stylesheet" href="{template_res}/css/'.$css_file.'" type="text/css" media="screen">';
         }
 
         return $css_links;
-    }*/
+    }
 
     public function get_jquery($depth)
     {
