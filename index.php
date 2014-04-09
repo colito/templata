@@ -10,16 +10,8 @@ $page_handler = new PageHandler();
 
 $relative_path_depth = $page_handler->relative_link_path(dirname(__FILE__));
 
-if(!empty($_GET))
-{
-    $category =  $_GET['category'];
-    $landing_page = $_GET['id'];
-}
-else
-{
-    $category = $config->landing_directory;
-    $landing_page = $config->landing_page;
-}
+$category = (!empty($_GET['category']) ? $_GET['category'] : $config->landing_directory);
+$landing_page = (!empty($_GET['id']) ? $_GET['id'] : $config->landing_page);
 
 $body_content = $page_handler->get_content($relative_path_depth, $category, $landing_page);
 
