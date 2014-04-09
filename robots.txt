@@ -6,14 +6,13 @@
 
 User-agent: *
 Disallow: /content/
-Disallow: /create_page/
-Disallow: /css/
-Disallow: /img/
+Disallow: /images/
 Disallow: /includes/
-Disallow: /js/
-Disallow: /template/
+Disallow: /libs/
+Disallow: /templates/
 Disallow: /tools/
 
+Disallow: /.htaccess
 Disallow: /config.php
 Disallow: /README.md
 Disallow: /server_details.php
