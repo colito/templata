@@ -2,7 +2,6 @@
 Class Config
 {
     public $app_name = '';
-    public $base_url = 'http://localhost/emp/templata/';
     public $landing_directory = 'theone';
     public $landing_page = 'index';
     public $user_name = '';

@@ -65,7 +65,7 @@ class PageHandler extends Operator
         # Declarations
         $config = new Config();
         $app_name = $config->app_name;
-        $base_url = $config->base_url;
+        $base_url = $this->get_base_url();
 
         # Template override; overrides existing template if user has specified a template on the content source
         if(preg_match_all("/\[(template:.*?)\]/", $body_content, $template_name_matches))
@@ -201,6 +201,7 @@ class PageHandler extends Operator
         else
             echo ob_get_clean();
     }
+
     /*** END OF PAGE RENDERING ***********/
 }
 
