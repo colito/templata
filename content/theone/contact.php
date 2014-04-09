@@ -1,4 +1,7 @@
-<!-- [page:Contact Us] -->
+<!--
+    [page:Contact Us]
+    [template:theone]
+-->
 
     <div id='content' class='grid_5 omega'>
         <h2>Contact Us</h2>
