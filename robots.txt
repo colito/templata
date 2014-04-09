@@ -15,4 +15,3 @@ Disallow: /tools/
 Disallow: /.htaccess
 Disallow: /config.php
 Disallow: /README.md
-Disallow: /server_details.php
