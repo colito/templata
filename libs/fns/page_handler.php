@@ -49,7 +49,7 @@ class PageHandler extends Operator
         }
         else
         {
-            $full_path = $templata_content_dir.'/default.php';
+            $full_path = $templata_content_dir.'/error/index.php';
         }
 
         $content = $this->get_script_output($full_path);

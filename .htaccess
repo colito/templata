@@ -15,3 +15,7 @@ RewriteRule ^([^/]+)/([^/]+)$ index.php?category=$1&id=$2 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]+)/([^/]+)/$ index.php?category=$1&id=$2 [L]
+
+# Ref: http://www.htmlgoodies.com/beyond/reference/article.php/3472591
+ErrorDocument 404 http://localhost/emp/templata/error/404
+ErrorDocument 500 http://localhost/emp/templata/error/500
