@@ -23,6 +23,26 @@ class PageHandler extends Operator
         return $right_click_status;
     }
 
+    # Retrieves a scripts' output result
+    public function get_script_output($path, $print = FALSE)
+    {
+        ob_start();
+
+        if( is_readable($path) && $path )
+        {
+            include $path;
+        }
+        else
+        {
+            return FALSE;
+        }
+
+        if( $print == FALSE )
+            return ob_get_clean();
+        else
+            echo ob_get_clean();
+    }
+
     # Retrieves content from within one of the files stored within the content directory
     public function get_content($depth, $dir, $file)
     {
@@ -54,6 +74,11 @@ class PageHandler extends Operator
 
         $content = $this->get_script_output($full_path);
         return $content;
+    }
+
+    public function set_page_name($page_name)
+    {
+        return $page_name;
     }
 
     # This function puts together all the necessary elements required to output an entire page and modifies
@@ -130,7 +155,7 @@ class PageHandler extends Operator
             $page_title = $page_name_matches[1][0];
 
             # cleaning up page title
-            $page_title = str_replace('page:', '', $page_title);
+            $page_title = str_replace('page:', '', $page_title);Yea
         }
         else
         {
@@ -185,26 +210,6 @@ class PageHandler extends Operator
 
         # Display the page.
         echo $page_output;
-    }
-
-    # Retrieves a scripts' output after execution
-    public function get_script_output($path, $print = FALSE)
-    {
-        ob_start();
-
-        if( is_readable($path) && $path )
-        {
-            include $path;
-        }
-        else
-        {
-            return FALSE;
-        }
-
-        if( $print == FALSE )
-            return ob_get_clean();
-        else
-            echo ob_get_clean();
     }
 
     /*** END OF PAGE RENDERING ***********/
