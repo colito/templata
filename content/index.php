@@ -1,1 +1,3 @@
-<h3>No content as yet.</h3>
+[page:Content Index]
+
+<h3>No content to display</h3>
