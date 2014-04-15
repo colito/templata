@@ -15,6 +15,8 @@ $landing_page = (!empty($_GET['id']) ? $_GET['id'] : $config->landing_page);
 
 $body_content = $page_handler->get_content($relative_path_depth, $category, $landing_page);
 
-$page_handler->display_page($relative_path_depth, $body_content);
+$x = $page_handler->get_content2($relative_path_depth, 'theone', '', '');
+
+$page_handler->display_page($relative_path_depth, $x);
 
 ?>
