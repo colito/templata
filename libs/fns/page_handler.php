@@ -44,48 +44,16 @@ class PageHandler extends Operator
     }
 
     # Retrieves content from within one of the files stored within the content directory
-    public function get_content($depth, $dir, $file)
-    {
-        $config = new Config();
-        $path = $dir.'/'.$file;
-        $templata_content_dir = $config->templata_content_directory;
-        $full_path = $depth.$templata_content_dir.'/'.$path;
-
-        if(file_exists($full_path))
-        {
-            $full_path = $full_path;
-        }
-        elseif(file_exists($full_path.'.html'))
-        {
-            $full_path .= '.html';
-        }
-        elseif(file_exists($full_path.'.php'))
-        {
-            $full_path .= '.php';
-        }
-        elseif(file_exists($full_path.'.txt'))
-        {
-            $full_path .= '.txt';
-        }
-        else
-        {
-            $full_path = $templata_content_dir.'/error/index.php';
-        }
-
-        $content = $this->get_script_output($full_path);
-        return $content;
-    }
-
-    public function get_content2($depth, $param1, $param2 = '', $param3 = '')
+    public function get_content($depth, $param1, $param2 = '', $param3 = '')
     {
         $config = new Config();
         $templata_content_dir = $config->templata_content_directory;
 
-        if(!empty($param1) && !empty($param2) && !empty($param3)) # Checks if all parameters have values
+        if(!empty($param3)) # Checks if all parameters have values
         {
             $path = $param1 . '/' . $param2 . '/' . $param3;
         }
-        else if(!empty($param1) && !empty($param2) && empty($param3))
+        elseif(!empty($param2))
         {
             $path = $param1 . '/' . $param2;
         }
@@ -118,7 +86,7 @@ class PageHandler extends Operator
 
             if(empty($path_with_extention))
             {
-                # redirects to error page if file doesn't exist
+                # redirects to error page if file cant't be found
                 return '/error/404';
             }
             else
@@ -129,8 +97,7 @@ class PageHandler extends Operator
 
         if(file_exists($full_path)) #checks if path is only a directory
         {
-            #if condition
-
+            #if condition is true, index file is sought out
             $full_path .= '/index';
             $full_path = $seek_file_extention($full_path);
         }
