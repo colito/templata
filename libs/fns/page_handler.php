@@ -76,6 +76,73 @@ class PageHandler extends Operator
         return $content;
     }
 
+    public function get_content2($depth, $param1, $param2 = '', $param3 = '')
+    {
+        $config = new Config();
+        $templata_content_dir = $config->templata_content_directory;
+
+        if(!empty($param1) && !empty($param2) && !empty($param3)) # Checks if all parameters have values
+        {
+            $path = $param1 . '/' . $param2 . '/' . $param3;
+        }
+        else if(!empty($param1) && !empty($param2) && empty($param3))
+        {
+            $path = $param1 . '/' . $param2;
+        }
+        elseif(empty($param2))
+        {
+            $path = $param1;
+        }
+
+        $full_path = $depth.$templata_content_dir.'/'.$path;
+
+        $seek_file_extention = function($extentionless_path)
+        {
+            $path_with_extention_arr = glob($extentionless_path.'.*');
+            $path_with_extention = array();
+            foreach($path_with_extention_arr as $pwe)
+            {
+                if(strpos($pwe, '.html'))
+                {
+                    $path_with_extention['html'] = $pwe;
+                }
+                elseif(strpos($pwe, '.php'))
+                {
+                    $path_with_extention['php'] = $pwe;
+                }
+                elseif(strpos($pwe, '.txt'))
+                {
+                    $path_with_extention['txt'] = $pwe;
+                }
+            }
+
+            if(empty($path_with_extention))
+            {
+                # redirects to error page if file doesn't exist
+                return '/error/404';
+            }
+            else
+            {
+                return array_values($path_with_extention)[0];
+            }
+        };
+
+        if(file_exists($full_path)) #checks if path is only a directory
+        {
+            #if condition
+
+            $full_path .= '/index';
+            $full_path = $seek_file_extention($full_path);
+        }
+        else
+        {
+            $full_path = $seek_file_extention($full_path);
+        }
+
+        $content = $this->get_script_output($full_path);
+        return $content;
+    }
+
     public function set_page_name($page_name)
     {
         return $page_name;
