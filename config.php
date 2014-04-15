@@ -5,9 +5,9 @@ Class Config
     public $app_name = '';
 
     # Initial content to be displayed
-    public $landing_category = 'theone';
-    public $landing_article = 'index';
-    public $landing_sub_article = '';
+    public $default_landing_category = 'theone';
+    public $default_landing_article = '';
+    public $default_landing_sub_article = '';
 
     public $user_name = '';
     public $password = '';
