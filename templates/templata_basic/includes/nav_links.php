@@ -8,7 +8,7 @@
 
 # The One
 
-*Home:theone/index
+*Home:theone
 *Solutions:theone/solutions
 *Contact:theone/contact
 *Hello:theone/hello
