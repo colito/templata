@@ -154,17 +154,9 @@ class PageHandler extends Operator
         $templata_css = $this->unpack_css_files();
         $templata_libs = $depth.$config->templata_libraries;
         $main_images = $depth.$config->templata_images_directory;
-        $favicon = $main_images.'/favicon/favicon.ico';
+        $favicon = $template_res.'/images/favicon/favicon.ico';
 
         $contact_form_validation = $depth.'tools/validation/contact-form.php';
-
-//        $file_contents = fopen($template_path, "r");
-//
-//        while(!feof($file_contents))
-//        {
-//            $data = fread($file_contents, 500000);
-//        }
-//        fclose($file_contents);
 
         $data = $this->get_script_output($template_path);
 
