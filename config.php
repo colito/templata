@@ -5,9 +5,9 @@ Class Config
     public $app_name = '';
 
     # Initial content to be displayed
-    public $default_landing_category = 'theone';
-    public $default_landing_article = '';
-    public $default_landing_sub_article = '';
+    public $default_landing_category = 'theone'; # needs to be defined
+    public $default_landing_article = ''; # if empty, uses index by default
+    public $default_landing_sub_article = ''; # also uses index by default if not defined
 
     public $user_name = '';
     public $password = '';
@@ -18,6 +18,7 @@ Class Config
     public $navigation_links = 'includes/nav_links.php'; # this is relative within the actual template's root directory
     public $active_template = 'templata_basic';
 
+    # Email
     public $email_to = 'somebody@somewhere.com';
 
     # Resources
