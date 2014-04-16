@@ -196,18 +196,6 @@ class PageHandler extends Operator
         # assigning page title
         $page_title = (!empty($page_name_matches[1][0]) ? $page_title = $page_name_matches[1][0] : $page_title = 'Unnamed');
 
-        /*if(!empty($page_name_matches[1][0]))
-        {
-            $page_title = $page_name_matches[1][0];
-
-            # cleaning up page title
-            $page_title = str_replace('page:', '', $page_title);Yea
-        }
-        else
-        {
-            $page_title = 'Unnamed';
-        }*/
-
         # cleaning up page title
         $page_title = str_replace('page:', '', $page_title);
 
@@ -250,7 +238,6 @@ class PageHandler extends Operator
         $href_links = $this->href_link_transformer($page_output);
         foreach($href_links as $key=>$href_link)
         {
-            //var_dump($href_links);
             $page_output = str_replace($key, $href_link, $page_output);
         }
 

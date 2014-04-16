@@ -80,6 +80,12 @@ abstract class Operator
     {
         $config = new Config();
         $links = 'templates/'.$config->active_template.'/'.$config->navigation_links;
+
+        if(!file_exists($links))
+        {
+            return false;
+        }
+
         $links_file = APP_ROOT_DIR.'/'.$links;
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
@@ -251,6 +257,11 @@ abstract class Operator
     {
         $x = $this->link_handler();
 
+        if($x == false)
+        {
+            return false;
+        }
+
         $output = '';
         foreach($x['nav_links'] as $y)
         {
@@ -275,6 +286,11 @@ abstract class Operator
         $links = $config->navigation_links;
         $active_template = $config->active_template;
         $links_file = 'templates/'.$active_template.'/'.$links;
+
+        if(!file_exists($links_file))
+        {
+            return false;
+        }
 
         $lines = file($links_file, FILE_IGNORE_NEW_LINES);
 
@@ -304,6 +320,11 @@ abstract class Operator
     public function unpack_css_files()
     {
         $css_files = $this->css_files();
+
+        if(!$css_files)
+        {
+            return 'No CSS links found';
+        }
 
         $css_links = '';
         foreach($css_files as $css_file)
