@@ -35,6 +35,7 @@ class PageHandler extends Operator
         else
         {
             return FALSE;
+            //echo '<h2 class="error">CONTENT FILE IS UNREADABLE OR DOESN\'T EXIST</h2>';
         }
 
         if( $print == FALSE )
@@ -48,6 +49,7 @@ class PageHandler extends Operator
     {
         $config = new Config();
         $templata_content_dir = $config->templata_content_directory;
+        $error_page = $templata_content_dir.'/error/index.php';
 
         if(!empty($param3)) # Checks if all parameters have values
         {
@@ -57,7 +59,7 @@ class PageHandler extends Operator
         {
             $path = $param1 . '/' . $param2;
         }
-        elseif(empty($param2))
+        elseif(!empty($param1))
         {
             $path = $param1;
         }
@@ -87,7 +89,8 @@ class PageHandler extends Operator
             if(empty($path_with_extention))
             {
                 # redirects to error page if file cant't be found
-                return '/error/404';
+                //header('Location : '. $this->get_base_url().'error/404');
+                return false;
             }
             else
             {
@@ -99,11 +102,28 @@ class PageHandler extends Operator
         {
             #if condition is true, index file is sought out
             $full_path .= '/index';
-            $full_path = $seek_file_extention($full_path);
+
+            if($seek_file_extention($full_path))
+            {
+                $full_path = $seek_file_extention($full_path);
+            }
+            else
+            {
+                # display error page
+                $full_path = $error_page;
+            }
         }
         else
         {
-            $full_path = $seek_file_extention($full_path);
+            if(file_exists($seek_file_extention($full_path)))
+            {
+                $full_path = $seek_file_extention($full_path);
+            }
+            else
+            {
+                # display error page
+                $full_path = $error_page;
+            }
         }
 
         $content = $this->get_script_output($full_path);
