@@ -207,7 +207,12 @@ p
 
 #content-card
 {
-    border: solid 2px ghostwhite;
+    margin-top: 5%;
+    -webkit-margin-top: 5%;
+    margin-left: 0.667%;
+    marigin-right: 0;
+    border: solid 2px green;
+    -webkit-border: solid 2px green;
 }
 #content-card1
 {
