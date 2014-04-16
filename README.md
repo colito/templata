@@ -122,3 +122,9 @@ Developer Notes
 * PageHandler class now only handles page processing
 * Templates are now to contain their own navigation_links file
 * Templates are now also to have all their own CSS files that they will require
+
+2014-04-16
+
+12:08
+* Favicon has been moved to template
+* Error page shows error messages for error 404, 500 and 0 which is the error code for undetectable content
