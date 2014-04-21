@@ -12,7 +12,7 @@ Solutions:theone/solutions.php
 Contact:theone/contact.php
 Hello:theone/hello.php
 
-*Home:theone/index
+*Home:theone
 *Solutions:theone/solutions
 *Contact:theone/contact
 *Hello:theone/hello
