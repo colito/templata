@@ -210,7 +210,7 @@ class PageHandler extends Operator
         $include = str_replace('{favicon}', $favicon, $include);
         $include = str_replace('{templata_libs}', $templata_libs, $include);
         $include = str_replace('{template_res}', $template_res, $include);
-        $include = str_replace('{templata_images}', $main_images, $include);
+            $include = str_replace('{templata_images}', $main_images, $include);
         $include = str_replace('{templata_jquery}', $this->get_jquery($depth), $include);
         $include = str_replace('{validation:contact-form}', $contact_form_validation, $include);
 

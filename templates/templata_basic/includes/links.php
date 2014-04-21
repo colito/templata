@@ -16,9 +16,11 @@ Hello:theone/hello.php
 *Solutions:theone/solutions
 *Contact:theone/contact
 *Hello:theone/hello
+*Guide:guide
 
 
-            CASCADING STYLE SHEET FILES
+            CASCADING STYLE SHEET FILES (CSS)
+
 
 [css:reset.css]
 [css:normalize.css]
@@ -26,7 +28,7 @@ Hello:theone/hello.php
 [css:style.css]
 
 
-            JAVASCRIPT FILES
+            JAVASCRIPT FILES (JS)
 
 [js:jquery]
 

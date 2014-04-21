@@ -7,14 +7,20 @@
 
 
 # The One
+Home:theone/index.php
+Solutions:theone/solutions.php
+Contact:theone/contact.php
+Hello:theone/hello.php
 
 *Home:theone
 *Solutions:theone/solutions
 *Contact:theone/contact
 *Hello:theone/hello
+*Guide:guide
 
 
-            CASCADING STYLE SHEET FILES
+            CASCADING STYLE SHEET FILES (CSS)
+
 
 [css:reset.css]
 [css:normalize.css]
@@ -22,7 +28,7 @@
 [css:style.css]
 
 
-            JAVASCRIPT FILES
+            JAVASCRIPT FILES (JS)
 
 [js:jquery]
 
