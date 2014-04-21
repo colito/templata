@@ -49,7 +49,7 @@
 <div id="topper">
 
     <div id="title">
-        <h1><a href="index.php">{app_name}</a></h1>
+        <h1><a href="">{app_name}</a></h1>
     </div>
 
     <div id="switch"></div>
