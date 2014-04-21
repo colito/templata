@@ -139,7 +139,7 @@ class PageHandler extends Operator
     # some of them by replacing predetermined placeholders.
     # It's capable of displaying a page as well but it's main purpose is to sum up page contents reuirted in order
     # to display a page.
-    public function output_page($depth, $body_content = null, $output_mode = 1)
+    public function generate_page($depth, $body_content = null, $output_mode = 1)
     {
         # Declarations
         $config = new Config();
@@ -232,7 +232,7 @@ class PageHandler extends Operator
     # Only used for displaying the final output
     public function display_page($relative_path_depth, $body_content)
     {
-        $page_output = $this->output_page($relative_path_depth, $body_content, 1);
+        $page_output = $this->generate_page($relative_path_depth, $body_content, 1);
 
         # Replace standard relative hyperlinks before displaying
         $href_links = $this->href_link_transformer($page_output);
