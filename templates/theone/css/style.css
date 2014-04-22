@@ -48,7 +48,7 @@ a
 {
 	color: #000;
 }
-p
+p, ul, ol
 {
 	font-size: 0.9em;
 	color: #4E5860/*#696969*/;
@@ -339,7 +339,7 @@ h3
 {
 	font-size: 0.9em;
 }
-p
+p, ul, ol
 {
 	font-size: 0.750em;
 }
