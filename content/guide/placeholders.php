@@ -1,11 +1,5 @@
 [page:Template Guide - Placeholders]
 
-<?php
-
-var_dump(relative_path(dirname(__FILE__)));
-
-?>
-
 <div id="content" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <p><h2>Note:</h2></p>
     <p>All placeholders should be contained within braces ({})</p>
