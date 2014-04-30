@@ -6,14 +6,14 @@
 
     <br>
 
-    <p><h2>Current Placeholders</h2></p>
+    <p id="current"><h2>Current Placeholders</h2></p>
     <p>
         <ul>
-            <li>app_name</li>
-            <li>templata_css </li>
-            <li>base_url </li>
-            <li>relative </li>
-            <li>favicon </li>
+            <li><a href="#app_name">app_name</a></li>
+            <li><a href="#">templata_css</a> </li>
+            <li><a href="#base_url">base_url</a> </li>
+            <li><a href="#">relative</a></href> </li>
+            <li><a href='#'>favicon</a> </li>
             <li>templata_libs</li>
             <li>template_res</li>
             <li>templata_images </li>
@@ -27,7 +27,7 @@
 
     <br>
 
-    <p>
+    <p id="new navigation">
         <h2>Proposed New Placeholders</h2>
         <h3>Navigation</h3>
     </p>
@@ -42,7 +42,7 @@
         </ul>
     </p>
 
-    <p><h3>Templata</h3></p>
+    <p id="templata"><h3>Templata</h3></p>
     <p>
         <ul>
             <li>templata:app-name </li>
@@ -56,7 +56,7 @@
         </ul>
     </p>
 
-    <p><h3>Template (Template specific resources)</h3></p>
+    <p id="template"><h3>Template (Template specific resources)</h3></p>
     <p>
         <ul>
             <li>template:resource-name </li>
