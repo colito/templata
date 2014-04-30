@@ -2,6 +2,7 @@
 require_once('operator.php');
 class PageHandler extends Operator
 {
+    public $page_name = 'unnamed';
     /*** PAGE RENDERING *******************************************************************/
 
     # Disables mouse right-click if set to 0
@@ -132,7 +133,7 @@ class PageHandler extends Operator
 
     public function set_page_name($page_name)
     {
-        return $page_name;
+        $this->page_name = $page_name;
     }
 
     # This function puts together all the necessary elements required to output an entire page and modifies
@@ -184,22 +185,30 @@ class PageHandler extends Operator
         $include = str_replace('{app_name}', $app_name, $data);
         $include = str_replace('{templata_css}', $templata_css, $include);
 
-        # getting page name from source '[page:page_name]'
-        preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
-
-        # removing page name placeholder from the source output
-        if(!empty($page_name_matches[0][0]))
+        if($this->page_name == 'unnamed')
         {
-            $body_content = str_replace($page_name_matches[0][0], '', $body_content);
+            # getting page name from source '[page:page_name]'
+            preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
+
+            # removing page name placeholder from the source output
+            if(!empty($page_name_matches[0][0]))
+            {
+                $body_content = str_replace($page_name_matches[0][0], '', $body_content);
+            }
+            # assigning page title
+            $page_title = (!empty($page_name_matches[1][0]) ? $page_title = $page_name_matches[1][0] : $page_title = 'Unnamed');
+
+            # cleaning up page title
+            $page_title = str_replace('page:', '', $page_title);
+        }
+        else
+        {
+            $page_title = $this->page_name;
         }
 
-        # assigning page title
-        $page_title = (!empty($page_name_matches[1][0]) ? $page_title = $page_name_matches[1][0] : $page_title = 'Unnamed');
-
-        # cleaning up page title
-        $page_title = str_replace('page:', '', $page_title);
-
+        # Assigning page title to the page
         $include = str_replace('{page_title}', $page_title, $include);
+
 
         $include = str_replace('{right_click}', $this->right_click_switch($config->right_click), $include);
         $include = str_replace('{body_content}', $body_content, $include);
@@ -210,7 +219,7 @@ class PageHandler extends Operator
         $include = str_replace('{favicon}', $favicon, $include);
         $include = str_replace('{templata_libs}', $templata_libs, $include);
         $include = str_replace('{template_res}', $template_res, $include);
-            $include = str_replace('{templata_images}', $main_images, $include);
+        $include = str_replace('{templata_images}', $main_images, $include);
         $include = str_replace('{templata_jquery}', $this->get_jquery($depth), $include);
         $include = str_replace('{validation:contact-form}', $contact_form_validation, $include);
 
@@ -229,16 +238,25 @@ class PageHandler extends Operator
         }
     }
 
+
     # Only used for displaying the final output
     public function display_page($relative_path_depth, $body_content)
     {
         $page_output = $this->generate_page($relative_path_depth, $body_content, 1);
 
-        # Replace standard relative hyperlinks before displaying
-        $href_links = $this->href_link_transformer($page_output);
-        foreach($href_links as $key=>$href_link)
+        # Allows toleration of hash tag links
+        $hash_links = $this->hash_tag_links($page_output);
+        foreach($hash_links as $key=>$hash_link)
         {
-            $page_output = str_replace($key, $href_link, $page_output);
+            if(!empty($key))
+            {
+                $page_output = str_replace('#'.$key, $hash_link, $page_output);
+            }
+            else
+            {
+                $page_output = str_replace('href="#"', 'href="'.$hash_link.'" ', $page_output);
+                $page_output = str_replace('href=\'#\'', 'href="'.$hash_link.'" ', $page_output);
+            }
         }
 
         # Display the page.
