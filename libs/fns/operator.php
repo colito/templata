@@ -1,4 +1,5 @@
 <?php
+require_once('functions.php');
 abstract class Operator
 {
 
@@ -379,6 +380,3 @@ abstract class Operator
         );
     }
 }
-
-
-?>

@@ -265,5 +265,3 @@ class PageHandler extends Operator
 
     /*** END OF PAGE RENDERING ***********/
 }
-
-?>

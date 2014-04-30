@@ -40,5 +40,4 @@ define('APP_ROOT_DIR', dirname(__FILE__));
 # include definitions
 require_once(APP_ROOT_DIR.'/includes/definitions.php');
 
-?>
 
