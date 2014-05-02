@@ -8,6 +8,11 @@ body
     color: #4E5860;
 }
 
+del
+{
+    opacity: 0.5;
+}
+
 /*main container
 -----------------------------------------------*/
 .container_12
