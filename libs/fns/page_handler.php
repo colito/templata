@@ -182,8 +182,8 @@ class PageHandler extends Operator
         $data = $this->get_script_output($template_path);
 
         # App
-        $include = str_replace('{app_name}', $app_name, $data);
-        $include = str_replace('{templata_css}', $templata_css, $include);
+        $include = str_replace('{templata:app-name}', $app_name, $data);
+        $include = str_replace('{templata:css}', $templata_css, $include);
 
         if($this->page_name == 'unnamed')
         {
@@ -209,23 +209,25 @@ class PageHandler extends Operator
         # Assigning page title to the page
         $include = str_replace('{page_title}', $page_title, $include);
 
-
-        $include = str_replace('{right_click}', $this->right_click_switch($config->right_click), $include);
+        $include = str_replace('{templata:right-click}', $this->right_click_switch($config->right_click), $include);
         $include = str_replace('{body_content}', $body_content, $include);
 
         # Pathing
         $include = str_replace('{base_url}', '<base href="'.$base_url.'"/>', $include);
+        $include = str_replace('{base-url}', '<base href="'.$base_url.'"/>', $include);
         $include = str_replace('{relative}', $depth, $include);
         $include = str_replace('{favicon}', $favicon, $include);
-        $include = str_replace('{templata_libs}', $templata_libs, $include);
+        $include = str_replace('{templata:libs}', $templata_libs, $include);
         $include = str_replace('{template_res}', $template_res, $include);
+        $include = str_replace('{template:res}', $template_res, $include);
         $include = str_replace('{templata_images}', $main_images, $include);
-        $include = str_replace('{templata_jquery}', $this->get_jquery($depth), $include);
+        $include = str_replace('{template:images}', $main_images, $include);
+        $include = str_replace('{templata:jquery}', $this->get_jquery($depth), $include);
         $include = str_replace('{validation:contact-form}', $contact_form_validation, $include);
 
         # Navigation
-        $include = str_replace('{navigation_menu}', $this->navigation_menu($depth), $include);
-        $include = str_replace('{mobile_navigation_menu}', $this->navigation_menu($depth), $include);
+        $include = str_replace('{navi:desktop}', $this->navigation_menu($depth), $include);
+        $include = str_replace('{navi:mobile}', $this->navigation_menu($depth), $include);
 
         switch($output_mode)
         {
@@ -246,16 +248,20 @@ class PageHandler extends Operator
 
         # Allows toleration of hash tag links
         $hash_links = $this->hash_tag_links($page_output);
-        foreach($hash_links as $key=>$hash_link)
+        if(is_array($hash_links))
         {
-            if(!empty($key))
+            foreach($hash_links as $key=>$hash_link)
             {
-                $page_output = str_replace('#'.$key, $hash_link, $page_output);
-            }
-            else
-            {
-                $page_output = str_replace('href="#"', 'href="'.$hash_link.'" ', $page_output);
-                $page_output = str_replace('href=\'#\'', 'href="'.$hash_link.'" ', $page_output);
+                if(!empty($key))
+                {
+                    $page_output = str_replace('href="#'.$key.'"', 'href="'.$hash_link.'"', $page_output);
+                    $page_output = str_replace('href=\'#'.$key.'\'', 'href=\''.$hash_link.'\'', $page_output);
+                }
+                else
+                {
+                    $page_output = str_replace('href="#"', 'href="'.$hash_link.'" ', $page_output);
+                    $page_output = str_replace('href=\'#\'', 'href="'.$hash_link.'" ', $page_output);
+                }
             }
         }
 

@@ -14,16 +14,16 @@
 
     <!-- CSS Libraries -->
 
-    <!--{templata_css}-->
+    <!--{templata:css}-->
 
-    <link rel="stylesheet" href="{template_res}/css/normalize.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{template_res}/css/grid.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template:res}/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template:res}/css/grid.css" type="text/css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{template_res}/css/flexslider.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{template_res}/css/style.css" type='text/css' media="screen">
-    <link rel="stylesheet" href="{template_res}/css/masonry.css" type='text/css' media="screen">
+    <link rel="stylesheet" href="{template:res}/css/flexslider.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template:res}/css/style.css" type='text/css' media="screen">
+    <link rel="stylesheet" href="{template:res}/css/masonry.css" type='text/css' media="screen">
 
-    <script type="text/javascript" src="{template_res}/js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="{template:res}/js/masonry.pkgd.min.js"></script>
 
     <!-- GA -->
     <!--
@@ -40,28 +40,28 @@
     </script>
     -->
 
-    {templata_jquery}
+    {templata:jquery}
 
 </head>
 
-<body {right_click}>
+<body {templata:right-click}>
 
 <div id="topper">
 
     <div id="title">
-        <h1><a href="">{app_name}</a></h1>
+        <h1><a href="">{templata:app-name}</a></h1>
     </div>
 
     <div id="switch"></div>
 
     <div id="navigation">
-        {navigation_menu}
+        {navi:desktop}
     </div>
 
 </div>
 
 <div id="panel">
-    {mobile_navigation_menu}
+    {navi:mobile}
 </div>
 
 <div class="container_12 clearfix">
@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{template_res}/js/flexslider.js"></script>
+<script type="text/javascript" src="{template:res}/js/flexslider.js"></script>
 <script type="text/javascript" charset="utf-8">
     $(window).load(function() {
         $('.flexslider').flexslider({
