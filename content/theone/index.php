@@ -1,6 +1,5 @@
 <!--
 [page:Home]
-[template:theone]
 -->
 
 <div id='content' class='grid_12'>

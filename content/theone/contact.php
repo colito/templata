@@ -1,6 +1,5 @@
 <!--
     [page:Contact Us]
-    [template:theone]
 -->
 
     <div id='content' class='grid_5 omega'>
