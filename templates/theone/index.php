@@ -3,7 +3,7 @@
 <head>
 
     <!-- Base path: Very important especially when the systems uses clean URLs -->
-    {base_url}
+    {base-url}
 
     <title>{page_title}</title>
 

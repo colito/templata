@@ -3,7 +3,7 @@
 <head>
 
     <!-- Base path: Very important especially when the systems uses clean URLs -->
-    {base_url}
+    {base-url}
 
     <title>{page_title}</title>
 
@@ -13,30 +13,55 @@
     <link rel="icon" type="image/png" href="{favicon}">
 
     <!-- CSS Libraries -->
-    {templata_css}
 
-    {templata_jquery}
+    <!--{templata:css}-->
+
+    <link rel="stylesheet" href="{template:res}/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template:res}/css/grid.css" type="text/css" media="screen">
+    <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{template:res}/css/flexslider.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template:res}/css/style.css" type='text/css' media="screen">
+    <link rel="stylesheet" href="{template:res}/css/masonry.css" type='text/css' media="screen">
+
+    <script type="text/javascript" src="{template:res}/js/masonry.pkgd.min.js"></script>
+
+    <!-- GA -->
+    <!--
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38880588-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function()
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    -->
+
+    {templata:jquery}
 
 </head>
 
-<body {right_click}>
+<body {templata:right-click}>
 
 <div id="topper">
 
     <div id="title">
-        <h1><a href="index.php">{app_name}</a></h1>
+        <h1><a href="">{templata:app-name}</a></h1>
     </div>
 
     <div id="switch"></div>
 
     <div id="navigation">
-        {navigation_menu}
+        {navi:desktop}
     </div>
 
 </div>
 
 <div id="panel">
-    {mobile_navigation_menu}
+    {navi:mobile}
 </div>
 
 <div class="container_12 clearfix">
