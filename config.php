@@ -26,10 +26,6 @@ Class Config
     public $templata_jquey_path = 'libs/js/jquery';
 
 }
-?>
-
-
-<?php
 
 # define application root
 define('APP_ROOT_DIR', dirname(__FILE__));
