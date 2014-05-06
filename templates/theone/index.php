@@ -66,7 +66,7 @@
 
 <div class="container_12 clearfix">
 
-    {body_content}
+    {body-content}
 
     <div id='footer' class='grid_12'>
         <div id='copyright'>

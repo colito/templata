@@ -13,13 +13,13 @@
 <div id='picshow' class="grid_8 margin_prefix_2 flexslider omega">
     <ul class="slides">
         <li>
-            <img src="{templata_images}/theone/1.jpg" width="" height="">
+            <img src="{templata:images}/theone/1.jpg" width="" height="">
         </li>
         <li>
-            <img src="{templata_images}/theone/2.jpg" width="" height="">
+            <img src="{templata:images}/theone/2.jpg" width="" height="">
         </li>
         <li>
-            <img src="{templata_images}/theone/3.jpg" width="" height="">
+            <img src="{templata:images}/theone/3.jpg" width="" height="">
         </li>
     </ul>
 </div>

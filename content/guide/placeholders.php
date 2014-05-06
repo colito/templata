@@ -70,12 +70,13 @@
         </ul>
     </p>
 
-    <p id="url">
-        <h3>Base URL and Relative Pathing</h3>
+    <p id="other">
+        <h3>Other Placeholders</h3>
 
         <ul>
             <li>base-url</li>
             <li>relative</li>
+            <li>body-content</li>
         </ul>
     </p>
 </div>
