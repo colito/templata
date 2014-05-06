@@ -7,7 +7,7 @@
         <p>Drop us a mail. We'd like to hear from you</p>
         <br/>
         <p>
-            <img src='{templata_images}/theone/mail.gif' width='260' height='160' />
+            <img src='{templata:images}/theone/mail.gif' width='260' height='160' />
         </p>
         <br/>
         <p>
@@ -66,7 +66,7 @@
         </form>
     </div>
 
-<script type='text/javascript' src="{template_res}/js/validEmail.js"></script>
+<script type='text/javascript' src="{template:res}/js/validEmail.js"></script>
 <script type="text/javascript">
 
     var $submit = $(".submit input");
