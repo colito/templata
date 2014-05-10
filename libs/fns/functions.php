@@ -1,13 +1,13 @@
 <?php
 
-    function get_current_uri($extent = 1)
+    function get_current_uri($extent = 0)
     {
         switch($extent)
         {
-            case 1:
+            case 0:
                 return $_SERVER['REQUEST_URI'];
             break;
-            case 2:
+            case 1:
                 return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             break;
         }
