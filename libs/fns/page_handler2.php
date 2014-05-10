@@ -2,8 +2,8 @@
 require_once('operator.php');
 class PageHandler extends Operator
 {
-    public $page_name = 'unnamed';
-    public $active_template = '';
+    public $page_name;
+    public $active_template;
 
     /*** PAGE RENDERING *******************************************************************/
 
@@ -138,102 +138,42 @@ class PageHandler extends Operator
         $this->page_name = $page_name;
     }
 
-    # Placeholder management
-    public function placeholder_manager($content, $depth)
+    public function get_page_name()
     {
-        /*var_dump($this->page_name);
-        var_dump($this->active_template);*/
+        return $this->page_name;
+    }
 
+    # Placeholder management
+    public function placeholder_manager($template, $content, $depth)
+    {
         $config = new Config();
 
         $all_placeholders = array(
             'templata:app-name' => $config->app_name,
-            'templata:css' => $this->unpack_css_files(),
+            'template:res' => $depth.'templates/'.$this->active_template,
+            'template:css' => $this->unpack_css_files(),
             'page_title' => $this->page_name,
             'templata:right-click' => $this->right_click_switch($config->right_click),
             'body-content' => $content,
-            'base-url' => $this->get_base_url(),
+            'base-url' => '<base href="'.$this->get_base_url().'"/>',
             'relative' => $depth,
             'favicon' => $depth.'templates/'.$this->active_template.'/images/favicon/favicon.ico',
             'templata:libs' => $depth.$config->templata_libraries,
-            'template:res' => $depth.'templates/'.$this->active_template,
             'templata:images' => $depth.$config->templata_images_directory,
-            'template:images' => $depth.$this->active_template.'/'.'images',
+            'template:images' => $depth.'templates/'.$this->active_template.'/'.'images',
             'templata:jquery' => $this->get_jquery($depth),
             'validation:contact-form' => $depth.'tools/validation/contact-form.php',
             'navi:desktop' => $this->navigation_menu($depth),
-            'navi:desktop' => $this->navigation_menu($depth)
+            'navi:mobile' => $this->navigation_menu($depth)
         );
-
-        $templata_placeholders = array(
-            'css' => $depth.$config->templata_libraries.'/css',
-            'images' => $depth.$config->templata_images_directory,
-            'app-name' => $config->app_name,
-            'right-click' => $this->right_click_switch($config->right_click),
-            'jquery' => $this->get_jquery($depth),
-            'relative' => $depth,
-            'libs' => $depth.$config->templata_libraries
-        );
-
-        $general_placeholders = array(
-            'page-title' => $this->page_name,
-            'body-content' => $content,
-            'base-url' => $this->get_base_url(),
-            'relative' => $depth,
-            'favicon' => $depth.'templates/'.$this->active_template.'/images/favicon/favicon.ico',
-            'validation:contact-form' => $depth.'tools/validation/contact-form.php',
-            'navi:desktop' => $this->navigation_menu($depth),
-            'navi:desktop' => $this->navigation_menu($depth),
-        );
-
-        # Template placeholders
-        preg_match_all("/{(template:.*?)}/", $content, $template_matches);
-        $template_pl = $template_matches[0];
-        $template_placeholders = array();
-
-        foreach($template_pl as $placeholder)
-        {
-            $placeholder = str_replace('{template:', '', $placeholder);
-            $placeholder = str_replace('}', '', $placeholder);
-
-            $path = $placeholder;
-            $path = str_replace(':', '/', $path);
-
-            $template_placeholders[$placeholder] = $path;
-        }
 
         # Replacing all placeholders
         foreach($all_placeholders as $placeholder=>$replacement)
         {
-            $content = str_replace('{'.$placeholder.'}', $replacement, $content);
+            $template = str_replace('{'.$placeholder.'}', $replacement, $template);
         }
 
-        //var_dump($content);
-
-        # Replacing general placeholders
-        /*foreach($general_placeholders as $placeholder=>$replacement)
-        {
-            $content = str_replace('{'.$placeholder.'}', $replacement, $content);
-        }
-
-        # Replacing template placeholders
-        foreach($template_placeholders as $placeholder=>$replacement)
-        {
-            $content = str_replace('{template:'.$placeholder.'}', $replacement, $content);
-        }
-
-        # Replacing templata placeholders
-        foreach($templata_placeholders as $placeholder=>$replacement)
-        {
-            $content = str_replace('{templata:'.$placeholder.'}', $replacement, $content);
-        }*/
-
-        # Replace favicon placeholder
-        /*$template_res = $depth.'templates/'.$this->active_template;
-        $favicon = $template_res.'/images/favicon/favicon.ico';
-        $content = str_replace('{favicon}', $favicon, $content);*/
-
-        return $content;
+        return $template;
     }
 
     # This function puts together all the necessary elements required to output an entire page and modifies
@@ -244,8 +184,6 @@ class PageHandler extends Operator
     {
         # Declarations
         $config = new Config();
-        $app_name = $config->app_name;
-        $base_url = $this->get_base_url();
 
         # Template override; overrides existing template if user has specified a template on the content source
         if(preg_match_all("/\[(template:.*?)\]/", $body_content, $template_name_matches))
@@ -270,22 +208,9 @@ class PageHandler extends Operator
             $template_path .= '.php';
         }
 
-        $template_res = $depth.'templates/'.$this->active_template;
-
-        $templata_css = $this->unpack_css_files();
-        $templata_libs = $depth.$config->templata_libraries;
-        $main_images = $depth.$config->templata_images_directory;
-        $favicon = $template_res.'/images/favicon/favicon.ico';
-
-        $contact_form_validation = $depth.'tools/validation/contact-form.php';
-
         $data = $this->get_script_output($template_path);
 
-        # App
-        $include = str_replace('{templata:app-name}', $app_name, $data);
-        $include = str_replace('{templata:css}', $templata_css, $include);
-
-        if($this->page_name == 'unnamed')
+        if($this->get_page_name() == null)
         {
             # getting page name from source '[page:page_name]'
             preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
@@ -302,31 +227,26 @@ class PageHandler extends Operator
             $this->page_name = str_replace('page:', '', $page_title);
         }
 
-        $include = $this->placeholder_manager($include, $depth);
+        $include = $this->placeholder_manager($data, $body_content, $depth);
 
-        var_dump($include);
-
-        # Assigning page title to the page
-        /*$include = str_replace('{page_title}', $this->page_name, $include);
-
-        $include = str_replace('{templata:right-click}', $this->right_click_switch($config->right_click), $include);
-        $include = str_replace('{body-content}', $body_content, $include);
-
-        # Pathing
-        $include = str_replace('{base_url}', '<base href="'.$base_url.'"/>', $include);
-        $include = str_replace('{base-url}', '<base href="'.$base_url.'"/>', $include);
-        $include = str_replace('{relative}', $depth, $include);
-        $include = str_replace('{favicon}', $favicon, $include);
-        $include = str_replace('{templata:libs}', $templata_libs, $include);
-        $include = str_replace('{template:res}', $template_res, $include);
-        $include = str_replace('{templata:images}', $main_images, $include);
-        $include = str_replace('{template:images}', $main_images, $include);
-        $include = str_replace('{templata:jquery}', $this->get_jquery($depth), $include);
-        $include = str_replace('{validation:contact-form}', $contact_form_validation, $include);
-
-        # Navigation
-        $include = str_replace('{navi:desktop}', $this->navigation_menu($depth), $include);
-        $include = str_replace('{navi:desktop}', $this->navigation_menu($depth), $include);*/
+        # Allows toleration of hash tag links
+        $hash_links = $this->hash_tag_links($include);
+        if(is_array($hash_links))
+        {
+            foreach($hash_links as $key=>$hash_link)
+            {
+                if(!empty($key))
+                {
+                    $include = str_replace('href="#'.$key.'"', 'href="'.$hash_link.'"', $include);
+                    $include = str_replace('href=\'#'.$key.'\'', 'href=\''.$hash_link.'\'', $include);
+                }
+                else
+                {
+                    $include = str_replace('href="#"', 'href="'.$hash_link.'" ', $include);
+                    $include = str_replace('href=\'#\'', 'href="'.$hash_link.'" ', $include);
+                }
+            }
+        }
 
         switch($output_mode)
         {
@@ -339,30 +259,10 @@ class PageHandler extends Operator
         }
     }
 
-
     # Only used for displaying the final output
     public function display_page($relative_path_depth, $body_content)
     {
         $page_output = $this->generate_page($relative_path_depth, $body_content, 1);
-
-        # Allows toleration of hash tag links
-        $hash_links = $this->hash_tag_links($page_output);
-        if(is_array($hash_links))
-        {
-            foreach($hash_links as $key=>$hash_link)
-            {
-                if(!empty($key))
-                {
-                    $page_output = str_replace('href="#'.$key.'"', 'href="'.$hash_link.'"', $page_output);
-                    $page_output = str_replace('href=\'#'.$key.'\'', 'href=\''.$hash_link.'\'', $page_output);
-                }
-                else
-                {
-                    $page_output = str_replace('href="#"', 'href="'.$hash_link.'" ', $page_output);
-                    $page_output = str_replace('href=\'#\'', 'href="'.$hash_link.'" ', $page_output);
-                }
-            }
-        }
 
         # Display the page.
         echo $page_output;
