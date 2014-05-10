@@ -164,7 +164,8 @@ abstract class Operator
 
             foreach($extracted_links as $extracted_link)
             {
-                $hash_links[$extracted_link] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'#'.$extracted_link;
+                //$hash_links[$extracted_link] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'#'.$extracted_link;
+                $hash_links[$extracted_link] = get_current_uri(1).'#'.$extracted_link;
             }
         }
         else
@@ -257,7 +258,7 @@ abstract class Operator
         $css_links = '';
         foreach($css_files as $css_file)
         {
-            $css_links .= '<link rel="stylesheet" href="{template_res}/css/'.$css_file.'" type="text/css" media="screen">';
+            $css_links .= '<link rel="stylesheet" href="{template:res}/css/'.$css_file.'" type="text/css" media="screen">';
         }
 
         return $css_links;
@@ -268,13 +269,16 @@ abstract class Operator
         $config = new Config();
         $jquery_path = $depth.$config->templata_jquey_path;
 
-        $resource_file = glob($jquery_path.'/jquery*');
-        $resource_file['jquery'] = $resource_file[0];
-        unset($resource_file[0]);
+        if(glob($jquery_path.'/jquery*'))
+        {
+            $resource_file = glob($jquery_path.'/jquery*');
+            $resource_file['jquery'] = $resource_file[0];
+            unset($resource_file[0]);
 
-        $jquery_link = '<script type="text/javascript" src="'.$resource_file['jquery'].'"></script>';
+            $jquery_link = '<script type="text/javascript" src="'.$resource_file['jquery'].'"></script>';
 
-        return $jquery_link;
+            return $jquery_link;
+        }
     }
 
     public function get_resource($depth, $resource)
