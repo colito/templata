@@ -3,10 +3,12 @@ require_once('operator.php');
 class PageHandler extends Operator
 {
     public $page_name = 'unnamed';
+    public $active_template = '';
+
     /*** PAGE RENDERING *******************************************************************/
 
     # Disables mouse right-click if set to 0
-    public function right_click_switch($status)
+    public function right_click_switch($status = 1)
     {
         switch ($status)
         {
@@ -136,6 +138,39 @@ class PageHandler extends Operator
         $this->page_name = $page_name;
     }
 
+    # Placeholder management
+    public function placeholder_manager($template, $content, $depth)
+    {
+        $config = new Config();
+
+        $all_placeholders = array(
+            'templata:app-name' => $config->app_name,
+            'template:res' => $depth.'templates/'.$this->active_template,
+            'template:css' => $this->unpack_css_files(),
+            'page_title' => $this->page_name,
+            'templata:right-click' => $this->right_click_switch($config->right_click),
+            'body-content' => $content,
+            'base-url' => '<base href="'.$this->get_base_url().'"/>',
+            'relative' => $depth,
+            'favicon' => $depth.'templates/'.$this->active_template.'/images/favicon/favicon.ico',
+            'templata:libs' => $depth.$config->templata_libraries,
+            'templata:images' => $depth.$config->templata_images_directory,
+            'template:images' => $depth.'templates/'.$this->active_template.'/'.'images',
+            'templata:jquery' => $this->get_jquery($depth),
+            'validation:contact-form' => $depth.'tools/validation/contact-form.php',
+            'navi:desktop' => $this->navigation_menu($depth),
+            'navi:mobile' => $this->navigation_menu($depth)
+        );
+
+        # Replacing all placeholders
+        foreach($all_placeholders as $placeholder=>$replacement)
+        {
+            $template = str_replace('{'.$placeholder.'}', $replacement, $template);
+        }
+
+        return $template;
+    }
+
     # This function puts together all the necessary elements required to output an entire page and modifies
     # some of them by replacing predetermined placeholders.
     # It's capable of displaying a page as well but it's main purpose is to sum up page contents reuirted in order
@@ -152,14 +187,14 @@ class PageHandler extends Operator
         {
             $body_content = str_replace($template_name_matches[0][0], '', $body_content);
             $active_template = $template_name_matches[1][0];
-            $active_template = str_replace('template:', '', $active_template);
+            $this->active_template = str_replace('template:', '', $active_template);
         }
         else
         {
-            $active_template = $config->active_template;
+            $this->active_template = $config->active_template;
         }
 
-        $template_path = APP_ROOT_DIR.'/templates/'.$active_template.'/index';
+        $template_path = APP_ROOT_DIR.'/templates/'.$this->active_template.'/index';
 
         if(file_exists($template_path.'.html'))
         {
@@ -170,20 +205,7 @@ class PageHandler extends Operator
             $template_path .= '.php';
         }
 
-        $template_res = $depth.'templates/'.$active_template;
-
-        $templata_css = $this->unpack_css_files();
-        $templata_libs = $depth.$config->templata_libraries;
-        $main_images = $depth.$config->templata_images_directory;
-        $favicon = $template_res.'/images/favicon/favicon.ico';
-
-        $contact_form_validation = $depth.'tools/validation/contact-form.php';
-
         $data = $this->get_script_output($template_path);
-
-        # App
-        $include = str_replace('{templata:app-name}', $app_name, $data);
-        $include = str_replace('{templata:css}', $templata_css, $include);
 
         if($this->page_name == 'unnamed')
         {
@@ -196,38 +218,15 @@ class PageHandler extends Operator
                 $body_content = str_replace($page_name_matches[0][0], '', $body_content);
             }
             # assigning page title
-            $page_title = (!empty($page_name_matches[1][0]) ? $page_title = $page_name_matches[1][0] : $page_title = 'Unnamed');
+            $page_title = (!empty($page_name_matches[1][0]) ? $page_title = $page_name_matches[1][0] : $page_title = get_current_uri(1));
 
-            # cleaning up page title
-            $page_title = str_replace('page:', '', $page_title);
-        }
-        else
-        {
-            $page_title = $this->page_name;
+            # cleaning up page title and assigning it to class variable
+            $this->page_name = str_replace('page:', '', $page_title);
         }
 
-        # Assigning page title to the page
-        $include = str_replace('{page_title}', $page_title, $include);
+        $include = $this->placeholder_manager($data, $body_content, $depth);
 
-        $include = str_replace('{templata:right-click}', $this->right_click_switch($config->right_click), $include);
-        $include = str_replace('{body_content}', $body_content, $include);
-
-        # Pathing
-        $include = str_replace('{base_url}', '<base href="'.$base_url.'"/>', $include);
-        $include = str_replace('{base-url}', '<base href="'.$base_url.'"/>', $include);
-        $include = str_replace('{relative}', $depth, $include);
-        $include = str_replace('{favicon}', $favicon, $include);
-        $include = str_replace('{templata:libs}', $templata_libs, $include);
-        $include = str_replace('{template_res}', $template_res, $include);
-        $include = str_replace('{template:res}', $template_res, $include);
-        $include = str_replace('{templata_images}', $main_images, $include);
-        $include = str_replace('{template:images}', $main_images, $include);
-        $include = str_replace('{templata:jquery}', $this->get_jquery($depth), $include);
-        $include = str_replace('{validation:contact-form}', $contact_form_validation, $include);
-
-        # Navigation
-        $include = str_replace('{navi:desktop}', $this->navigation_menu($depth), $include);
-        $include = str_replace('{navi:mobile}', $this->navigation_menu($depth), $include);
+        //var_dump($include);
 
         switch($output_mode)
         {
