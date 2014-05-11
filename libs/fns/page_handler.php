@@ -2,8 +2,8 @@
 require_once('operator.php');
 class PageHandler extends Operator
 {
-    public $page_name = 'unnamed';
-    public $active_template = '';
+    public $page_name;
+    public $active_template;
 
     /*** PAGE RENDERING *******************************************************************/
 
@@ -138,10 +138,19 @@ class PageHandler extends Operator
         $this->page_name = $page_name;
     }
 
+    public function get_page_name()
+    {
+        return $this->page_name;
+    }
+
     # Placeholder management
     public function placeholder_manager($template, $content, $depth)
     {
         $config = new Config();
+
+        # Order of placeholders is crucial. Eg: By placing body-content at the end of the array,
+        # placeholders defined within body-content won't be substituted with their appropriate replacements
+        # thus leaving the placeholder as is.
 
         $all_placeholders = array(
             'templata:app-name' => $config->app_name,
@@ -179,8 +188,6 @@ class PageHandler extends Operator
     {
         # Declarations
         $config = new Config();
-        $app_name = $config->app_name;
-        $base_url = $this->get_base_url();
 
         # Template override; overrides existing template if user has specified a template on the content source
         if(preg_match_all("/\[(template:.*?)\]/", $body_content, $template_name_matches))
@@ -207,7 +214,7 @@ class PageHandler extends Operator
 
         $data = $this->get_script_output($template_path);
 
-        if($this->page_name == 'unnamed')
+        if($this->get_page_name() == null)
         {
             # getting page name from source '[page:page_name]'
             preg_match_all("/\[(page:.*?)\]/", $body_content, $page_name_matches);
@@ -226,7 +233,24 @@ class PageHandler extends Operator
 
         $include = $this->placeholder_manager($data, $body_content, $depth);
 
-        //var_dump($include);
+        # Allows toleration of hash tag links
+        $hash_links = $this->hash_tag_links($include);
+        if(is_array($hash_links))
+        {
+            foreach($hash_links as $key=>$hash_link)
+            {
+                if(!empty($key))
+                {
+                    $include = str_replace('href="#'.$key.'"', 'href="'.$hash_link.'"', $include);
+                    $include = str_replace('href=\'#'.$key.'\'', 'href=\''.$hash_link.'\'', $include);
+                }
+                else
+                {
+                    $include = str_replace('href="#"', 'href="'.$hash_link.'" ', $include);
+                    $include = str_replace('href=\'#\'', 'href="'.$hash_link.'" ', $include);
+                }
+            }
+        }
 
         switch($output_mode)
         {
@@ -239,30 +263,10 @@ class PageHandler extends Operator
         }
     }
 
-
     # Only used for displaying the final output
     public function display_page($relative_path_depth, $body_content)
     {
         $page_output = $this->generate_page($relative_path_depth, $body_content, 1);
-
-        # Allows toleration of hash tag links
-        $hash_links = $this->hash_tag_links($page_output);
-        if(is_array($hash_links))
-        {
-            foreach($hash_links as $key=>$hash_link)
-            {
-                if(!empty($key))
-                {
-                    $page_output = str_replace('href="#'.$key.'"', 'href="'.$hash_link.'"', $page_output);
-                    $page_output = str_replace('href=\'#'.$key.'\'', 'href=\''.$hash_link.'\'', $page_output);
-                }
-                else
-                {
-                    $page_output = str_replace('href="#"', 'href="'.$hash_link.'" ', $page_output);
-                    $page_output = str_replace('href=\'#\'', 'href="'.$hash_link.'" ', $page_output);
-                }
-            }
-        }
 
         # Display the page.
         echo $page_output;
