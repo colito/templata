@@ -5,8 +5,11 @@ class PageHandler extends Operator
     public $page_name;
     public $active_template;
 
-    /*** PAGE RENDERING *******************************************************************/
+    # Setting and getting page name
+    public function set_page_name($page_name) {$this->page_name = $page_name; }
+    public function get_page_name() {return $this->page_name; }
 
+    /*** PAGE RENDERING *******************************************************************/
     # Disables mouse right-click if set to 0
     public function right_click_switch($status = 1)
     {
@@ -133,16 +136,6 @@ class PageHandler extends Operator
         return $content;
     }
 
-    public function set_page_name($page_name)
-    {
-        $this->page_name = $page_name;
-    }
-
-    public function get_page_name()
-    {
-        return $this->page_name;
-    }
-
     # Placeholder management
     public function placeholder_manager($template, $content, $depth)
     {
@@ -159,7 +152,7 @@ class PageHandler extends Operator
             'page_title' => $this->page_name,
             'templata:right-click' => $this->right_click_switch($config->right_click),
             'body-content' => $content,
-            'base-url' => '<base href="'.$this->get_base_url().'"/>',
+            'base-url' => '<base href="'.get_base_url().'"/>',
             'relative' => $depth,
             'favicon' => $depth.'templates/'.$this->active_template.'/images/favicon/favicon.ico',
             'templata:libs' => $depth.$config->templata_libraries,
