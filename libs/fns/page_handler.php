@@ -148,7 +148,7 @@ class PageHandler extends Operator
         $all_placeholders = array(
             'templata:app-name' => $config->app_name,
             'template:res' => $depth.'templates/'.$this->active_template,
-            'template:css' => $this->unpack_css_files(),
+            /*'template:css' => $this->unpack_css_files(),*/
             'page_title' => $this->page_name,
             'templata:right-click' => $this->right_click_switch($config->right_click),
             'body-content' => $content,
@@ -157,7 +157,7 @@ class PageHandler extends Operator
             'favicon' => $depth.'templates/'.$this->active_template.'/images/favicon/favicon.ico',
             'templata:libs' => $depth.$config->templata_libraries,
             'templata:images' => $depth.$config->templata_images_directory,
-            'template:images' => $depth.'templates/'.$this->active_template.'/'.'images',
+            /*'template:images' => $depth.'templates/'.$this->active_template.'/'.'images',*/
             'templata:jquery' => $this->get_jquery($depth),
             'validation:contact-form' => $depth.'tools/validation/contact-form.php',
             'navi:desktop' => $this->navigation_menu($depth),
