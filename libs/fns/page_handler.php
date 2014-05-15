@@ -170,6 +170,28 @@ class PageHandler extends Operator
             $template = str_replace('{'.$placeholder.'}', $replacement, $template);
         }
 
+        # Template placeholders
+        preg_match_all("/{(template:.*?)}/", $template, $template_matches);
+        $template_pl = $template_matches[0];
+        $template_placeholders = array();
+
+        foreach($template_pl as $placeholder)
+        {
+            $placeholder = str_replace('{template:', '', $placeholder);
+            $placeholder = str_replace('}', '', $placeholder);
+
+            $path = $placeholder;
+            $path = str_replace(':', '/', $path);
+
+            $template_placeholders[$placeholder] = $path;
+        }
+
+        # Replacing template placeholders
+        foreach($template_placeholders as $placeholder=>$replacement)
+        {
+            $template = str_replace('{template:'.$placeholder.'}', $replacement, $template);
+        }
+
         return $template;
     }
 
