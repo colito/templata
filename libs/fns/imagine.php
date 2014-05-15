@@ -9,17 +9,11 @@ class Imagine
     {
         # returns false if the directory the user specified doesn't exist
         if(!file_exists($destination))
-        {
             return false;
-        }
         elseif(!is_dir($destination))
-        {
             return false;
-        }
         else
-        {
             return true;
-        }
     }
 
     # Verifies is the file is indeed an image
@@ -40,13 +34,13 @@ class Imagine
     public function image_list($image_directory)
     {
         # returns false if the directory the user specified doesn't exist
-        if(!$this->verify_destination($image_directory)) { return false; }
+        if(!$this->verify_destination($image_directory))
+            return false;
 
         $imagelist = array();
+
         foreach(glob($image_directory.'*.*') as $filename)
-        {
             $imagelist[] = $filename;
-        }
 
         return $imagelist;
     }
@@ -58,15 +52,12 @@ class Imagine
         $imagelist = $this->image_list($image_gallery);
 
         # returns false if the directory the user specified doesn't exist
-       if(!$imagelist) { return false; }
+       if(!$imagelist)
+           return false;
 
-        foreach($imagelist as $filename)
-        {
+       foreach($imagelist as $filename)
             # Makes sure that the image is a valid one before it gets displayed
-           if($this->valid_image($filename) == true)
-            {
+           if($this->valid_image($filename))
                 echo '<img src="'.$filename.'" width="'.$dimension.'"> &nbsp;';
-            }
-        }
     }
 }
