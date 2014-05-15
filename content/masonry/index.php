@@ -8,19 +8,19 @@ $height = 'height = ""';
      data-masonry-options='{ "columnWidth": 200, "itemSelector": ".item" }'>
 
 
-    <div class="item w2"><img src='{templata_images}/theone/mail.gif' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item "><img src='{templata_images}/theone/1.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item"><img src='{templata_images}/theone/2.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item w2"><img src='{templata_images}/theone/3.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item"><img src='{templata_images}/theone/4.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item w2"><img src='{templata_images}/theone/5.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item"><img src='{templata_images}/theone/6.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item w2"><img src='{templata_images}/theone/7.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item"><img src='{templata_images}/theone/8.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item w2"><img src='{templata_images}/theone/9.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item"><img src='{templata_images}/theone/10.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item w2"><img src='{templata_images}/theone/11.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
-    <div class="item"><img src='{templata_images}/theone/12.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item w2"><img src='{templata:images}/theone/mail.gif' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item "><img src='{templata:images}/theone/1.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item"><img src='{templata:images}/theone/2.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item w2"><img src='{templata:images}/theone/3.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item"><img src='{templata:images}/theone/4.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item w2"><img src='{templata:images}/theone/5.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item"><img src='{templata:images}/theone/6.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item w2"><img src='{templata:images}/theone/7.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item"><img src='{templata:images}/theone/8.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item w2"><img src='{templata:images}/theone/9.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item"><img src='{templata:images}/theone/10.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item w2"><img src='{templata:images}/theone/11.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
+    <div class="item"><img src='{templata:images}/theone/12.jpg' <?php echo $width ?> <?php echo $height ?> /></div>
 
 <!--
     <div class="item">
