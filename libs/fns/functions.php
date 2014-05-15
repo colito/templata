@@ -74,3 +74,8 @@
          */
         return $protocol . $host . $directory . '/';
     }
+
+    function include_lib($file_name)
+    {
+        return require_once(T_FNS.$file_name.'.php');
+    }
