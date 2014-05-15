@@ -1,7 +1,6 @@
 [page:Page Error]
 
 <?php
-require_once('content/constructor_kit.php');
 
 $page_handler = new PageHandler();
 
