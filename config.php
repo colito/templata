@@ -30,10 +30,7 @@ Class Config
 # define application root
 define('APP_ROOT_DIR', dirname(__FILE__));
 
-# coming soon...
-//define('main_admin', '../admin_dunamis');
 
-# include definitions
-require_once(APP_ROOT_DIR.'/includes/definitions.php');
+
 
 
