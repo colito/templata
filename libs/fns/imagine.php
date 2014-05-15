@@ -23,12 +23,15 @@ class Imagine
     }
 
     # Verifies is the file is indeed an image
-    public function valid_image($image_location)
+    public function valid_image($image_location, $return_info = 0)
     {
        $result = getimagesize($image_location);
 
         if(!$result)
             return false;
+
+        if($return_info == 1) # Returns getimagesize() output if the user is interested in it.
+            return $result;
         else
             return true;
     }
