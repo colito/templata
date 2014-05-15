@@ -2,6 +2,9 @@
 # Image manipulation library
 class Imagine
 {
+    public $image_directory = T_IMAGES;
+
+    # Checks if the gallery (directory) suggested exists
     public function verify_destination($destination)
     {
         # returns false if the directory the user specified doesn't exist
@@ -19,6 +22,18 @@ class Imagine
         }
     }
 
+    # Verifies is the file is indeed an image
+    public function valid_image($image_location)
+    {
+       $result = getimagesize($image_location);
+
+        if(!$result)
+            return false;
+        else
+            return true;
+    }
+
+    # Retrieves a list of images
     public function image_list($image_directory)
     {
         # returns false if the directory the user specified doesn't exist
@@ -33,17 +48,22 @@ class Imagine
         return $imagelist;
     }
 
+    # Outputs images from a specified gallery
     public function display_gallery($gallary, $dimension = 180)
     {
-        $image_gallery = T_IMAGES.$gallary.'/';
+        $image_gallery = $this->image_directory.$gallary.'/';
         $imagelist = $this->image_list($image_gallery);
 
         # returns false if the directory the user specified doesn't exist
        if(!$imagelist) { return false; }
 
-        foreach(glob($image_gallery.'*.*') as $filename)
+        foreach($imagelist as $filename)
         {
-            echo '<img src="'.$filename.'" width="'.$dimension.'"> &nbsp;';
+            # Makes sure that the image is a valid one before it gets displayed
+           if($this->valid_image($filename) == true)
+            {
+                echo '<img src="'.$filename.'" width="'.$dimension.'"> &nbsp;';
+            }
         }
     }
 }
