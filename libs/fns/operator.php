@@ -1,9 +1,28 @@
 <?php
 require_once('functions.php');
 require_once('link_handler.php');
-//require_once('placeholders.php');
 abstract class Operator extends LinkHandler
 {
+    /*** RIGHT CLICK **********************************************************************/
+    # Disables mouse right-click if set to 0
+    public function right_click_switch($status = 1)
+    {
+        switch ($status)
+        {
+            case 0:
+                $right_click_status = 'oncontextmenu="return false"';
+                break;
+            case 1:
+                $right_click_status = '';
+                break;
+            default:
+                $right_click_status = '';
+                break;
+        }
+
+        return $right_click_status;
+    }
+
     /*** NAVIGATION ***********************************************************************/
     public function navigation_menu($depth = null)
     {
