@@ -10,25 +10,6 @@ class PageHandler extends Operator
     public function get_page_name() {return $this->page_name; }
 
     /*** PAGE RENDERING *******************************************************************/
-    # Disables mouse right-click if set to 0
-    public function right_click_switch($status = 1)
-    {
-        switch ($status)
-        {
-            case 0:
-                $right_click_status = 'oncontextmenu="return false"';
-                break;
-            case 1:
-                $right_click_status = '';
-                break;
-            default:
-                $right_click_status = '';
-                break;
-        }
-
-        return $right_click_status;
-    }
-
     # Retrieves a scripts' output result
     public function get_script_output($path, $print = FALSE)
     {
