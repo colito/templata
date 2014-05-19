@@ -2,7 +2,7 @@
 require_once('operator.php');
 class PlaceholderManager extends Operator
 {
-    public function placeholder_lists($content, $page_name, $depth)
+    public function placeholder_lists($template, $content, $page_name, $depth)
     {
         $config = new Config();
 
@@ -29,12 +29,28 @@ class PlaceholderManager extends Operator
             'navi:mobile' => $this->navigation_menu($depth)
         );
 
-        # Template placeholders
-        preg_match_all("/{(template-res:.*?)}/", $content, $template_matches);
-        $template_pl = $template_matches[0];
         $template_placeholders = array();
 
-        foreach($template_pl as $placeholder)
+        # Template placeholders (from template)
+        preg_match_all("/{(template-res:.*?)}/", $template, $template_matches);
+        $template_body = $template_matches[0];
+
+        foreach($template_body as $placeholder)
+        {
+            $placeholder = str_replace('{template-res:', '', $placeholder);
+            $placeholder = str_replace('}', '', $placeholder);
+
+            $path = $placeholder;
+            $path = str_replace(':', '/', $path);
+
+            $template_placeholders[$placeholder] = $depth.'templates/'.$config->active_template.'/'.$path;
+        }
+
+        # Template placeholders (from body content)
+        preg_match_all("/{(template-res:.*?)}/", $content, $template_matches);
+        $body_pl = $template_matches[0];
+
+        foreach($body_pl as $placeholder)
         {
             $placeholder = str_replace('{template-res:', '', $placeholder);
             $placeholder = str_replace('}', '', $placeholder);
@@ -53,7 +69,7 @@ class PlaceholderManager extends Operator
 
     public function replace_placeholders($template, $content, $page_name, $depth)
     {
-        $placeholders = $this->placeholder_lists($content, $page_name, $depth);
+        $placeholders = $this->placeholder_lists($template, $content, $page_name, $depth);
 
         $general_placeholders = $placeholders['all'];
         $template_placeholders = $placeholders['template_res'];
