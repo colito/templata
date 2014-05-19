@@ -2,7 +2,7 @@
 require_once('operator.php');
 class PlaceholderManager extends Operator
 {
-    public function placeholder_lists($content, $page_name, $depth = '')
+    public function placeholder_lists($content, $page_name, $depth)
     {
         $config = new Config();
 
@@ -14,7 +14,7 @@ class PlaceholderManager extends Operator
             'templata:app-name' => $config->app_name,
             'template:res' => $depth.'templates/'.$config->active_template,
             'template:css' => $this->unpack_css_files(),
-            'page_title' => $page_name,
+            'page-title' => $page_name,
             'templata:right-click' => $this->right_click_switch($config->right_click),
             'body-content' => $content,
             'base-url' => '<base href="'.get_base_url().'"/>',
@@ -51,28 +51,28 @@ class PlaceholderManager extends Operator
         return $placeholder_box;
     }
 
-    public function templata_placeholders($content, $page_name, $depth = '')
+    public function replace_placeholders($template, $content, $page_name, $depth)
     {
         $placeholders = $this->placeholder_lists($content, $page_name, $depth);
-
-        //var_dump($placeholders);
 
         $general_placeholders = $placeholders['all'];
         $template_placeholders = $placeholders['template_res'];
 
+        $page_result = $template;
+
         # Replacing general placeholders
         foreach($general_placeholders as $placeholder=>$replacement)
         {
-            $content = str_replace('{'.$placeholder.'}', $replacement, $content);
+            $page_result = str_replace('{'.$placeholder.'}', $replacement, $page_result);
         }
 
         # Replacing template placeholders
         foreach($template_placeholders as $placeholder=>$replacement)
         {
-            $content = str_replace('{template-res:'.$placeholder.'}', $replacement, $content);
+            $page_result = str_replace('{template-res:'.$placeholder.'}', $replacement, $page_result);
         }
 
-        return $content;
+        return $page_result;
     }
 
 }
