@@ -8,13 +8,14 @@ require_once('libs/fns/placeholders.php');
 $config = new Config();
 $edit = new PlaceholderManager();
 
-$content = 'CSS path: {templata:css}' . "<br>";
+$content = 'CSS path: {template:css}' . "<br>";
 $content .= 'Images path: {templata:images}' . "<br>";
 $content .= 'JQuery path: {templata:jquery}' . "<br>";
 $content .= 'Template CSS: {template:css}' . "<br>";
 $content .= 'Template JS: {template:js:jquery}' . "<br>";
+$content .= 'Template resource: {template-res:js:jquery:index.php}' . "\n";
 
-$x = $edit->templata_placeholders($content);
+$x = $edit->templata_placeholders($content, 'Test Page');
 
 echo $x;
 
