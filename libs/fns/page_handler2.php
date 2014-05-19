@@ -5,27 +5,11 @@ class PageHandler extends Operator
     public $page_name;
     public $active_template;
 
+    # Setting and getting page name
+    public function set_page_name($page_name) {$this->page_name = $page_name; }
+    public function get_page_name() {return $this->page_name; }
+
     /*** PAGE RENDERING *******************************************************************/
-
-    # Disables mouse right-click if set to 0
-    public function right_click_switch($status = 1)
-    {
-        switch ($status)
-        {
-            case 0:
-                $right_click_status = 'oncontextmenu="return false"';
-                break;
-            case 1:
-                $right_click_status = '';
-                break;
-            default:
-                $right_click_status = '';
-                break;
-        }
-
-        return $right_click_status;
-    }
-
     # Retrieves a scripts' output result
     public function get_script_output($path, $print = FALSE)
     {
@@ -133,34 +117,28 @@ class PageHandler extends Operator
         return $content;
     }
 
-    public function set_page_name($page_name)
-    {
-        $this->page_name = $page_name;
-    }
-
-    public function get_page_name()
-    {
-        return $this->page_name;
-    }
-
     # Placeholder management
     public function placeholder_manager($template, $content, $depth)
     {
         $config = new Config();
 
+        # Order of placeholders is crucial. Eg: By placing body-content at the end of the array,
+        # placeholders defined within body-content won't be substituted with their appropriate replacements
+        # thus leaving the placeholder as is.
+
         $all_placeholders = array(
             'templata:app-name' => $config->app_name,
             'template:res' => $depth.'templates/'.$this->active_template,
-            'template:css' => $this->unpack_css_files(),
-            'page_title' => $this->page_name,
+            /*'template:css' => $this->unpack_css_files(),*/
+            'page-title' => $this->page_name,
             'templata:right-click' => $this->right_click_switch($config->right_click),
             'body-content' => $content,
-            'base-url' => '<base href="'.$this->get_base_url().'"/>',
+            'base-url' => '<base href="'.get_base_url().'"/>',
             'relative' => $depth,
             'favicon' => $depth.'templates/'.$this->active_template.'/images/favicon/favicon.ico',
             'templata:libs' => $depth.$config->templata_libraries,
             'templata:images' => $depth.$config->templata_images_directory,
-            'template:images' => $depth.'templates/'.$this->active_template.'/'.'images',
+            /*'template:images' => $depth.'templates/'.$this->active_template.'/'.'images',*/
             'templata:jquery' => $this->get_jquery($depth),
             'validation:contact-form' => $depth.'tools/validation/contact-form.php',
             'navi:desktop' => $this->navigation_menu($depth),
@@ -171,6 +149,28 @@ class PageHandler extends Operator
         foreach($all_placeholders as $placeholder=>$replacement)
         {
             $template = str_replace('{'.$placeholder.'}', $replacement, $template);
+        }
+
+        # Template placeholders
+        preg_match_all("/{(template:.*?)}/", $template, $template_matches);
+        $template_pl = $template_matches[0];
+        $template_placeholders = array();
+
+        foreach($template_pl as $placeholder)
+        {
+            $placeholder = str_replace('{template:', '', $placeholder);
+            $placeholder = str_replace('}', '', $placeholder);
+
+            $path = $placeholder;
+            $path = str_replace(':', '/', $path);
+
+            $template_placeholders[$placeholder] = $path;
+        }
+
+        # Replacing template placeholders
+        foreach($template_placeholders as $placeholder=>$replacement)
+        {
+            $template = str_replace('{template:'.$placeholder.'}', $replacement, $template);
         }
 
         return $template;
