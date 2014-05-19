@@ -2,7 +2,7 @@
 require_once('operator.php');
 class PlaceholderManager extends Operator
 {
-    public function placeholder_lists($content, $page_name, $depth)
+    public function placeholder_lists($content, $page_name, $depth = '')
     {
         $config = new Config();
 
@@ -51,7 +51,7 @@ class PlaceholderManager extends Operator
         return $placeholder_box;
     }
 
-    public function templata_placeholders($content, $page_name, $depth)
+    public function templata_placeholders($content, $page_name, $depth = '')
     {
         $placeholders = $this->placeholder_lists($content, $page_name, $depth);
 
