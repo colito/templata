@@ -3,8 +3,17 @@ require_once('operator.php');
 class PlaceholderManager extends Operator
 {
     # Finds placeholders within the specified source
-    public function seek_placeholders($source, $reference)
+    public function seek_placeholders($source, $reference, $depth)
     {
+        $config = new Config();
+
+        if(strpos($reference, 'template') !== false)
+            $preceding_path = $depth.'templates/'.$config->active_template.'/';
+        else if(strpos($reference, 'templata') !== false)
+            $preceding_path = $depth;
+        else
+            return false;
+
         preg_match_all("/{(".$reference.".*?)}/", $source, $reference_matches);
         $referenced_placeholders = $reference_matches[0];
 
@@ -12,13 +21,13 @@ class PlaceholderManager extends Operator
 
         foreach($referenced_placeholders as $placeholder)
         {
-            $placeholder = str_replace('{template-res:', '', $placeholder);
+            $placeholder = str_replace('{'.$reference, '', $placeholder);
             $placeholder = str_replace('}', '', $placeholder);
 
             $path = $placeholder;
             $path = str_replace(':', '/', $path);
 
-            $placeholders_found[$placeholder] = $path;
+            $placeholders_found[$placeholder] = $preceding_path.$path;
         }
 
         return $placeholders_found;
@@ -53,37 +62,17 @@ class PlaceholderManager extends Operator
 
         $template_placeholders = array();
 
-        # Template placeholders (from template)
-        preg_match_all("/{(template-res:.*?)}/", $template, $template_matches);
-        $template_body = $template_matches[0];
+        # Template placeholders
+        $template_placeholders[] = $this->seek_placeholders($template, 'template-res:', $depth);
+        $template_placeholders[] = $this->seek_placeholders($content, 'template-res:', $depth);
 
-        foreach($template_body as $placeholder)
-        {
-            $placeholder = str_replace('{template-res:', '', $placeholder);
-            $placeholder = str_replace('}', '', $placeholder);
+        # Templata placeholders
+        $templata_placeholders[] = $this->seek_placeholders($template, 'templata-res:', $depth);
+        $templata_placeholders[] = $this->seek_placeholders($content, 'templata-res:', $depth);
 
-            $path = $placeholder;
-            $path = str_replace(':', '/', $path);
-
-            $template_placeholders[$placeholder] = $depth.'templates/'.$config->active_template.'/'.$path;
-        }
-
-        # Template placeholders (from body content)
-        preg_match_all("/{(template-res:.*?)}/", $content, $template_matches);
-        $body_pl = $template_matches[0];
-
-        foreach($body_pl as $placeholder)
-        {
-            $placeholder = str_replace('{template-res:', '', $placeholder);
-            $placeholder = str_replace('}', '', $placeholder);
-
-            $path = $placeholder;
-            $path = str_replace(':', '/', $path);
-
-            $template_placeholders[$placeholder] = $path;
-        }
-
+        # Boxing all placeholders within a single array
         $placeholder_box['all'] = $all_placeholders;
+        $placeholder_box['templata_res'] = $templata_placeholders;
         $placeholder_box['template_res'] = $template_placeholders;
 
         return $placeholder_box;
@@ -94,6 +83,7 @@ class PlaceholderManager extends Operator
         $placeholders = $this->placeholder_lists($template, $content, $page_name, $depth);
 
         $general_placeholders = $placeholders['all'];
+        $templata_placeholders = $placeholders['templata_res'];
         $template_placeholders = $placeholders['template_res'];
 
         $page_result = $template;
@@ -104,10 +94,22 @@ class PlaceholderManager extends Operator
             $page_result = str_replace('{'.$placeholder.'}', $replacement, $page_result);
         }
 
-        # Replacing template placeholders
-        foreach($template_placeholders as $placeholder=>$replacement)
+        # Replacing template and content path placeholders
+        foreach($template_placeholders as $one)
         {
-            $page_result = str_replace('{template-res:'.$placeholder.'}', $replacement, $page_result);
+            foreach($one as $placeholder=>$replacement)
+            {
+                $page_result = str_replace('{template-res:'.$placeholder.'}', $replacement, $page_result);
+            }
+        }
+
+        # Replacing templata placeholders
+        foreach($templata_placeholders as $one)
+        {
+            foreach($one as $placeholder=>$replacement)
+            {
+                $page_result = str_replace('{templata-res:'.$placeholder.'}', $replacement, $page_result);
+            }
         }
 
         return $page_result;
