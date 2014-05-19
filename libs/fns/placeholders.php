@@ -2,6 +2,28 @@
 require_once('operator.php');
 class PlaceholderManager extends Operator
 {
+    # Finds placeholders within the specified source
+    public function seek_placeholders($source, $reference)
+    {
+        preg_match_all("/{(".$reference.".*?)}/", $source, $reference_matches);
+        $referenced_placeholders = $reference_matches[0];
+
+        $placeholders_found = array();
+
+        foreach($referenced_placeholders as $placeholder)
+        {
+            $placeholder = str_replace('{template-res:', '', $placeholder);
+            $placeholder = str_replace('}', '', $placeholder);
+
+            $path = $placeholder;
+            $path = str_replace(':', '/', $path);
+
+            $placeholders_found[$placeholder] = $path;
+        }
+
+        return $placeholders_found;
+    }
+
     public function placeholder_lists($template, $content, $page_name, $depth)
     {
         $config = new Config();
