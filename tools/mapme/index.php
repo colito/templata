@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 # Ref: http://stackoverflow.com/questions/12077177/how-does-recursiveiteratoriterator-work-in-php
 
@@ -49,7 +47,7 @@ $path = '.';
 $dir  = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::SELF_FIRST);
 
-echo "[$path] <br>";
+echo '['.$path.'] <br>';
 foreach ($files as $file) {
     $indent = str_repeat('&nbsp;&nbsp;&nbsp;', $files->getDepth());
     if(strpos($file,'git') == false && strpos($file,'.idea') == false)
