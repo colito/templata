@@ -47,9 +47,27 @@ $path = '.';
 $dir  = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::SELF_FIRST);
 
+define('ROOT_PIPE', '<style=color:red;>|- </style>');
+
 echo '['.$path.'] <br>';
-foreach ($files as $file) {
+foreach ($files as $key => $file) {
     $indent = str_repeat('&nbsp;&nbsp;&nbsp;', $files->getDepth());
     if(strpos($file,'git') == false && strpos($file,'.idea') == false)
-        echo $indent, "|- $file <br>";
+    {
+        $depth = $files->getDepth();
+        $split = explode('/', $file);
+
+        $new_depth = count($split) - 1;
+
+        switch($new_depth)
+        {
+            case 1:
+                echo $indent, ROOT_PIPE, $split[$new_depth] ,'<br>';
+                break;
+            default:
+                echo $indent, '|- ', $split[$new_depth] ,'<br>';
+        }
+
+
+    }
 }
