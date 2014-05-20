@@ -51,7 +51,7 @@ $files = new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::SELF_FIR
 
 echo "[$path] <br>";
 foreach ($files as $file) {
-    $indent = str_repeat('   ', $files->getDepth());
+    $indent = str_repeat('&nbsp;&nbsp;&nbsp;', $files->getDepth());
     if(strpos($file,'git') == false && strpos($file,'.idea') == false)
         echo $indent, "|- $file <br>";
 }
