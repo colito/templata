@@ -79,3 +79,8 @@
     {
         return require_once(T_FNS.$file_name.'.php');
     }
+
+    function include_tool($file_name)
+    {
+        return require_once(T_TOOLS.$file_name.'/index.php');
+    }
