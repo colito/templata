@@ -47,7 +47,10 @@ $path = '.';
 $dir  = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::SELF_FIRST);
 
-define('ROOT_PIPE', '<style=color:red;>|- </style>');
+define('ROOT_PIPE', '<b style=color:red;>|- </b>');
+define('LEVEL_2', '<b style=color:green;>|- </b>');
+define('LEVEL_3', '<b style=color:dodgerblue;>|- </b>');
+define('LEVEL_4', '<b style=color:goldenrod;>|- </b>');
 
 echo '['.$path.'] <br>';
 foreach ($files as $key => $file) {
@@ -63,6 +66,15 @@ foreach ($files as $key => $file) {
         {
             case 1:
                 echo $indent, ROOT_PIPE, $split[$new_depth] ,'<br>';
+                break;
+            case 2:
+                echo $indent, LEVEL_2, $split[$new_depth] ,'<br>';
+                break;
+            case 3:
+                echo $indent, LEVEL_3, $split[$new_depth] ,'<br>';
+                break;
+            case 4:
+                echo $indent, LEVEL_4, $split[$new_depth] ,'<br>';
                 break;
             default:
                 echo $indent, '|- ', $split[$new_depth] ,'<br>';
