@@ -47,6 +47,7 @@ $path = '.';
 $dir  = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
 $files = new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::SELF_FIRST);
 
+define('DEFAULT_COLOR', '<b style=color:#000000;>|- </b>');
 define('ROOT_PIPE', '<b style=color:red;>|- </b>');
 define('LEVEL_2', '<b style=color:green;>|- </b>');
 define('LEVEL_3', '<b style=color:dodgerblue;>|- </b>');
@@ -65,21 +66,20 @@ foreach ($files as $key => $file) {
         switch($new_depth)
         {
             case 1:
-                echo $indent, ROOT_PIPE, $split[$new_depth] ,'<br>';
+                $pipe_color = ROOT_PIPE;
                 break;
             case 2:
-                echo $indent, LEVEL_2, $split[$new_depth] ,'<br>';
+                $pipe_color = LEVEL_2;
                 break;
             case 3:
-                echo $indent, LEVEL_3, $split[$new_depth] ,'<br>';
+                $pipe_color = LEVEL_3;
                 break;
             case 4:
-                echo $indent, LEVEL_4, $split[$new_depth] ,'<br>';
+                $pipe_color = LEVEL_4;
                 break;
             default:
-                echo $indent, '|- ', $split[$new_depth] ,'<br>';
+                $pipe_color = DEFAULT_COLOR;
         }
-
-
+        echo $indent, $pipe_color, $split[$new_depth] ,'<br>';
     }
 }
