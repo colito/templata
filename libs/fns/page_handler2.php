@@ -1,5 +1,6 @@
 <?php
 require_once('operator.php');
+include_lib('placeholders');
 class PageHandler extends Operator
 {
     public $page_name;
@@ -117,65 +118,6 @@ class PageHandler extends Operator
         return $content;
     }
 
-    # Placeholder management
-    public function placeholder_manager($template, $content, $depth)
-    {
-        $config = new Config();
-
-        # Order of placeholders is crucial. Eg: By placing body-content at the end of the array,
-        # placeholders defined within body-content won't be substituted with their appropriate replacements
-        # thus leaving the placeholder as is.
-
-        $all_placeholders = array(
-            'templata:app-name' => $config->app_name,
-            'template:res' => $depth.'templates/'.$this->active_template,
-            /*'template:css' => $this->unpack_css_files(),*/
-            'page-title' => $this->page_name,
-            'templata:right-click' => $this->right_click_switch($config->right_click),
-            'body-content' => $content,
-            'base-url' => '<base href="'.get_base_url().'"/>',
-            'relative' => $depth,
-            'favicon' => $depth.'templates/'.$this->active_template.'/images/favicon/favicon.ico',
-            'templata:libs' => $depth.$config->templata_libraries,
-            'templata:images' => $depth.$config->templata_images_directory,
-            /*'template:images' => $depth.'templates/'.$this->active_template.'/'.'images',*/
-            'templata:jquery' => $this->get_jquery($depth),
-            'validation:contact-form' => $depth.'tools/validation/contact-form.php',
-            'navi:desktop' => $this->navigation_menu($depth),
-            'navi:mobile' => $this->navigation_menu($depth)
-        );
-
-        # Replacing all placeholders
-        foreach($all_placeholders as $placeholder=>$replacement)
-        {
-            $template = str_replace('{'.$placeholder.'}', $replacement, $template);
-        }
-
-        # Template placeholders
-        preg_match_all("/{(template:.*?)}/", $template, $template_matches);
-        $template_pl = $template_matches[0];
-        $template_placeholders = array();
-
-        foreach($template_pl as $placeholder)
-        {
-            $placeholder = str_replace('{template:', '', $placeholder);
-            $placeholder = str_replace('}', '', $placeholder);
-
-            $path = $placeholder;
-            $path = str_replace(':', '/', $path);
-
-            $template_placeholders[$placeholder] = $path;
-        }
-
-        # Replacing template placeholders
-        foreach($template_placeholders as $placeholder=>$replacement)
-        {
-            $template = str_replace('{template:'.$placeholder.'}', $replacement, $template);
-        }
-
-        return $template;
-    }
-
     # This function puts together all the necessary elements required to output an entire page and modifies
     # some of them by replacing predetermined placeholders.
     # It's capable of displaying a page as well but it's main purpose is to sum up page contents reuirted in order
@@ -208,8 +150,10 @@ class PageHandler extends Operator
             $template_path .= '.php';
         }
 
-        $data = $this->get_script_output($template_path);
+        # Getting the actual template
+        $actual_template = $this->get_script_output($template_path);
 
+        # Determining name of page being currently viewed
         if($this->get_page_name() == null)
         {
             # getting page name from source '[page:page_name]'
@@ -227,9 +171,11 @@ class PageHandler extends Operator
             $this->page_name = str_replace('page:', '', $page_title);
         }
 
-        $include = $this->placeholder_manager($data, $body_content, $depth);
+        # Replacing placeholders
+        $placeholders = new PlaceholderManager();
+        $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $depth);
 
-        # Allows toleration of hash tag links
+        # Allows toleration of hash tag hyperlinks
         $hash_links = $this->hash_tag_links($include);
         if(is_array($hash_links))
         {
