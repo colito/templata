@@ -97,10 +97,15 @@ abstract class Operator extends LinkHandler
         $css_links = '';
         foreach($css_files as $css_file)
         {
-            $css_links .= '<link rel="stylesheet" href="{template:res}/css/'.$css_file.'" type="text/css" media="screen">';
+            $css_links .= '<link rel="stylesheet" href="{template:res}/css/'.$css_file.'" type="text/css" media="screen">' . "\n\n";
         }
 
         return $css_links;
+    }
+
+    public function unpack_header_files()
+    {
+
     }
 
     public function get_jquery($depth)

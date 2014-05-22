@@ -171,9 +171,27 @@ class PageHandler extends Operator
             $this->page_name = str_replace('page:', '', $page_title);
         }
 
+        # Add CSS or JS script to head
+        if(preg_match_all("/\[(head:.*?)\]/", $body_content, $head_matches))
+        {
+            $i=0;
+            foreach($head_matches[1] as $head_match)
+            {
+                $body_content = str_replace($head_matches[0][$i], '', $body_content);
+                $head_files[] = str_replace('head:', '', $head_match);
+                $i++;
+            }
+
+            $header_files = $this->unpack_header_files();
+        }
+        else
+        {
+            $header_files = '';
+        }
+
         # Replacing placeholders
         $placeholders = new PlaceholderManager();
-        $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $depth);
+        $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $header_files, $depth);
 
         # Allows toleration of hash tag hyperlinks
         $hash_links = $this->hash_tag_links($include);
