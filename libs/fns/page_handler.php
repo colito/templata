@@ -182,7 +182,7 @@ class PageHandler extends Operator
                 $i++;
             }
 
-            $header_files = $this->unpack_header_files();
+            $header_files = $this->unpack_header_files($head_files);
         }
         else
         {

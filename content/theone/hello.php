@@ -1,5 +1,6 @@
 [page:Hello World]
-[head:templata-res:css/style.css]
+[head:templata-css:css/style.css]
+[head:templata-css:css/style.css]
 [head:template-res|link/to/other/file]
 
 <?php

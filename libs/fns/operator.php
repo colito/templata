@@ -103,9 +103,14 @@ abstract class Operator extends LinkHandler
         return $css_links;
     }
 
-    public function unpack_header_files()
+    public function unpack_header_files($head_files)
     {
-
+        foreach($head_files as $header_file)
+        {
+            preg_match_all("/{(template-res.*?)}/", $header_file, $templata_res_matches);
+            preg_match_all("/{(templata-css.*?)}/", $header_file, $template_css_matches);
+            preg_match_all("/{(templata-js.*?)}/", $header_file, $template_js_matches);
+        }
     }
 
     public function get_jquery($depth)
