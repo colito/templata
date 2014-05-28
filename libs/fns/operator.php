@@ -103,14 +103,63 @@ abstract class Operator extends LinkHandler
         return $css_links;
     }
 
-    public function unpack_header_files($head_files)
+    public function acquire_header_files($head_files, $active_template)
     {
+        $header_resources  = array();
+
+        # CSS Link
+        $css_tag_open = '<link rel="stylesheet" href="';
+        $css_tag_close = '" type="text/css" media="screen">';
+
+        # JS Link
+        $js_tag_open = '<script type="text/javascript" src="';
+        $js_tag_close = '"></script>';
+
         foreach($head_files as $header_file)
         {
-            preg_match_all("/{(template-res.*?)}/", $header_file, $templata_res_matches);
-            preg_match_all("/{(templata-css.*?)}/", $header_file, $template_css_matches);
-            preg_match_all("/{(templata-js.*?)}/", $header_file, $template_js_matches);
+            if(strpos($header_file, 'template-css:') !== false)
+            {
+                $template_css_file = str_replace('template-css:', '', $header_file);
+                $template_css_path = 'templates/' . $active_template . '/css/' . $template_css_file;
+                $template_html_css_link = $css_tag_open . $template_css_path . $css_tag_close;
+
+                $header_resources[$template_css_path] = $template_html_css_link;
+            }
+            elseif(strpos($header_file, 'template-js:') !== false)
+            {
+                $template_js_file = str_replace('template-js:', '', $header_file);
+                $template_js_path = 'templates/' . $active_template . '/js/' . $template_js_file;
+                $template_html_js_link = $js_tag_open . $template_js_path . $js_tag_close;
+
+                $header_resources[$template_js_path] = $template_html_js_link;
+            }
+            elseif(strpos($header_file, 'templata-css:') !== false)
+            {
+                $templata_css_file = str_replace('templata-css:', '', $header_file);
+                $templata_css_path =  T_LIBS . '/css/' . $templata_css_file;
+                $templata_html_css_link = $css_tag_open . $templata_css_path . $css_tag_close;
+
+                $header_resources[$templata_css_path] = $templata_html_css_link;
+            }
+            elseif(strpos($header_file, 'templata-js:') !== false)
+            {
+                $templata_css_file = str_replace('templata-js:', '', $header_file);
+                $templata_js_path =  T_LIBS . '/js/' . $templata_css_file;
+                $templata_html_js_link = $js_tag_open . $templata_js_path . $js_tag_close;
+
+                $header_resources[$templata_js_path] = $templata_html_js_link;
+            }
         }
+        return $header_resources;
+    }
+
+    public function unpack_header_resources($header_resources)
+    {
+        if(is_array($header_resources))
+            foreach($header_resources as $header_resource)
+                $header_resource . "\n";
+        else
+            return false;
     }
 
     public function get_jquery($depth)

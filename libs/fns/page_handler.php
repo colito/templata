@@ -60,7 +60,7 @@ class PageHandler extends Operator
             $path_with_extention = array();
             foreach($path_with_extention_arr as $pwe)
             {
-                if(strpos($pwe, '.html'))
+                if(strpos($pwe, '.html') !== false)
                 {
                     $path_with_extention['html'] = $pwe;
                 }
@@ -182,7 +182,7 @@ class PageHandler extends Operator
                 $i++;
             }
 
-            $header_files = $this->unpack_header_files($head_files);
+            $header_files = $this->acquire_header_files($head_files, $this->active_template);
         }
         else
         {

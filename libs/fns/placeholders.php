@@ -46,7 +46,7 @@ class PlaceholderManager extends Operator
             'template:res' => $depth.'templates/'.$config->active_template,
             'template:css' => $this->unpack_css_files(),
             'page-title' => $page_name,
-            'header-files' => '',
+            'header-files' => $this->unpack_header_resources($header_files),
             'templata:right-click' => $this->right_click_switch($config->right_click),
             'body-content' => $content,
             'base-url' => '<base href="'.get_base_url().'"/>',
