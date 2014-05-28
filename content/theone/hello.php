@@ -1,7 +1,10 @@
 [page:Hello World]
-[head:templata-css:css/style.css]
-[head:templata-css:css/style.css]
-[head:template-res|link/to/other/file]
+
+[head:template-css:style.css]
+[head:template-js:javascript.js]
+
+[head:templata-css:style.css]
+[head:templata-js:link/to/other/file]
 
 <?php
     $hello = 'Hello World!! From PHP.';
