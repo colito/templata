@@ -155,11 +155,25 @@ abstract class Operator extends LinkHandler
 
     public function unpack_header_resources($header_resources)
     {
+        $html_head_links = '';
         if(is_array($header_resources))
+        {
+            if(empty($header_resources))
+            {
+                return '';
+            }
+
             foreach($header_resources as $header_resource)
-                $header_resource . "\n";
+            {
+                $html_head_links .= $header_resource . "\n";
+            }
+        }
         else
+        {
             return false;
+        }
+
+        return $html_head_links;
     }
 
     public function get_jquery($depth)
