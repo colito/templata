@@ -7,3 +7,9 @@
 
     </embed>
 </div>
+
+
+<div id="content" class="grid_12">
+    <table style="width:194px;"><tr><td align="center" style="height:194px;background:url(https://www.gstatic.com/pwa/s/v/lighthousefe_241.01/transparent_album_background.gif) no-repeat left"><a href="https://picasaweb.google.com/103181077861626467186/ZedgeWallpapers?authuser=0&authkey=Gv1sRgCOrjwNSGwJ6KZQ&feat=embedwebsite"><img src="https://lh6.googleusercontent.com/-3GtuSUXegHA/Uxgyce6F2XE/AAAAAAAAF_4/VXanJAaszfc/s160-c/ZedgeWallpapers.jpg" width="160" height="160" style="margin:1px 0 0 4px;"></a></td></tr><tr><td style="text-align:center;font-family:arial,sans-serif;font-size:11px"><a href="https://picasaweb.google.com/103181077861626467186/ZedgeWallpapers?authuser=0&authkey=Gv1sRgCOrjwNSGwJ6KZQ&feat=embedwebsite" style="color:#4D4D4D;font-weight:bold;text-decoration:none;">Zedge Wallpapers</a></td></tr>
+    </table>
+</div>
