@@ -21,6 +21,7 @@
     <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{template-res:css:flexslider.css}" type="text/css" media="screen">
     <link rel="stylesheet" href="{template-res:css:style.css}" type='text/css' media="screen">
+    <link rel="stylesheet" href="{template-res:css:media_queries.css}" type='text/css' media="screen">
 
     <script type="text/javascript" src="{template:res}/js/masonry.pkgd.min.js"></script>
 
