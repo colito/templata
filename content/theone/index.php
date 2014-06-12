@@ -1,5 +1,6 @@
 <!--
 [page:Home]
+[head:template-css:flexslider.css]
 -->
 
 <div id='content' class='grid_12'>
