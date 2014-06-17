@@ -7,7 +7,7 @@ Class Config
     # Initial content to be displayed
     public $default_landing_path = 'theone';
 
-    # 
+    #
     public $user_name = '';
     public $password = '';
 
