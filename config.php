@@ -1,13 +1,17 @@
 <?php
 Class Config
 {
+    # App name
     public $app_name = '';
 
     # Initial content to be displayed
     public $default_landing_path = 'theone';
 
+    # 
     public $user_name = '';
     public $password = '';
+
+    # Right click bahaviour
     public $right_click = 1; # disables right-click event on the site if set to 0. default = 1
 
     # Template
