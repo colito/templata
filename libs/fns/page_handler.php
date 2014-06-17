@@ -59,6 +59,7 @@ class PageHandler extends Operator
         if(empty($plein_uri)) {$full_path = $default_landing;}
         else {$full_path = $templata_content_dir . '/' . $plein_uri;}
 
+        # Fishing out the actual content using full_path
         if(!file_exists($full_path))
         {
             if(file_exists($full_path . '.html')) {$full_path .= '.html';}
