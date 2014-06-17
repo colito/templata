@@ -18,7 +18,7 @@ class PageHandler extends Operator
 
         if( is_readable($path) && $path )
         {
-            include $path;
+            require_once $path;
         }
         else
         {
@@ -45,10 +45,19 @@ class PageHandler extends Operator
     public function get_content($uri)
     {
         $config = new Config();
+
+        # Initial declarations
         $templata_content_dir = $config->templata_content_directory;
+        $default_landing = $templata_content_dir . '/' . $config->default_landing_path;
         $error_page = $templata_content_dir.'/error/index.php';
 
-        $full_path = $templata_content_dir . '/' . str_replace(get_base_url(), '', $uri);
+        $plein_uri = str_replace(get_base_url(), '', $uri);
+
+        # Sets the default landing page
+        if(empty($default_landing)) {$default_landing .= '/index';}
+
+        if(empty($plein_uri)) {$full_path = $default_landing;}
+        else {$full_path = $templata_content_dir . '/' . $plein_uri;}
 
         if(!file_exists($full_path))
         {
