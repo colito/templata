@@ -32,6 +32,37 @@ class PageHandler extends Operator
             echo ob_get_clean();
     }
 
+    public function seek_file_extension($extentionless_path)
+    {
+        $path_with_extention_arr = glob($extentionless_path.'.*');
+        $path_with_extention = array();
+        foreach($path_with_extention_arr as $pwe)
+        {
+            if(strpos($pwe, '.html') !== false)
+            {
+                $path_with_extention['html'] = $pwe;
+            }
+            elseif(strpos($pwe, '.php'))
+            {
+                $path_with_extention['php'] = $pwe;
+            }
+            elseif(strpos($pwe, '.txt'))
+            {
+                $path_with_extention['txt'] = $pwe;
+            }
+        }
+        if(empty($path_with_extention))
+        {
+            # redirects to error page if file cant't be found
+            //header('Location : '. $this->get_base_url().'error/404');
+            return false;
+        }
+        else
+        {
+            return array_values($path_with_extention)[0];
+        }
+    }
+
     # Retrieves content from within one of the files stored within the content directory
     public function get_content($depth, $param1, $param2 = '', $param3 = '')
     {
@@ -60,7 +91,7 @@ class PageHandler extends Operator
             $path_with_extention = array();
             foreach($path_with_extention_arr as $pwe)
             {
-                if(strpos($pwe, '.html'))
+                if(strpos($pwe, '.html') !== false)
                 {
                     $path_with_extention['html'] = $pwe;
                 }
@@ -171,9 +202,27 @@ class PageHandler extends Operator
             $this->page_name = str_replace('page:', '', $page_title);
         }
 
+        # Add CSS or JS script to head
+        if(preg_match_all("/\[(head:.*?)\]/", $body_content, $head_matches))
+        {
+            $i=0;
+            foreach($head_matches[1] as $head_match)
+            {
+                $body_content = str_replace($head_matches[0][$i], '', $body_content);
+                $head_files[] = str_replace('head:', '', $head_match);
+                $i++;
+            }
+
+            $header_files = $this->acquire_header_files($head_files, $this->active_template);
+        }
+        else
+        {
+            $header_files = '';
+        }
+
         # Replacing placeholders
         $placeholders = new PlaceholderManager();
-        $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $depth);
+        $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $header_files, $depth);
 
         # Allows toleration of hash tag hyperlinks
         $hash_links = $this->hash_tag_links($include);
