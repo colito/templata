@@ -32,85 +32,37 @@ class PageHandler extends Operator
             echo ob_get_clean();
     }
 
+    public function seek_file_extension($extentionless_path)
+    {
+        if(file_exists($extentionless_path . '.html')) {$path = $extentionless_path . '.html';}
+        elseif(file_exists($extentionless_path . '.php')) {$path = $extentionless_path . '.php';}
+        else{return false;}
+
+        return $path;
+    }
+
     # Retrieves content from within one of the files stored within the content directory
-    public function get_content($depth, $param1, $param2 = '', $param3 = '')
+    public function get_content($uri)
     {
         $config = new Config();
         $templata_content_dir = $config->templata_content_directory;
         $error_page = $templata_content_dir.'/error/index.php';
 
-        if(!empty($param3)) # Checks if all parameters have values
-        {
-            $path = $param1 . '/' . $param2 . '/' . $param3;
-        }
-        elseif(!empty($param2))
-        {
-            $path = $param1 . '/' . $param2;
-        }
-        elseif(!empty($param1))
-        {
-            $path = $param1;
-        }
+        $full_path = $templata_content_dir . '/' . str_replace(get_base_url(), '', $uri);
 
-        $full_path = $depth.$templata_content_dir.'/'.$path;
-
-        $seek_file_extention = function($extentionless_path)
+        if(!file_exists($full_path))
         {
-            $path_with_extention_arr = glob($extentionless_path.'.*');
-            $path_with_extention = array();
-            foreach($path_with_extention_arr as $pwe)
-            {
-                if(strpos($pwe, '.html') !== false)
-                {
-                    $path_with_extention['html'] = $pwe;
-                }
-                elseif(strpos($pwe, '.php'))
-                {
-                    $path_with_extention['php'] = $pwe;
-                }
-                elseif(strpos($pwe, '.txt'))
-                {
-                    $path_with_extention['txt'] = $pwe;
-                }
-            }
-
-            if(empty($path_with_extention))
-            {
-                # redirects to error page if file cant't be found
-                //header('Location : '. $this->get_base_url().'error/404');
-                return false;
-            }
-            else
-            {
-                return array_values($path_with_extention)[0];
-            }
-        };
-
-        if(file_exists($full_path)) #checks if path is only a directory
-        {
-            #if condition is true, index file is sought out
-            $full_path .= '/index';
-
-            if($seek_file_extention($full_path))
-            {
-                $full_path = $seek_file_extention($full_path);
-            }
-            else
-            {
-                # display error page
-                $full_path = $error_page;
-            }
+            if(file_exists($full_path . '.html')) {$full_path .= '.html';}
+            elseif(file_exists($full_path . '.php')) {$full_path .= '.php';}
+            else{$full_path = $error_page;}
         }
         else
         {
-            if(file_exists($seek_file_extention($full_path)))
+            if(is_dir($full_path))
             {
-                $full_path = $seek_file_extention($full_path);
-            }
-            else
-            {
-                # display error page
-                $full_path = $error_page;
+                if(file_exists($full_path . '/index.html')) {$full_path .= '/index.html';}
+                elseif(file_exists($full_path . '/index.php')) {$full_path .= '/index.php';}
+                else{$full_path = $error_page;}
             }
         }
 

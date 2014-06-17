@@ -11,11 +11,13 @@ $page_handler = new PageHandler();
 
 $relative_path_depth = relative_path(dirname(__FILE__));
 
+$uri = get_current_uri(1);
+
 $category = (!empty($_GET['category']) ? $_GET['category'] : $config->default_landing_category);
 $article = (!empty($_GET['article']) ? $_GET['article'] : $config->default_landing_article);
 $sub_article = (!empty($_GET['sub-article']) ? $_GET['sub-article'] : $config->default_landing_sub_article);
 
-$body_content = $page_handler->get_content($relative_path_depth, $category, $article, $sub_article);
+$body_content = $page_handler->get_content($uri);
 
 $page_handler->display_page($relative_path_depth, $body_content);
 
