@@ -20,6 +20,8 @@ del
     margin-top: 4.6%;
     background: #ffffff;
     border: solid thin #ECEFF0;
+    padding-left: 1%;
+    padding-right: 1%;
     /*background: #000000 url('images/awesome-graffiti-art.jpg');*/
     /*box-shadow:2px 2px 2px 2px grey;*/
 }
