@@ -43,6 +43,7 @@ class PlaceholderManager extends Operator
 
         $all_placeholders = array(
             'templata:app-name' => $config->app_name,
+            'app-name' => $config->app_name,
             'template:res' => $depth.'templates/'.$config->active_template,
             'template:css' => $this->unpack_css_files(),
             'page-title' => $page_name,
