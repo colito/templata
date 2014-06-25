@@ -1,7 +1,6 @@
 [page:Create Slug]
 <form action="sample/create-slug" method="post">
-    Product Name:<input type="text" name="product"> <br>
-
+    Product Name:<input type="text" name="product">
     <input type="submit" value="Submit">
 </form>
 
