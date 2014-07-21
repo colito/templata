@@ -2,7 +2,7 @@
 Class Config
 {
     # App name
-    public $app_name = '';
+    public $app_name = 'Test';
 
     # Initial content to be displayed
     public $default_landing_path = 'theone';
