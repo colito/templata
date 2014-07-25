@@ -46,7 +46,7 @@ class Imagine
     }
 
     # Outputs images from a specified gallery
-    public function display_gallery($gallary, $dimension = 180)
+    public function display_gallery($gallary, $x_dimension = 180)
     {
         $image_gallery = $this->image_directory.$gallary.'/';
         $imagelist = $this->image_list($image_gallery);
@@ -58,6 +58,25 @@ class Imagine
        foreach($imagelist as $filename)
             # Makes sure that the image is a valid one before it gets displayed
            if($this->valid_image($filename))
-                echo '<img src="'.$filename.'" width="'.$dimension.'"> &nbsp;';
+                echo '<img src="'.$filename.'" width="'.$x_dimension.'"> &nbsp;';
+    }
+
+    public function create_image_thumb($image)
+    {
+        try
+        {
+            $thumb = new Imagick($image);
+
+            $thumb->resizeImage(320,240,Imagick::FILTER_LANCZOS,1);
+            $thumb->writeImage($image);
+
+            $thumb->destroy();
+
+            return true;
+        }
+        catch(Exception $e)
+        {
+            return 'Could not create thumb: ' . $e;
+        }
     }
 }
