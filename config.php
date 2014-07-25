@@ -7,9 +7,11 @@ Class Config
     # Initial content to be displayed
     public $default_landing_path = 'theone';
 
-    #
-    public $user_name = '';
+    # DB
+    public $host = 'localhost';
+    public $user_name = 'root';
     public $password = '';
+    public $database = '';
 
     # Right click bahaviour
     public $right_click = 1; # disables right-click event on the site if set to 0. default = 1
