@@ -84,3 +84,9 @@
     {
         return require_once(T_TOOLS.$file_name.'/index.php');
     }
+
+    function current_datetime()
+    {
+        date_default_timezone_set('Africa/Johannesburg');
+        return date('Y-m-d H:i:s');
+    }
