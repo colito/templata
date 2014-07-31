@@ -8,6 +8,9 @@ $libraries = $def_config->templata_libraries.'/fns/';
 
 # DEFINITIONS :
 
+define('T_MODEL', 'models/');
+define('T_CONTROLLER', 'controllers/');
+
 define('T_CONTENT', $content);
 define('T_LIBS', $def_config->templata_libraries);
 define('T_FNS', $def_config->templata_libraries.'/fns/');
