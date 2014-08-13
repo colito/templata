@@ -3,7 +3,7 @@
         "status":"Wait",
         "Marrired?": {
             "Yes": {
-                "Wife":"Nolu",
+                "Wife":"The Wife",
                 "Husband":"None"
             },
             "No":"False"
