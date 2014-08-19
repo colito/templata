@@ -1,8 +1,9 @@
 <?php
-include_lib(T_MODEL.'db_interrogator');
+include_lib('db_interrogator');
 class DbINegotiator extends DbInterrogator
 {
     public $columns = array();
+    public $tw;
 
     function __construct($table)
     {
@@ -35,12 +36,19 @@ class DbINegotiator extends DbInterrogator
         $table = $this->db_table;
         $columns = $this->columns_to_save();
 
-        if($check == 1)
+        switch($check)
         {
-            $where = $check_column .' = "' . $check_value.'"';
+            case 1:
+                $where = $check_column .' = "' . $check_value.'"';
 
-            $exists = $this->record_exists($where);
-            if($exists) { return false; }
+                $exists = $this->record_exists($where);
+                if($exists) { return 'record already exists'; }
+                break;
+
+            case 2:
+                $this->update_data($table, $check_column, $check_value);
+                return 'record updated';
+                break;
         }
 
         $this->insert_data($table, $columns);

@@ -79,20 +79,52 @@ abstract class DbInterrogator
     #Update
     public function update_data($table, $columns, $where)
     {
-        $sql  = 'UPDATE '. $table .' SET';
+        $sql  = 'UPDATE '. $table .' SET ';
 
-        foreach($columns as $column=>$new_value)
+        if(is_array($columns))
         {
-            $sql .= $column .' = '. $new_value;
+            foreach($columns as $column=>$new_value)
+                $sql .= $column .' = "'. $new_value .'"';
+        }
+        else
+        {
+            die('deifne column to be updated and value within an array e.g: <b>array(\'column\'=>\'value\')</b>');
         }
 
-        $sql .= 'WHERE '. $where;
+        if(is_array($where))
+        {
+            foreach($where as $column=>$new_value)
+                $sql .= ' WHERE '. $column .' = "'. $new_value .'"';
+        }
+        else
+        {
+            die('deifne WHERE condition within an array e.g: <b>array(\'column\'=>\'value\')</b>');
+        }
 
         $result = $this->run_sql($sql);
 
         return $result;
     }
 
+    #Delete and entire record
+    public function delete_data($table, $where)
+    {
+        $sql  = 'DELETE FROM '. $table;
+
+        if(is_array($where))
+        {
+            foreach($where as $column=>$new_value)
+                $sql .= ' WHERE '. $column .' = "'. $new_value .'"';
+        }
+        else
+        {
+            die('deifne WHERE condition within an array e.g: <b>array(\'column\'=>\'value\')</b>');
+        }
+
+        $this->run_sql($sql);
+
+        return true;
+    }
 
     /*-----------==============MYSQL FUNCTIONS==============----------------*/
     public function run_sql($query)
@@ -186,4 +218,3 @@ abstract class DbInterrogator
         return $fields;
     }
 }
-?>
