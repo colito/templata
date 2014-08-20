@@ -4,35 +4,7 @@
     <p><h2>Note:</h2></p>
     <p>All placeholders should be contained within <b>braces { }</b></p>
 
-    <br>
-
-    <p id="current"><h2>Current Placeholders</h2></p>
-    <p>
-        <ul>
-            <li><del>app_name</del></li>
-            <li><del>templata_css</del> </li>
-            <li><del>base_url</del> </li>
-            <li>relative</li>
-            <li>favicon </li>
-            <li><del>templata_libs</del></li>
-            <li><del>template_res</del></li>
-            <li><del>templata_images</del> </li>
-            <li><del>templata_jquery</del> </li>
-            <li>validation:contact-form </li>
-            <li><del>dnavigation_menu</del> </li>
-            <li><del>mobile_navigation_menu</del> </li>
-            <li><del>right_click</del></li>
-            <li><del>body_content</del></li>
-        </ul>
-    </p>
-
-    <br>
-
-    <p>
-        <h2 id="new">Proposed New Placeholders</h2>
-    </p>
-
-    <p id="templata">
+    <p id="current"><h2>Current Placeholders</h2>
         <h3>Templata</h3>
         <ul>
             <li>templata:app-name </li>
@@ -77,6 +49,8 @@
             <li>base-url</li>
             <li>relative</li>
             <li>body-content</li>
+            <li>relative</li>
+            <li>favicon </li>
         </ul>
     </p>
 </div>
