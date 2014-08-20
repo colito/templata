@@ -1,32 +1,14 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/html" ng-app="todoApp">
+<!doctype html>
+<html ng-app="todoApp">
 <head>
-
-    <!-- Base path: Very important especially when the systems uses clean URLs -->
-    {base-url}
-
-    <title>{page-title}</title>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
-
     <link rel="icon" type="image/png" href="{favicon}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.18/angular.min.js"></script>
     <script src="{template-res:js:todo.js}"></script>
     <link rel="stylesheet" href="{template-res:css:todo.css}">
 
-    <!-- Header files -->
-    {header-files}
-
 </head>
-
-<body {templata:right-click}>
-
-<div class="container_12 clearfix">
+<body>
     {body-content}
-</div>
-
 </body>
-
 </html>
