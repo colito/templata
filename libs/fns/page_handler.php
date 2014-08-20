@@ -113,7 +113,11 @@ class PageHandler extends Operator
         }
 
         # Getting the actual template
-        $actual_template = $this->get_script_output($template_path);
+        //var_dump($this->active_template);
+        $actual_template = array();
+        $actual_template['name'] = $this->active_template;
+        $actual_template['source_code'] = $this->get_script_output($template_path);
+        //$actual_template = $this->get_script_output($template_path);
 
         # Determining name of page being currently viewed
         if($this->get_page_name() == null)

@@ -44,7 +44,7 @@ class PlaceholderManager extends Operator
         $all_placeholders = array(
             'templata:app-name' => $config->app_name,
             'app-name' => $config->app_name,
-            'template:res' => $depth.'templates/'.$config->active_template,
+            'template:res' => $depth.'templates/'.$template['name'],
             'template:css' => $this->unpack_css_files(),
             'page-title' => $page_name,
             'header-files' => $this->unpack_header_resources($header_files),
@@ -65,11 +65,11 @@ class PlaceholderManager extends Operator
         $template_placeholders = array();
 
         # Template placeholders
-        $template_placeholders[] = $this->seek_placeholders($template, 'template-res:', $depth);
+        $template_placeholders[] = $this->seek_placeholders($template['source_code'], 'template-res:', $depth);
         $template_placeholders[] = $this->seek_placeholders($content, 'template-res:', $depth);
 
         # Templata placeholders
-        $templata_placeholders[] = $this->seek_placeholders($template, 'templata-res:', $depth);
+        $templata_placeholders[] = $this->seek_placeholders($template['source_code'], 'templata-res:', $depth);
         $templata_placeholders[] = $this->seek_placeholders($content, 'templata-res:', $depth);
 
         # Boxing all placeholders within a single array
@@ -88,7 +88,7 @@ class PlaceholderManager extends Operator
         $templata_placeholders = $placeholders['templata_res'];
         $template_placeholders = $placeholders['template_res'];
 
-        $page_result = $template;
+        $page_result = $template['source_code'];
 
         # Replacing general placeholders
         foreach($general_placeholders as $placeholder=>$replacement)
