@@ -3,7 +3,6 @@ include_lib('db_interrogator');
 class DbINegotiator extends DbInterrogator
 {
     public $columns = array();
-    public $tw;
 
     function __construct($table)
     {
