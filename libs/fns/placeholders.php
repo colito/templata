@@ -3,12 +3,13 @@ require_once('operator.php');
 class PlaceholderManager extends Operator
 {
     # Finds placeholders within the specified source
-    public function seek_placeholders($source, $reference, $depth)
+    public function seek_placeholders($template, $reference, $depth)
     {
-        $config = new Config();
+        @$template_name = $template['name'];
+        @$source = $template['source_code'];
 
         if(strpos($reference, 'template') !== false)
-            $preceding_path = $depth.'templates/'.$config->active_template.'/';
+            $preceding_path = $depth.'templates/'.$template_name.'/';
         else if(strpos($reference, 'templata') !== false)
             $preceding_path = $depth;
         else
@@ -21,13 +22,16 @@ class PlaceholderManager extends Operator
 
         foreach($referenced_placeholders as $placeholder)
         {
-            $placeholder = str_replace('{'.$reference, '', $placeholder);
-            $placeholder = str_replace('}', '', $placeholder);
+            if(!empty($placeholder))
+            {
+                $placeholder = str_replace('{'.$reference, '', $placeholder);
+                $placeholder = str_replace('}', '', $placeholder);
 
-            $path = $placeholder;
-            $path = str_replace(':', '/', $path);
+                $path = $placeholder;
+                $path = str_replace(':', '/', $path);
 
-            $placeholders_found[$placeholder] = $preceding_path.$path;
+                $placeholders_found[$placeholder] = $preceding_path.$path;
+            }
         }
 
         return $placeholders_found;
@@ -36,6 +40,7 @@ class PlaceholderManager extends Operator
     public function placeholder_lists($template, $content, $page_name, $header_files, $depth)
     {
         $config = new Config();
+        $template_name = $template['name'];
 
         # Order of placeholders is crucial. Eg: By placing body-content at the end of the array,
         # placeholders defined within body-content won't be substituted with their appropriate replacements
@@ -44,7 +49,7 @@ class PlaceholderManager extends Operator
         $all_placeholders = array(
             'templata:app-name' => $config->app_name,
             'app-name' => $config->app_name,
-            'template:res' => $depth.'templates/'.$template['name'],
+            'template:res' => $depth.'templates/'.$template_name,
             'template:css' => $this->unpack_css_files(),
             'page-title' => $page_name,
             'header-files' => $this->unpack_header_resources($header_files),
@@ -52,10 +57,10 @@ class PlaceholderManager extends Operator
             'body-content' => $content,
             'base-url' => '<base href="'.get_base_url().'"/>',
             'relative' => $depth,
-            'favicon' => $depth.'templates/'.$config->active_template.'/images/favicon/favicon.ico',
+            'favicon' => $depth.'templates/'.$template['name'].'/images/favicon/favicon.ico',
             'templata:libs' => $depth.$config->templata_libraries,
             'templata:images' => $depth.$config->templata_images_directory,
-            'template:images' => $depth.'templates/'.$config->active_template.'/'.'images',
+            'template:images' => $depth.'templates/'.$template_name.'/'.'images',
             'templata:jquery' => $this->get_jquery($depth),
             'validation:contact-form' => $depth.'tools/validation/contact-form.php',
             'navi:desktop' => $this->navigation_menu($depth),
@@ -65,7 +70,7 @@ class PlaceholderManager extends Operator
         $template_placeholders = array();
 
         # Template placeholders
-        $template_placeholders[] = $this->seek_placeholders($template['source_code'], 'template-res:', $depth);
+        $template_placeholders[] = $this->seek_placeholders($template, 'template-res:', $depth);
         $template_placeholders[] = $this->seek_placeholders($content, 'template-res:', $depth);
 
         # Templata placeholders
