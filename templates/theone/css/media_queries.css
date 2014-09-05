@@ -101,7 +101,7 @@
 
     .container_12
     {
-        margin-top: 11.6%;
+        margin-top: 8.6%;
     }
 
     #topper
@@ -130,9 +130,15 @@
         right: 0px;
         opacity: 0.9;
         text-align:center;
-        background-color: skyblue;
+        /*background-color: skyblue;*/
         cursor: pointer;
-        width: 22px;
+        width: 8%;
+    }
+
+    #switch img
+    {
+        margin-top: 13%;
+        width: 90%;
     }
 
     #panel
@@ -207,7 +213,7 @@
     #content
     {
         width: 98%;
-        margin-top: 5%;
+        margin-top: 1%;
         padding-left: 1%;
     }
     dt	{

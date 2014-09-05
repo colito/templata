@@ -39,7 +39,9 @@
         <h1><a href="">{templata:app-name}</a></h1>
     </div>
 
-    <div id="switch"></div>
+    <div id="switch">
+        <img src="images/nav_menu_icon.png">
+    </div>
 
     <div id="navigation">
         {navi:desktop}
