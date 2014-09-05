@@ -36,17 +36,36 @@
 
 <body {templata:right-click}>
 
+<!--
+<div id="st-container" class="st-container">
+    <nav class="st-menu st-effect-1" id="menu-1">
+        <h2 class="icon icon-lab">Sidebar</h2>
+        <ul>
+            <li><a href="#">Data Management</a></li>
+            <li><a href="#">Location</a></li>
+            <li><a href="#">Study</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Credits</a></li>
+        </ul>
+    </nav>
+</div>
+
+ <div id="st-trigger-effects">
+        <button data-effect="st-effect-1">Slide in on top</button>
+    </div>
+-->
+
+
 <div id="topper">
 
     <div id="title">
         <h1><a href="">{templata:app-name}</a></h1>
     </div>
 
-    <!--
     <div id="switch">
         <img data-effect="st-effect-1" src="images/nav_menu_icon.png">
     </div>
-    -->
+
 
     <div id="navigation">
         {navi:desktop}
@@ -70,10 +89,10 @@
 </div>
 
 <!-- Menu toggle for smart phones -->
-
+<!--
 <script src="{templata:libs}/js/codrops/classie.js"></script>
 <script src="{templata:libs}/js/codrops/sidebarEffects.js"></script>
-<!--
+-->
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
         $("#switch").click(function(){
@@ -81,7 +100,7 @@
         });
     });
 </script>
--->
+
 
 <!-- Flexslider js and setting -->
 <!--

@@ -3,12 +3,12 @@
         example menus
         these menus will be on top of the push wrapper
     -->
-    <nav class="st-menu st-effect-1" id="menu-1">
-        <h2 class="icon icon-lab">Sidebar</h2>
+    <nav class="st-menu st-effect-1">
+        <h2>Sidebar</h2>
         <ul>
             <li><a href="#">Data Management</a></li>
             <li><a href="#">Location</a></li>
-            <li><a  href="#">Study</a></li>
+            <li><a href="#">Study</a></li>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Credits</a></li>
         </ul>
