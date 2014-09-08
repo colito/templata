@@ -53,7 +53,21 @@ abstract class DbInterrogator
         else
             $sql = 'SELECT * '. "\n" .'FROM '. $table ."\n";
 
-        $sql .= 'WHERE '. $where;
+        //$sql .= 'WHERE '. $where;
+
+        if(is_array($where))
+        {
+            $where_arr_count = count($where);
+            foreach($where as $column=>$new_value)
+            {
+                $sql .= ' WHERE '. $column .' = "'. $new_value .'"';
+                if($where_arr_count > 1)
+                {
+                    $sql .= ' AND ';
+                    $where_arr_count --;
+                }
+            }
+        }
 
         $result = $this->run_sql($sql);
 
@@ -83,8 +97,17 @@ abstract class DbInterrogator
 
         if(is_array($columns))
         {
+            $arr_count = count($columns);
+
             foreach($columns as $column=>$new_value)
+            {
                 $sql .= $column .' = "'. $new_value .'"';
+                if($arr_count > 1)
+                {
+                    $sql .= ', ';
+                    $arr_count --;
+                }
+            }
         }
         else
         {
@@ -93,8 +116,16 @@ abstract class DbInterrogator
 
         if(is_array($where))
         {
+            $where_arr_count = count($where);
             foreach($where as $column=>$new_value)
+            {
                 $sql .= ' WHERE '. $column .' = "'. $new_value .'"';
+                if($where_arr_count > 1)
+                {
+                    $sql .= ' AND ';
+                    $where_arr_count --;
+                }
+            }
         }
         else
         {
