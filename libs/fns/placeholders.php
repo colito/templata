@@ -50,6 +50,7 @@ class PlaceholderManager extends Operator
             'templata:app-name' => $config->app_name,
             'app-name' => $config->app_name,
             'template:res' => $depth.'templates/'.$template_name,
+            'template-fs' => $depth.'templates/'.$template_name,
             'template:css' => $this->unpack_css_files(),
             'page-title' => $page_name,
             'header-files' => $this->unpack_header_resources($header_files),
@@ -58,7 +59,9 @@ class PlaceholderManager extends Operator
             'base-url' => '<base href="'.get_base_url().'"/>',
             'relative' => $depth,
             'favicon' => $depth.'templates/'.$template['name'].'/images/favicon/favicon.ico',
+            'template-favicon' => $depth.'templates/'.$template['name'].'/images/favicon/favicon.ico',
             'templata:libs' => $depth.$config->templata_libraries,
+            'libs' => $depth.$config->templata_libraries,
             'templata:images' => $depth.$config->templata_images_directory,
             'template:images' => $depth.'templates/'.$template_name.'/'.'images',
             'templata:jquery' => $this->get_jquery($depth),
@@ -121,5 +124,4 @@ class PlaceholderManager extends Operator
 
         return $page_result;
     }
-
 }
