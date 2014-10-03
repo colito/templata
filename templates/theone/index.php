@@ -14,8 +14,6 @@
 
     <!-- CSS Libraries -->
 
-    <!--{templata:css}-->
-
     <link rel="stylesheet" href="{template-res:css:normalize.css}" type="text/css" media="screen">
     <link rel="stylesheet" href="{template-res:css:grid.css}" type="text/css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
