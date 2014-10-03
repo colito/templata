@@ -53,14 +53,13 @@ abstract class DbInterrogator
         else
             $sql = 'SELECT * '. "\n" .'FROM '. $table ."\n";
 
-        //$sql .= 'WHERE '. $where;
-
         if(is_array($where))
         {
             $where_arr_count = count($where);
+            $sql .= ' WHERE ';
             foreach($where as $column=>$new_value)
             {
-                $sql .= ' WHERE '. $column .' = "'. $new_value .'"';
+                $sql .= $column .' = "'. $new_value .'"';
                 if($where_arr_count > 1)
                 {
                     $sql .= ' AND ';
@@ -189,6 +188,7 @@ abstract class DbInterrogator
     # Checks if a record already exists
     public function record_exists($where)
     {
+        //var_dump($where);
         $table = $this->db_table;
         $result = $this->get_data($table, null, $where);
 
@@ -213,7 +213,7 @@ abstract class DbInterrogator
                 $columns .=  $column;
 
                 # Checks if value is a string and escapes it accordingly
-                if(is_string($value)) { $values .= mysqli_real_escape_string($this->db_connect(), $value); }
+                if(is_string($value)) { $values .= '"'.mysqli_real_escape_string($this->db_connect(), $value).'"'; }
                 else { $values .= '"'. $value .'"'; }
             }
             else
