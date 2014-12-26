@@ -13,5 +13,6 @@ Disallow: /templates/
 Disallow: /tools/
 
 Disallow: /.htaccess
-Disallow: /config.php
+Disallow: /.gitignore
+Disallow: /root.php
 Disallow: /README.md
