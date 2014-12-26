@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 require_once('config.php');
 require_once(APP_ROOT_DIR.'/includes/definitions.php');
-require_once(T_FNS.'page_handler.php');
+require_once(T_SYSTEM.'page_handler.php');
 
 $config = new Config();
 $page_handler = new PageHandler();
