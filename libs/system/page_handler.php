@@ -116,6 +116,11 @@ class PageHandler extends Operator
         //var_dump($this->active_template);
         $actual_template = array();
         $actual_template['name'] = $this->active_template;
+        $_COOKIE['active_template'] = $actual_template['name'];
+
+        //var_dump($_COOKIE['active_template']);
+        //die();
+
         $actual_template['source_code'] = $this->get_script_output($template_path);
         //$actual_template = $this->get_script_output($template_path);
 
