@@ -12,7 +12,7 @@ abstract class DbInterrogator
 
     public function init()
     {
-        require_once('config.php');
+        require_once('config/config.php');
         $config = new Config();
 
         $creds = array();
