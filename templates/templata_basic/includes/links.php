@@ -5,19 +5,12 @@
 # *Link Name:actual_link.file_extension
 # This might be moved to a more appropriate location
 
-
-# The One
-Home:theone/index.php
-Solutions:theone/solutions.php
-Contact:theone/contact.php
-Hello:theone/hello.php
-
-*Home:theone
-*Solutions:theone/solutions
-*Contact:theone/contact
-*Hello:theone/hello
+*Home:
+*Solutions:test/solutions
+*Contact:test/contact
+*Hello:test/hello
 *Guide:guide
-*Sample:sample
+*Sample:test/sample
 
 
             CASCADING STYLE SHEET FILES (CSS)
