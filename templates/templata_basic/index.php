@@ -5,7 +5,7 @@
     <!-- Base path: Very important especially when the systems uses clean URLs -->
     {base-url}
 
-    <title>{page_title}</title>
+    <title>{page-title}</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
@@ -14,37 +14,45 @@
 
     <!-- CSS Libraries -->
 
-    <!--{templata:css}-->
-
-    <link rel="stylesheet" href="{template:res}/css/normalize.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{template:res}/css/grid.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template-res:css:normalize.css}" type="text/css" media="screen">
+    <link rel="stylesheet" href="{template-res:css:grid.css}" type="text/css" media="screen">
     <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{template:res}/css/flexslider.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="{template:res}/css/style.css" type='text/css' media="screen">
-    <link rel="stylesheet" href="{template:res}/css/masonry.css" type='text/css' media="screen">
+    <!-- <link rel="stylesheet" href="{template-res:css:flexslider.css}" type="text/css" media="screen"> -->
+    <link rel="stylesheet" href="{template-res:css:style.css}" type='text/css' media="screen">
+    <link rel="stylesheet" href="{template-res:css:media_queries.css}" type='text/css' media="screen">
 
-    <script type="text/javascript" src="{template:res}/js/masonry.pkgd.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{templata:libs}/css/codrops/sidebar_transitions/component.css" />
+    <script src="{templata:libs}/js/codrops/modernizr.custom.js"></script>
 
-    <!-- GA -->
-    <!--
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-38880588-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function()
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-    -->
-
+    <!-- JQuery -->
     {templata:jquery}
+
+    <!-- Header files -->
+    {header-files}
 
 </head>
 
 <body {templata:right-click}>
+
+<!--
+<div id="st-container" class="st-container">
+    <nav class="st-menu st-effect-1" id="menu-1">
+        <h2 class="icon icon-lab">Sidebar</h2>
+        <ul>
+            <li><a href="#">Data Management</a></li>
+            <li><a href="#">Location</a></li>
+            <li><a href="#">Study</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Credits</a></li>
+        </ul>
+    </nav>
+</div>
+
+ <div id="st-trigger-effects">
+        <button data-effect="st-effect-1">Slide in on top</button>
+    </div>
+-->
+
 
 <div id="topper">
 
@@ -52,7 +60,10 @@
         <h1><a href="">{templata:app-name}</a></h1>
     </div>
 
-    <div id="switch"></div>
+    <div id="switch">
+        <img data-effect="st-effect-1" src="images/nav_menu_icon.png">
+    </div>
+
 
     <div id="navigation">
         {navi:desktop}
@@ -66,17 +77,20 @@
 
 <div class="container_12 clearfix">
 
-    {body_content}
+    {body-content}
 
     <div id='footer' class='grid_12'>
         <div id='copyright'>
-            <p>&copy; 2013 Templata. All Rights Reserved</p>
+            <p>&copy; 2013 Success Motivation. All Rights Reserved</p>
         </div>
     </div>
 </div>
 
-</body>
 <!-- Menu toggle for smart phones -->
+<!--
+<script src="{templata:libs}/js/codrops/classie.js"></script>
+<script src="{templata:libs}/js/codrops/sidebarEffects.js"></script>
+-->
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
         $("#switch").click(function(){
@@ -84,4 +98,22 @@
         });
     });
 </script>
+
+
+<!-- Flexslider js and setting -->
+
+<script type="text/javascript" src="{template:res}/js/flexslider.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            easing: "string",
+            slideshowSpeed: 7000,
+            animationSpeed: 850
+        });
+    });
+</script>
+
+</body>
+
 </html>

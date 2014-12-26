@@ -17,6 +17,7 @@ Hello:theone/hello.php
 *Contact:theone/contact
 *Hello:theone/hello
 *Guide:guide
+*Sample:sample
 
 
             CASCADING STYLE SHEET FILES (CSS)

@@ -1,0 +1,15 @@
+/*Masonry
+-----------------------------------------------*/
+.item
+{
+    width: 25%;
+}
+.item.w2
+{
+    width: 50%;
+}
+
+/* center container with CSS */
+#fit-width .masonry {
+    margin: 0 auto;
+}
