@@ -1,5 +1,5 @@
 <?php
-require_once('functions.php');
+require_once(APP_ROOT_DIR.'/'.T_FNS.'functions.php');
 require_once('link_handler.php');
 abstract class Operator extends LinkHandler
 {
