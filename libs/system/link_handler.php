@@ -35,7 +35,7 @@ abstract class LinkHandler
 
     public function link_handler()
     {
-        $config = new Config();
+        $config = TConfig();
         $links = 'templates/'.$config->active_template.'/'.$config->navigation_links;
 
         if(!file_exists($links))

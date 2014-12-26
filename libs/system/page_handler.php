@@ -44,7 +44,7 @@ class PageHandler extends Operator
     # Retrieves content from within one of the files stored within the content directory
     public function get_content($uri)
     {
-        $config = new Config();
+        $config = TConfig();
 
         # Initial declarations
         $templata_content_dir = $config->templata_content_directory;
@@ -87,7 +87,7 @@ class PageHandler extends Operator
     public function generate_page($depth, $body_content = null, $output_mode = 1)
     {
         # Declarations
-        $config = new Config();
+        $config = TConfig();
 
         # Template override; overrides existing template if user has specified a template on the content source
         if(preg_match_all("/\[(template:.*?)\]/", $body_content, $template_name_matches))

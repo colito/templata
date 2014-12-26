@@ -39,7 +39,7 @@ class PlaceholderManager extends Operator
 
     public function placeholder_lists($template, $content, $page_name, $header_files, $depth)
     {
-        $config = new Config();
+        $config = TConfig();
         $template_name = $template['name'];
 
         # Order of placeholders is crucial. Eg: By placing body-content at the end of the array,

@@ -1,6 +1,6 @@
 <?php
 require_once('config/config.php');
-$def_config = new Config();
+$def_config = TConfig();
 
 # Declaring variables
 $content = $def_config->templata_content_directory.'/';

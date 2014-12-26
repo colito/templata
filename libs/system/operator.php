@@ -47,7 +47,7 @@ abstract class Operator extends LinkHandler
     /*** SOURCE FILES **************************************************************/
     public function css_files()
     {
-        $config = new Config();
+        $config = TConfig();
         $links = $config->navigation_links;
         $active_template = $config->active_template;
         $links_file = 'templates/'.$active_template.'/'.$links;
@@ -166,7 +166,7 @@ abstract class Operator extends LinkHandler
 
     public function get_jquery($depth)
     {
-        $config = new Config();
+        $config = TConfig();
         $jquery_path = $depth.$config->templata_jquey_path;
 
         if(glob($jquery_path.'/jquery*'))
