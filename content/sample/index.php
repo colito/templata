@@ -5,7 +5,7 @@
 <?php
 
 $imagine = instantiate_class('Imagine');
-$check = instantiate_class('PageHandler', 'page_handler');
+$check = instantiate_class('PageHandler', 'system/page_handler');
 
 $functons = get_defined_functions();
 
