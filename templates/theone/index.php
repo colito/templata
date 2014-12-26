@@ -101,7 +101,7 @@
 
 
 <!-- Flexslider js and setting -->
-<!--
+
 <script type="text/javascript" src="{template:res}/js/flexslider.js"></script>
 <script type="text/javascript" charset="utf-8">
     $(window).load(function() {
@@ -113,7 +113,6 @@
         });
     });
 </script>
--->
 
 </body>
 
