@@ -5,7 +5,7 @@ Class ApplicationConfig
     public $app_name = 'Templata';
 
     # Initial content to be displayed
-    public $default_landing_path = 'theone';
+    public $default_landing_path = 'test';
 
     # Right click bahaviour
     public $right_click = 1; # disables right-click event on the site if set to 0. default = 1
