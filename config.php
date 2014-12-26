@@ -18,7 +18,7 @@ Class Config
 
     # Template
     public $navigation_links = 'includes/links.php'; # this is relative within the actual template's root directory
-    public $active_template = 'theone';
+    public $active_template = 'templata_basic';
 
     # Email
     public $email_to = 'somebody@somewhere.com';
