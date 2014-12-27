@@ -70,6 +70,17 @@ class PlaceholderManager extends Operator
             'navi:mobile' => $this->navigation_menu($depth)
         );
 
+        # Checks if there are custom placeholders defined for the current active template
+        # and adds them to the mix if there are any
+        if(file_exists('templates/'.$template_name.'/includes/placeholders.php'))
+        {
+            require_once('templates/'.$template_name.'/includes/placeholders.php');
+            $ctp = new TemplatePlaceholders();
+            $custom_template_placeholders = $ctp->placeholders;
+
+            $all_placeholders = array_merge($all_placeholders, $custom_template_placeholders);
+        }
+
         $template_placeholders = array();
 
         # Template placeholders
