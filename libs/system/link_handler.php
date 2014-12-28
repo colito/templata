@@ -91,6 +91,54 @@ abstract class LinkHandler
     }
 
 
+    /*** PHYSICAL LINK ALTERING ****************************************************************/
+    # Turns standard relative hyperlinks into links that are userfriendly to the overall system
+    # Links should strictly be one level deep in order for them to work
+    # First part of the link represents a physical directory within the systems content directory
+    # and the second part represents the actual file whose content is required to be displayed.
+    public function href_link_transformer($href_source)
+    {
+        $raw_href_links = $this->extract_links($href_source);
+
+        $raw_href_links3 = array();
+        foreach($raw_href_links as $raw_href_links2)
+        {
+            # eliminating links containing 'www' or 'http' because such links need not to be re-written
+            if(strpos($raw_href_links2, 'http') === false)
+            {
+                if(strpos($raw_href_links2, 'www') === false)
+                {
+                    if(strpos($raw_href_links2, '.co') === false)
+                    {
+                        if(strpos($raw_href_links2, '.html') != false || strpos($raw_href_links2, '.php') != false)
+                        {
+                            $raw_href_links3[$raw_href_links2] = $raw_href_links2;
+                        }
+                        elseif(strpos($raw_href_links2, '.') == false && $raw_href_links2 != '#' && $raw_href_links2 != '')
+                        {
+                            $raw_href_links3[$raw_href_links2] = $raw_href_links2;
+                        }
+                    }
+                }
+            }
+        }
+
+        # modify urls to make them useful to the system
+        $new_href_links = array();
+        foreach($raw_href_links3 as $raw_href_links4)
+        {
+            //var_dump($raw_href_links4);
+            # notation -> ?category=category&article=page
+            $exploded_link = explode('/',$raw_href_links4);
+            @$new_href_links[$raw_href_links4] = '?category='.$exploded_link[0].'&article='.$exploded_link[1];
+        }
+
+        return $new_href_links;
+    }
+    /*** END OF PHYSICAL LINK ALTERING ***/
+
+
+
     /*** LINK EXTRACTION **************************************************/
 
     # Gets src="" or href="" or any other link depending on the type parameter. Default = href
@@ -107,6 +155,28 @@ abstract class LinkHandler
         }
 
         return $extracted_links;
+    }
+
+    public function ha($content, $type = 'href')
+    {
+        if(preg_match_all('/'.$type.'=\"#(.*?)\"/', $content, $link_matches) ||
+            preg_match_all('/'.$type.'=\'#(.*?)\'/', $content, $link_matches))
+        {
+            $extracted_links = $link_matches[1];
+            $hash_links = array();
+
+            foreach($extracted_links as $extracted_link)
+            {
+                //$hash_links[$extracted_link] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'#'.$extracted_link;
+                $hash_links[$extracted_link] = get_current_uri(1).'#'.$extracted_link;
+            }
+        }
+        else
+        {
+            $hash_links = false;
+        }
+
+        return $hash_links;
     }
 
     # Allows hash tag links to work normally in context of the overall system
