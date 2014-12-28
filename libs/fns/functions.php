@@ -25,7 +25,6 @@
                 return $_SERVER['REQUEST_URI'];
             break;
             case 1:
-                //return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
                 return "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             break;
