@@ -159,6 +159,21 @@ class PageHandler extends Operator
         $placeholders = new PlaceholderManager();
         $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $header_files, $depth);
 
+        # If .htaccess file isn't present
+        if(!file_exists('.htaccess'))
+        {
+            # Transform links into links with parameters
+            $transform_links = $this->href_link_transformer($include);
+
+            if(is_array($transform_links))
+            {
+                foreach($transform_links as $key=>$link)
+                {
+                    $include = str_replace($key, $link, $include);
+                }
+            }
+        }
+
         # Allows toleration of hash tag hyperlinks
         $hash_links = $this->hash_tag_links($include);
         if(is_array($hash_links))
