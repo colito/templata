@@ -93,7 +93,7 @@ abstract class LinkHandler
 
     /*** LINK EXTRACTION **************************************************/
 
-    # Gets src="" or href="" or any other link depending on the type parameeter. Default = href
+    # Gets src="" or href="" or any other link depending on the type parameter. Default = href
     public function extract_links($content, $type = 'href')
     {
         if(preg_match_all('/'.$type.'=\"(.*?)\"/', $content, $link_matches) ||
