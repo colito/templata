@@ -26,7 +26,7 @@ abstract class Operator extends LinkHandler
     /*** NAVIGATION ***********************************************************************/
     public function navigation_menu($depth = null)
     {
-        $x = $this->link_handler();
+        $x = $this->nav_link_handler();
 
         if($x == false) {return false;}
 
