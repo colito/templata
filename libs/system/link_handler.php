@@ -33,7 +33,7 @@ abstract class LinkHandler
         return $slug;
     }
 
-    public function link_handler()
+    public function nav_link_handler()
     {
         $config = TConfig();
         $links = 'templates/'.$config->active_template.'/'.$config->navigation_links;
@@ -123,17 +123,43 @@ abstract class LinkHandler
             }
         }
 
-        # modify urls to make them useful to the system
+        # modify urls to make them useful to the system in absence of .htaccess file
         $new_href_links = array();
         foreach($raw_href_links3 as $raw_href_links4)
         {
-            //var_dump($raw_href_links4);
             # notation -> ?category=category&article=page
             $exploded_link = explode('/',$raw_href_links4);
-            @$new_href_links[$raw_href_links4] = '?category='.$exploded_link[0].'&article='.$exploded_link[1];
+
+            if(count($exploded_link) == 3)
+            {
+                @$new_href_links[$raw_href_links4] = '?category='.$exploded_link[0].'&article='.$exploded_link[1].'&sub-article='.$exploded_link[2];
+            }
+            elseif(count($exploded_link) == 2)
+            {
+                @$new_href_links[$raw_href_links4] = '?category='.$exploded_link[0].'&article='.$exploded_link[1];
+            }
+            elseif(count($exploded_link) == 1)
+            {
+                @$new_href_links[$raw_href_links4] = '?category='.$exploded_link[0];
+            }
         }
 
-        return $new_href_links;
+        return $this->replace_links($new_href_links, $href_source, 'href');
+    }
+
+    # Replaces links within the HTML source
+    public function replace_links($links_to_replace, $source, $type='href')
+    {
+        if(is_array($links_to_replace))
+        {
+            foreach($links_to_replace as $key=>$link)
+            {
+                $source = str_replace($type.'="'.$key.'"', $type.'="'.$link.'"', $source);
+                $source = str_replace($type.'=\''.$key.'\'', $type.'=\''.$link.'\'', $source);
+            }
+        }
+
+        return $source;
     }
     /*** END OF PHYSICAL LINK ALTERING ***/
 
@@ -155,28 +181,6 @@ abstract class LinkHandler
         }
 
         return $extracted_links;
-    }
-
-    public function ha($content, $type = 'href')
-    {
-        if(preg_match_all('/'.$type.'=\"#(.*?)\"/', $content, $link_matches) ||
-            preg_match_all('/'.$type.'=\'#(.*?)\'/', $content, $link_matches))
-        {
-            $extracted_links = $link_matches[1];
-            $hash_links = array();
-
-            foreach($extracted_links as $extracted_link)
-            {
-                //$hash_links[$extracted_link] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'#'.$extracted_link;
-                $hash_links[$extracted_link] = get_current_uri(1).'#'.$extracted_link;
-            }
-        }
-        else
-        {
-            $hash_links = false;
-        }
-
-        return $hash_links;
     }
 
     # Allows hash tag links to work normally in context of the overall system
