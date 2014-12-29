@@ -162,20 +162,13 @@ class PageHandler extends Operator
         # If .htaccess file isn't present
         if(!file_exists('.htaccess'))
         {
-            # Transform links into links with parameters
-            $transform_links = $this->href_link_transformer($include);
-
-            if(is_array($transform_links))
-            {
-                foreach($transform_links as $key=>$link)
-                {
-                    $include = str_replace($key, $link, $include);
-                }
-            }
+            # Transform links into links with parameters & update source with the new links
+            $include = $this->href_link_transformer($include);
         }
 
         # Allows toleration of hash tag hyperlinks
         $hash_links = $this->hash_tag_links($include);
+
         if(is_array($hash_links))
         {
             foreach($hash_links as $key=>$hash_link)
