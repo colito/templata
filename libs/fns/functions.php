@@ -181,6 +181,18 @@
         return $protocol . $host . $directory . '/';
     }
 
+    function check_mod_rewrite()
+    {
+        if(!file_exists('.htaccess') || array_key_exists('HTTP_MOD_REWRITE', $_SERVER) == false)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     function include_lib($file_name)
     {
         return require_once(T_LIBS.$file_name.'.php');
