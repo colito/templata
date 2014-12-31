@@ -160,7 +160,7 @@ class PageHandler extends Operator
         $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $header_files, $depth);
 
         # If .htaccess file isn't present
-        if(!file_exists('.htaccess'))
+        if(!check_mod_rewrite())
         {
             # Transform links into links with parameters & update source with the new links
             $include = $this->href_link_transformer($include);

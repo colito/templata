@@ -12,7 +12,7 @@ $relative_path_depth = relative_path(dirname(__FILE__));
 
 $path = get_current_uri(1);
 
-if(!file_exists('.htaccess'))
+if(!check_mod_rewrite())
 {
     if(count($_GET) > 0)
     {
