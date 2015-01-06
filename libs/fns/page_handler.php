@@ -155,6 +155,9 @@ class PageHandler extends Operator
             $header_files = '';
         }
 
+        # Adding active template to cookie
+        //$_COOKIE['active_template'] = $this->active_template;
+
         # Replacing placeholders
         $placeholders = new PlaceholderManager();
         $include = $placeholders->replace_placeholders($actual_template, $body_content, $this->page_name, $header_files, $depth);
