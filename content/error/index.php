@@ -1,7 +1,7 @@
 [page:Page Error]
 
 <?php
-include_lib('page_handler');
+include_system_lib('page_handler');
 
 $page_handler = new PageHandler();
 

@@ -25,8 +25,7 @@
                 return $_SERVER['REQUEST_URI'];
             break;
             case 1:
-                $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
-                return "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             break;
         }
     }
@@ -181,26 +180,9 @@
         return $protocol . $host . $directory . '/';
     }
 
-    function check_mod_rewrite()
-    {
-        if(!file_exists('.htaccess') || array_key_exists('HTTP_MOD_REWRITE', $_SERVER) == false)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
     function include_lib($file_name)
     {
-        return require_once(T_LIBS.$file_name.'.php');
-    }
-
-    function include_system_lib($file_name)
-    {
-        return require_once(T_SYSTEM.$file_name.'.php');
+        return require_once(T_FNS.$file_name.'.php');
     }
 
     function include_tool($file_name)
