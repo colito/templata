@@ -12,8 +12,7 @@ abstract class DbInterrogator
 
     public function init()
     {
-        require_once('config/config.php');
-        $config = new Config();
+        $config = TConfig('Database');
 
         $creds = array();
         $creds['hostadress'] = $config->host;
