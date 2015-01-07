@@ -7,12 +7,6 @@
 $imagine = instantiate_class('Imagine');
 $check = instantiate_class('PageHandler', 'system/page_handler');
 
-$functons = get_defined_functions();
-
-var_dump(get_class_methods('PageHandler'));
-var_dump($functons['user']);
-
-
 ?>
 
 <div id="content" class="grid_12">
