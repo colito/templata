@@ -5,28 +5,13 @@
 
     RewriteEngine on
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^([^/]+)$ index.php?category=$1 [L]
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^([^/]+)/$ index.php?category=$1 [L]
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^([^/]+)/([^/]+)$ index.php?category=$1&article=$2 [L]
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^([^/]+)/([^/]+)/$ index.php?category=$1&article=$2 [L]
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ index.php?category=$1&article=$2&sub-article=$3 [L]
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^([^/]+)/([^/]+)/([^/]+)/$ index.php?category=$1&article=$2&sub-article=$3 [L]
 
     # Ref: http://www.htmlgoodies.com/beyond/reference/article.php/3472591
