@@ -52,6 +52,7 @@ class PlaceholderManager extends Operator
             'template:res' => $depth.'templates/'.$template_name,
             'template-fs' => $depth.'templates/'.$template_name,
             'template:css' => $this->unpack_css_files(),
+            'templata:css' => $depth.$config->templata_libraries.'/css',
             'page-title' => $page_name,
             'header-files' => $this->unpack_header_resources($header_files),
             'templata:right-click' => $this->right_click_switch($config->right_click),
