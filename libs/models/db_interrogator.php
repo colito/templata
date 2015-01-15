@@ -33,12 +33,12 @@ abstract class DbInterrogator
         $password = $creds['password'];
         $my_sql_db = $creds['db'];
 
-        $mysqi = new mysqli($hostadress, $username, $password, $my_sql_db);
+        $mysqli = new mysqli($hostadress, $username, $password, $my_sql_db);
 
         if (mysqli_connect_errno())
             die('Could not connect to MySQL: ' . mysqli_connect_error());
 
-        return $mysqi;
+        return $mysqli;
     }
 
 
