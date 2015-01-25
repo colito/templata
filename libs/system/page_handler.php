@@ -89,6 +89,11 @@ class PageHandler extends Operator
         # Declarations
         $config = TConfig();
 
+        # setting cookie to be accessible anywhere and to allow implicit creation ans setting of cookies
+        if(empty($_COOKIE['hello'])) {
+            setcookie('hello', 'hello', time()+3600, '/');
+        }
+
         # Template override; overrides existing template if user has specified a template on the content source
         if(preg_match_all("/\[(template:.*?)\]/", $body_content, $template_name_matches))
         {
@@ -118,7 +123,7 @@ class PageHandler extends Operator
         $_COOKIE['active_template'] = $actual_template['name'];
 
         $actual_template['source_code'] = $this->get_script_output($template_path);
-        
+
         # Determining name of page being currently viewed
         if($this->get_page_name() == null)
         {
@@ -135,6 +140,7 @@ class PageHandler extends Operator
 
             # cleaning up page title and assigning it to class variable
             $this->page_name = str_replace('page:', '', $page_title);
+            $_COOKIE['current_page_name'] = $this->page_name;
         }
 
         # Add CSS or JS script to head
