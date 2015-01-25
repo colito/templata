@@ -74,6 +74,16 @@ function relative_path($file_root_path)
     return $depth;
 }
 
+function get_page_title() {
+
+    if(!empty($_COOKIE['current_page_name'])) {
+        return $_COOKIE['current_page_name'];
+    }
+    else {
+        return null;
+    }
+}
+
 /*** BROWSER ***********************************************************/
 # Ref: http://www.php.net/get_browser
 function browser_data()
