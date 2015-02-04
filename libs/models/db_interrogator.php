@@ -67,6 +67,10 @@ abstract class DbInterrogator
                 }
             }
         }
+		else
+		{
+			$sql .= 'WHERE '.$where;
+		}
 
         $result = $this->run_sql($sql);
 
