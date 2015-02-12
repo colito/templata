@@ -243,6 +243,24 @@ function current_datetime()
     return date('Y-m-d H:i:s');
 }
 
+function deslug($string, $seperator = '-', $capitalise = 1)
+{
+    $string = str_replace($seperator, ' ', $string);
+
+    switch($capitalise)
+    {
+        case 1:
+            $string = ucwords($string);
+            break;
+        case 2:
+            $string = strtoupper($string);
+            break;
+        default:
+            $string = strtolower($string);
+    }
+    return $string;
+}
+
 /* backup the db OR just a table */
 function backup_tables($host,$user,$pass,$name,$tables = '*')
 {
