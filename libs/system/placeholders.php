@@ -68,7 +68,10 @@ class PlaceholderManager extends Operator
             'templata:jquery' => $this->get_jquery($depth),
             'validation:contact-form' => $depth.'tools/validation/contact-form.php',
             'navi:desktop' => $this->navigation_menu($depth),
-            'navi:mobile' => $this->navigation_menu($depth)
+            'navi:mobile' => $this->navigation_menu($depth),
+            'current_datetime' => current_datetime(),
+            'current_date' => current_date(),
+            'current_time' => current_time()
         );
 
         # Checks if there are custom placeholders defined for the current active template
@@ -79,7 +82,10 @@ class PlaceholderManager extends Operator
             $ctp = new TemplatePlaceholders();
             $custom_template_placeholders = $ctp->placeholders;
 
-            $all_placeholders = array_merge($all_placeholders, $custom_template_placeholders);
+            if(is_array($custom_template_placeholders))
+            {
+                $all_placeholders = array_merge($all_placeholders, $custom_template_placeholders);
+            }
         }
 
         $template_placeholders = array();
