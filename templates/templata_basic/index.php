@@ -21,9 +21,6 @@
     <link rel="stylesheet" href="{template-res:css:style.css}" type='text/css' media="screen">
     <link rel="stylesheet" href="{template-res:css:media_queries.css}" type='text/css' media="screen">
 
-    <link rel="stylesheet" type="text/css" href="{templata:libs}/css/codrops/sidebar_transitions/component.css" />
-    <script src="{templata:libs}/js/codrops/modernizr.custom.js"></script>
-
     <!-- JQuery -->
     {templata:jquery}
 
